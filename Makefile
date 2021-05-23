@@ -1,19 +1,73 @@
-all:bin/main
+CFLAGS := -Wall -Werror -std=c++17
+CPPFLAGS := -MMD 
+CXX := g++
 
-bin/main: obj/src/main.o obj/lib/geometrylib.a
-	gcc obj/src/main.o -Wall -Werror -L. obj/lib/geometrylib.a -o $@
+TARGET := bin/GameOfLife
 
-obj/src/main.o:src/main.c
-	gcc -c src/main.c -Wall -Werror -o $@
+SOURCES := $(wildcard src/gameOfLife/*.cpp)
+LIBSOURCES := $(wildcard src/lib/*.cpp)
+LIBMSOURCES := $(wildcard src/mlib/*.cpp)
 
-run:
-	./bin/main
+LIBOBJ := $(patsubst src/lib/%.cpp, obj/src/%.o, $(LIBSOURCES))
+LIB := obj/lib/geometrylib.a 
 
+MLIBOBJ := $(patsubst src/mlib/%.cpp, obj/src/%.o, $(LIBMSOURCES))
+MLIB := obj/mlib/parsestringmlib.a 
+
+OBJ := $(patsubst src/gameOfLife/%.cpp, obj/src/%.o, $(SOURCES))
+
+SFML := thirdparty/SFML
+SFMLLIB := $(SFML)/lib
+SFMLINCLUDE := $(SFML)/include
+LIBS=-lsfml-graphics -lsfml-window -lsfml-system
+
+TEST := $(wildcard test/*.cpp) 
+TESTOBJ := $(patsubst test/%.cpp, obj/test/%.o, $(TEST))
+TESTTARGET := bin/TestGameOfLife
+CTEST := thirdparty/ctest.h
+
+all:$(TARGET)
+
+$(TARGET): $(OBJ) 
+	$(CXX) $(CFLAGS) $(CPPFLAGS) $(CSFMLFLAG) -o $(TARGET) $(LDFLAGS1) $(OBJ)  
+	
+$(SFMLLIB):
+	git submodule update --init --recursive
+	cmake $(SFML)/CMakeLists.txt
+	make -C $(SFML)
+	
+$(LIB): $(LIBOBJ)
+	ar rcs $@ $^
+
+$(MLIB): $(MLIBOBJ)
+	ar rcs $@ $^
+
+obj/src/%.o: src/lib/%.cpp
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@  -I$(SFMLINCLUDE)
+
+obj/src/%.o: src/%.cpp
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I$(SFMLINCLUDE) -Isrc/lib
+	
+test: $(TESTTARGET)
+	./$(TESTTARGET)
+
+$(TESTTARGET): $(TESTOBJ) $(CTEST) $(LIB)
+	$(CXX) $(CPPFLAGS) $(CFLAGS)  $(TESTOBJ) -o $@ -L$(LIB) -I src/lib -Ithirdparty
+
+obj/test/%.o: test/%.cpp $(CTEST)
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@ -Isrc/lib -Ithirdparty
+		
+run: $(TARGET)
+	cd bin; export LD_LIBRARY_PATH=../$(SFMLLIB) && ./GameOfLife
 clean:
-	find . -name "*.d" -exec rm {} \;
-	find . -name "*.o" -exec rm {} \;
-	find . -name "*.a" -exec rm {} \;
-	rm bin/main
-	rm bin/test
-
-.PHONY: clean run all
+	find . -name "*.o" -exec rm '{}' \;
+	find . -name "*.d" -exec rm '{}' \;
+	find . -name "*.a" -exec rm '{}' \;
+	find ./bin -type f -name "GameOfLife" -exec rm -f '{}' \;
+	find ./bin -type f -name "TestGameOfLife" -exec rm -f '{}' \;
+	
+format:
+	cd src; find . -name "*.cpp" -exec clang-format -i {} \; 
+	cd src; find . -name "*.h" -exec clang-format -i {} \; 
+	
+.PHONY: clean test run all format
