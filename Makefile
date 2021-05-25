@@ -16,9 +16,6 @@ MLIB := obj/mlib/parsestringmlib.a
 
 OBJ := $(patsubst src/gameOfLife/%.cpp, obj/src/%.o, $(SOURCES))
 
-SFML := thirdparty/SFML
-SFMLLIB := $(SFML)/lib
-SFMLINCLUDE := $(SFML)/include
 LIBS=-lsfml-graphics -lsfml-window -lsfml-system
 
 TEST := $(wildcard test/*.cpp) 
@@ -29,12 +26,7 @@ CTEST := thirdparty/ctest.h
 all:$(TARGET)
 
 $(TARGET): $(OBJ) 
-	$(CXX) $(CFLAGS) $(CPPFLAGS) $(CSFMLFLAG) -o $(TARGET) $(LDFLAGS1) $(OBJ)  
-	
-$(SFMLLIB):
-	git submodule update --init --recursive
-	cmake $(SFML)/CMakeLists.txt
-	make -C $(SFML)
+	$(CXX) $(CFLAGS) $(CPPFLAGS) -o $(TARGET) $(OBJ) $(LIBS) 
 	
 $(LIB): $(LIBOBJ)
 	ar rcs $@ $^
@@ -58,7 +50,8 @@ obj/test/%.o: test/%.cpp $(CTEST)
 	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@ -Isrc/lib -Ithirdparty
 		
 run: $(TARGET)
-	cd bin; export LD_LIBRARY_PATH=../$(SFMLLIB) && ./GameOfLife
+	./bin/GameOfLife
+	
 clean:
 	find . -name "*.o" -exec rm '{}' \;
 	find . -name "*.d" -exec rm '{}' \;

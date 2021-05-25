@@ -1,4 +1,7 @@
 *~
 main
+GameOfLife
+TestGameOfLife
 *.o
-
+*.d
+*.a
