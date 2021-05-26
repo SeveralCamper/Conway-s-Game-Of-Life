@@ -9,10 +9,10 @@ LIBSOURCES := $(wildcard src/lib/*.cpp)
 LIBMSOURCES := $(wildcard src/mlib/*.cpp)
 
 LIBOBJ := $(patsubst src/lib/%.cpp, obj/src/%.o, $(LIBSOURCES))
-LIB := obj/lib/geometrylib.a 
+LIB := obj/lib/functionLib.a 
 
 MLIBOBJ := $(patsubst src/mlib/%.cpp, obj/src/%.o, $(LIBMSOURCES))
-MLIB := obj/mlib/parsestringmlib.a 
+MLIB := obj/mlib/methodsLib.a 
 
 OBJ := $(patsubst src/gameOfLife/%.cpp, obj/src/%.o, $(SOURCES))
 
@@ -34,20 +34,23 @@ $(LIB): $(LIBOBJ)
 $(MLIB): $(MLIBOBJ)
 	ar rcs $@ $^
 
-obj/src/%.o: src/lib/%.cpp
+obj/lib/%.o: src/lib/%.cpp
 	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@  -I$(SFMLINCLUDE)
 
-obj/src/%.o: src/%.cpp
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I$(SFMLINCLUDE) -Isrc/lib
+obj/mlib/%.o: src/mlib/%.cpp 
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I$(SFMLINCLUDE) -Isrc/lib -Isrc/mlib
+
+obj/src/%.o: src/gameOfLife/%.cpp 
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I$(SFMLINCLUDE) -Isrc/lib -Isrc/mlib
 	
 test: $(TESTTARGET)
 	./$(TESTTARGET)
 
 $(TESTTARGET): $(TESTOBJ) $(CTEST) $(LIB)
-	$(CXX) $(CPPFLAGS) $(CFLAGS)  $(TESTOBJ) -o $@ -L$(LIB) -I src/lib -Ithirdparty
+	$(CXX) $(CPPFLAGS) $(CFLAGS)  $(TESTOBJ) -o $@ -L$(LIB) -I src/lib -Isrc/mlib -Ithirdparty
 
 obj/test/%.o: test/%.cpp $(CTEST)
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@ -Isrc/lib -Ithirdparty
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@ -Isrc/lib -Isrc/mlib -Ithirdparty
 		
 run: $(TARGET)
 	./bin/GameOfLife
