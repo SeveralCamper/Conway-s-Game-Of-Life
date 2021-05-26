@@ -16,7 +16,7 @@ MLIB := obj/mlib/methodsLib.a
 
 OBJ := $(patsubst src/gameOfLife/%.cpp, obj/src/%.o, $(SOURCES))
 
-LIBS=-lsfml-graphics -lsfml-window -lsfml-system
+LIBS= -DSFML_STATIC -lsfml-graphics -lsfml-window -lsfml-system -l opengl32 -l winmm -l gdi32 -l freetype -l jpeg
 
 TEST := $(wildcard test/*.cpp) 
 TESTOBJ := $(patsubst test/%.cpp, obj/test/%.o, $(TEST))
