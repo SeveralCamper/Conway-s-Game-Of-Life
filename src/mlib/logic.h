@@ -5,12 +5,11 @@
 #include <cstdlib>
 //#include <iomanip>
 #include <iostream>
-#
 
 class LifeAlgorithm {
 public:
-    int static constexpr Widht = 5;  // ширина массива/поля
-    int static constexpr Height = 5; // высота массива/поля
+    int static constexpr Widht = 40;  // ширина массива/поля
+    int static constexpr Height = 40; // высота массива/поля
 
     int fieldArray[Widht][Height];
 
@@ -80,13 +79,17 @@ public:
         }
     }
 
-    void RunLife()
+    void initLife()
     {
         LifeAlgorithm::CreateUniverse();
         LifeAlgorithm::RandFillUniverse();
-        LifeAlgorithm::PrintUniverse();
+    }
+
+    void RunLife()
+    {
+        // LifeAlgorithm::PrintUniverse();
         LifeAlgorithm::Step();
-        LifeAlgorithm::PrintUniverse();
+        // LifeAlgorithm::PrintUniverse();
     }
 };
 
