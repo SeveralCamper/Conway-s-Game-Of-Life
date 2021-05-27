@@ -5,7 +5,7 @@
 
 using namespace sf;
 
-void Erecta(RenderWindow& window, int fieldArray[40][40])
+void ShowPixel(RenderWindow& window, bool fieldArray[40][40])
 {
     window.clear(Color(0, 0, 0));
 
@@ -27,7 +27,7 @@ int main()
     LifeAlgorithm LAExmpl;
     LAExmpl.initLife();
 
-    RenderWindow window(sf::VideoMode(1300, 1300), "LIFE");
+    RenderWindow window(sf::VideoMode(1000, 1000), "LIFE");
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {
@@ -42,7 +42,7 @@ int main()
         
         while (true) {
             LAExmpl.RunLife();
-            Erecta(window, LAExmpl.fieldArray);
+            ShowPixel(window, LAExmpl.fieldArray);
             window.display();
 
             sleep(1);
