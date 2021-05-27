@@ -8,8 +8,8 @@
 
 class LifeAlgorithm {
 public:
-    int static constexpr Widht = 40;  // ширина массива/поля
-    int static constexpr Height = 40; // высота массива/поля
+    int static constexpr Widht = 55;  // ширина массива/поля
+    int static constexpr Height = 55; // высота массива/поля
 
     bool fieldArray[Widht][Height];
     bool tempArray[Widht][Height];
@@ -25,9 +25,11 @@ public:
 
     void RandFillUniverse()
     {
+        srand(time(NULL));
+
         for (int i = 1; i < Widht - 1; i++) {
             for (int j = 1; j < Height - 1; j++) {
-                fieldArray[i][j] = rand() % 2;
+                fieldArray[i][j] =  rand() % 2;
             }
         }
     }

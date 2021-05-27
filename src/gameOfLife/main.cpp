@@ -5,18 +5,18 @@
 
 using namespace sf;
 
-void ShowPixel(RenderWindow& window, bool fieldArray[40][40])
+void ShowPixel(RenderWindow& window, bool fieldArray[55][55])
 {
     window.clear(Color(0, 0, 0));
 
-    for (int i = 0; i < 40; i++)
-        for (int j = 0; j < 40; j++) {
+    for (int i = 0; i < 55; i++)
+        for (int j = 0; j < 55; j++) {
             if (fieldArray[i][j] == 1) {
-                RectangleShape rectangle(Vector2f(20.f, 20.f));
+                RectangleShape rectangle(Vector2f(10.f, 10.f));
                 rectangle.setFillColor(Color(255, 136, 0));
-                rectangle.setOutlineThickness(7.f);
-                rectangle.setOutlineColor(Color(0, 0, 0));
-                rectangle.move(25 * i, 25 * j);
+                rectangle.setOutlineThickness(2.f);
+                rectangle.setOutlineColor(Color(255, 165, 0));
+                rectangle.move(16 * i, 16 * j);
                 window.draw(rectangle);
             }
         }
@@ -27,7 +27,7 @@ int main()
     LifeAlgorithm LAExmpl;
     LAExmpl.initLife();
 
-    RenderWindow window(sf::VideoMode(1000, 1000), "LIFE");
+    RenderWindow window(sf::VideoMode(880, 880), "LIFE");
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {
