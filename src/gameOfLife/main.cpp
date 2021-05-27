@@ -65,12 +65,18 @@ int main(int argc, const char** argv) {
   		}
 	window.clear(Color(255, 255, 255));
 	
-	RectangleShape rectangle(Vector2f(300.f, 150.f));
+	RectangleShape rectangle(Vector2f(300.f, 155.f));
 	rectangle.setFillColor(Color(255, 255, 255));
 	rectangle.setOutlineThickness(10.f);
 	rectangle.setOutlineColor(Color(0, 0, 0));
 	rectangle.move(20, 30);
 	window.draw(rectangle);
+
+	for(int i = 1; i < 4; i++){
+		int y = 130;
+		rectangle.move(0, 30 + y);
+		window.draw(rectangle);
+	}
 	menu(window);//вызов меню
 
 	window.display();
