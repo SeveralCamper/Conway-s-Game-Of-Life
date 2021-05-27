@@ -29,7 +29,7 @@ public:
 
         for (int i = 1; i < Widht - 1; i++) {
             for (int j = 1; j < Height - 1; j++) {
-                fieldArray[i][j] =  rand() % 2;
+                fieldArray[i][j] = rand() % 2;
             }
         }
     }
