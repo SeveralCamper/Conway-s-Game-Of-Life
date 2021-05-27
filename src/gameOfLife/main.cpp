@@ -5,16 +5,31 @@
 
 using namespace sf;
 
-void ShowPixel(RenderWindow& window, bool fieldArray[55][55])
+void ShowGrid(RenderWindow& window)
 {
     window.clear(Color(0, 0, 0));
+
+    for (int i = 0; i < 55; i++)
+        for (int j = 0; j < 55; j++) {
+            RectangleShape rectangle(Vector2f(10.f, 10.f));
+            rectangle.setFillColor(Color(0, 0, 0));
+            rectangle.setOutlineThickness(.5f);
+            rectangle.setOutlineColor(Color(75, 0, 130));
+            rectangle.move(16 * i, 16 * j);
+            window.draw(rectangle);
+        }
+}
+
+void ShowPixel(RenderWindow& window, bool fieldArray[55][55])
+{
+    // window.clear(Color(0, 0, 0));
 
     for (int i = 0; i < 55; i++)
         for (int j = 0; j < 55; j++) {
             if (fieldArray[i][j] == 1) {
                 RectangleShape rectangle(Vector2f(10.f, 10.f));
                 rectangle.setFillColor(Color(255, 136, 0));
-                rectangle.setOutlineThickness(2.f);
+                rectangle.setOutlineThickness(.5f);
                 rectangle.setOutlineColor(Color(255, 165, 0));
                 rectangle.move(16 * i, 16 * j);
                 window.draw(rectangle);
@@ -44,15 +59,16 @@ int main()
         sf::Clock clock;
         float time = 0;
         while (time < 1) {
-
             time = clock.getElapsedTime().asSeconds();
             LAExmpl.RunLife();
+
+            ShowGrid(window);
+
             ShowPixel(window, LAExmpl.fieldArray);
 
             sf::sleep(sf::milliseconds(300));
             window.display();
         }
-
     }
 
     return 0;
