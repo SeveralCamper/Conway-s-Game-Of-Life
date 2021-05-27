@@ -35,27 +35,35 @@ public:
     void Step()
     {
         for (int i = 1; i < Widht - 1; i++) {
-            for (int j = 1; j < Height - 1; j++) { // первый проход: вычисляем будущее состоянее
+            for (int j = 1; j < Height - 1;
+                 j++) { // первый проход: вычисляем будущее состоянее
 
                 int numNeigbours = 0;
                 bool isAlive = fieldArray[i][j];
 
-                if (fieldArray[i - 1][ j - 1]) numNeigbours++;
-                if (fieldArray[i - 1][ j]) numNeigbours++;
-                if (fieldArray[i - 1][ j + 1]) numNeigbours++;
-                if (fieldArray[i][ j - 1]) numNeigbours++;
-                if (fieldArray[i][ j + 1]) numNeigbours++;
-                if (fieldArray[i + 1][ j - 1]) numNeigbours++;
-                if (fieldArray[i + 1][ j]) numNeigbours++;
-                if (fieldArray[i + 1][ j + 1]) numNeigbours++;
-                bool keepAlive = isAlive && (numNeigbours == 2 || numNeigbours == 3);
+                if (fieldArray[i - 1][j - 1])
+                    numNeigbours++;
+                if (fieldArray[i - 1][j])
+                    numNeigbours++;
+                if (fieldArray[i - 1][j + 1])
+                    numNeigbours++;
+                if (fieldArray[i][j - 1])
+                    numNeigbours++;
+                if (fieldArray[i][j + 1])
+                    numNeigbours++;
+                if (fieldArray[i + 1][j - 1])
+                    numNeigbours++;
+                if (fieldArray[i + 1][j])
+                    numNeigbours++;
+                if (fieldArray[i + 1][j + 1])
+                    numNeigbours++;
+                bool keepAlive
+                        = isAlive && (numNeigbours == 2 || numNeigbours == 3);
                 bool makeNewLive = !isAlive && numNeigbours == 3;
-                tempArray[i][ j] = keepAlive | makeNewLive;
-
-
+                tempArray[i][j] = keepAlive | makeNewLive;
             }
         }
-         for (int i = 1; i < Widht - 1; i++)
+        for (int i = 1; i < Widht - 1; i++)
             for (int j = 1; j < Height - 1; j++)
                 // второй проход: копируем вычисленное состояние в текущее
                 fieldArray[i][j] = tempArray[i][j];

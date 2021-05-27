@@ -1,7 +1,7 @@
 #include "logic.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <unistd.h>
+/* #include <unistd.h> */
 
 using namespace sf;
 
@@ -35,18 +35,24 @@ int main()
         // итерации цикла
         sf::Event event;
         while (window.pollEvent(event)) {
-            // если произошло событие Закрытие,закрываем наше окно
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        
-        while (true) {
+
+        window.clear();
+
+        sf::Clock clock;
+        float time = 0;
+        while (time < 1) {
+
+            time = clock.getElapsedTime().asSeconds();
             LAExmpl.RunLife();
             ShowPixel(window, LAExmpl.fieldArray);
-            window.display();
 
-            sleep(1);
+            sf::sleep(sf::milliseconds(300));
+            window.display();
         }
+
     }
 
     return 0;
