@@ -2,6 +2,7 @@
 main
 GameOfLife
 TestGameOfLife
+logic
 *.o
 *.d
 *.a

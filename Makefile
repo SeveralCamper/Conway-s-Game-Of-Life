@@ -61,6 +61,7 @@ clean:
 	find . -name "*.a" -exec rm '{}' \;
 	find ./bin -type f -name "GameOfLife" -exec rm -f '{}' \;
 	find ./bin -type f -name "TestGameOfLife" -exec rm -f '{}' \;
+	find ./src/mlib -type f -name "logic" -exec rm -f '{}' \;
 	
 format:
 	cd src; find . -name "*.cpp" -exec clang-format -i {} \; 

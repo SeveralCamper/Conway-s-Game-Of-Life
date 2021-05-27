@@ -16,18 +16,19 @@ public:
         {
             for (int j = 1; j < Height - 1; j++)
             {  // первый проход: вычисляем будущее состоянее
-                std::cout << fieldArray[i][j] << std::endl;
+                std::cout << "[i][j] эл. = " << fieldArray[i][j] << std::endl;
 
                 bool isAlive = fieldArray[i][j];
                 int numNeigbours = 0;
                 int numNeigboursCount();
                 {
-                    for (int q = i - 1; q < i + 1; q++)
+                    for (int q = i - 1; q < i + 2; q++)
                     {
-                        for (int v = j - 1; v < j + 1; v++)
+                        for (int v = j - 1; v < j + 2; v++)
                         {
-                            if (fieldArray[q][v] = true) numNeigbours++;
-                            std::cout << fieldArray[q][v] << std::endl;
+                            if (fieldArray[q][v] == true) numNeigbours++;
+                            std::cout << "[q][v] = " << q << v << std::endl;
+                            std::cout << "[q][v] эл. = " << fieldArray[q][v] << std::endl;
                         }
                     }
                 }
@@ -50,11 +51,3 @@ int main ()
 
     LAExmpl.Step();
 }
-/*if (fieldArray[i - 1, j - 1]) numNeigbours++;
-                    if (fieldArray[i - 1, j]) numNeigbours++;
-                    if (fieldArray[i - 1, j + 1]) numNeigbours++;
-                    if (fieldArray[i, j - 1]) numNeigbours++;
-                    if (fieldArray[i, j + 1]) numNeigbours++;
-                    if (fieldArray[i + 1, j - 1]) numNeigbours++;
-                    if (fieldArray[i + 1, j]) numNeigbours++;
-                    if (fieldArray[i + 1, j + 1]) numNeigbours++; */
