@@ -23,7 +23,7 @@
                 }
             ],
             "preLaunchTask": "C/C++: g++-9 сборка активного файла",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "miDebuggerPath": "/bin/gdb"
         }
     ]
 }

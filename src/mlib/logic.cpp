@@ -1,6 +1,6 @@
-#include "logic.h"
+/* #include "logic.h"
 
-int LifeAlgorithm::lifeGenerate()
+void LifeAlgorithm::CreateUniverse()
 {
     for (int i = 0; i < Widht; i++) {
         for (int j = 0; j < Height; j++) {
@@ -9,12 +9,7 @@ int LifeAlgorithm::lifeGenerate()
     }
 }
 
-int LifeAlgorithm::~lifeGenerate()
-{
-    return 0;
-}
-
-void LifeAlgorithm::fillUniverse()
+void LifeAlgorithm::FillUniverse()
 {
     for (int i = 1; i < Widht - 1; i++) {
         for (int j = 1; j < Height - 1; j++) {
@@ -23,7 +18,7 @@ void LifeAlgorithm::fillUniverse()
     }
 }
 
-void LifeAlgorithm::printUniverse()
+void LifeAlgorithm::PrintUniverse()
 {
     for (int i = 0; i < Widht; i++) {
         for (int j = 0; j < Height; j++) {
@@ -58,24 +53,25 @@ void LifeAlgorithm::Step()
                 }
             }
             std::cout << "numNeigbours = " << numNeigbours << std::endl;
-            bool keepAlive
-                    = isAlive && (numNeigbours == 2 || numNeigbours == 3);
+            bool keepAlive = isAlive && (numNeigbours == 2 || numNeigbours == 3);
             bool makeNewLive = !isAlive && numNeigbours == 3;
+
+            fieldArray[i][j] = keepAlive | makeNewLive;
         }
     }
 }
 
-int LifeAlgorithm::runLife()
+void LifeAlgorithm::RunLife()
 {
-    LifeAlgorithm::lifeGenerate();
-    LifeAlgorithm::fillUniverse();
-    LifeAlgorithm::printUniverse();
-    Sleep(1000);
+    LifeAlgorithm::FillUniverse();
+    LifeAlgorithm::PrintUniverse();
+    system("pause");
     system("cls");
-    while (1) {
+    while (true) {
         LifeAlgorithm::Step();
-        LifeAlgorithm::printUniverse();
-        Sleep(1000);
+        LifeAlgorithm::PrintUniverse();
+        system("pause");
         system("cls");
     }
 }
+ */

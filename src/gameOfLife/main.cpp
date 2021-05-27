@@ -1,9 +1,12 @@
+//#include <SFML/Graphics.hpp>
+#include <iostream>
 #include "logic.h"
-#include <SFML/Graphics.hpp>
 
 int main()
 {
     LifeAlgorithm LAExmpl;
-    LAExmpl.runLife();
+    LAExmpl.RunLife();
+
+
     return 0;
 }

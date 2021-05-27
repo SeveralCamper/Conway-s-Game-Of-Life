@@ -16,7 +16,7 @@ MLIB := obj/mlib/methodsLib.a
 
 OBJ := $(patsubst src/gameOfLife/%.cpp, obj/src/%.o, $(SOURCES))
 
-LIBS= -DSFML_STATIC -lsfml-graphics -lsfml-window -lsfml-system -l opengl32 -l winmm -l gdi32 -l freetype -l jpeg
+LIBS= -DSFML_STATIC -lsfml-graphics -lsfml-window 
 
 TEST := $(wildcard test/*.cpp) 
 TESTOBJ := $(patsubst test/%.cpp, obj/test/%.o, $(TEST))
@@ -35,7 +35,7 @@ $(MLIB): $(MLIBOBJ)
 	ar rcs $@ $^
 
 obj/lib/%.o: src/lib/%.cpp
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@  -I$(SFMLINCLUDE)
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@  -I$(SFMLINCLUDE) -Isrc/lib -Isrc/mlib
 
 obj/mlib/%.o: src/mlib/%.cpp 
 	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I$(SFMLINCLUDE) -Isrc/lib -Isrc/mlib
