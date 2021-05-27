@@ -53,8 +53,8 @@ void LifeAlgorithm::Step()
                 }
             }
             std::cout << "numNeigbours = " << numNeigbours << std::endl;
-            bool keepAlive = isAlive && (numNeigbours == 2 || numNeigbours == 3);
-            bool makeNewLive = !isAlive && numNeigbours == 3;
+            bool keepAlive = isAlive && (numNeigbours == 2 || numNeigbours ==
+3); bool makeNewLive = !isAlive && numNeigbours == 3;
 
             fieldArray[i][j] = keepAlive | makeNewLive;
         }

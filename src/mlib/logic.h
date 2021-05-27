@@ -5,6 +5,7 @@
 #include <cstdlib>
 //#include <iomanip>
 #include <iostream>
+#
 
 class LifeAlgorithm {
 public:
@@ -50,28 +51,31 @@ public:
             for (int j = 1; j < Height - 1;
                  j++) { // первый проход: вычисляем будущее состоянее
 
-                std::cout << "[" << i << "][" << j << "] = " << fieldArray[i][j] << std::endl;
+                std::cout << "[" << i << "][" << j << "] = " << fieldArray[i][j]
+                          << std::endl;
 
                 int numNeigbours = 0;
 
                 for (int ii = i - 1; ii < i + 2; ii++) {
                     for (int jj = j - 1; jj < j + 2; jj++) {
+                        numNeigbours = numNeigbours + fieldArray[ii][jj];
 
-                        numNeigbours = numNeigbours + fieldArray[ii][jj]; 
-
-                        std::cout << "[" << ii << "][" << jj << "]" << fieldArray[ii][jj] << std::endl;
+                        std::cout << "[" << ii << "][" << jj << "]"
+                                  << fieldArray[ii][jj] << std::endl;
                     }
                 }
-                
+
                 numNeigbours = numNeigbours - fieldArray[i][j];
 
                 if (numNeigbours == 3 && fieldArray[i][j] == 0)
                     fieldArray[i][j] = 1;
 
-                if ((numNeigbours < 2 || numNeigbours > 3) && fieldArray[i][j] == 1)
+                if ((numNeigbours < 2 || numNeigbours > 3)
+                    && fieldArray[i][j] == 1)
                     fieldArray[i][j] = 0;
-                
-                std::cout << "numNeigbours = " << numNeigbours << "\n" << std::endl;
+
+                std::cout << "numNeigbours = " << numNeigbours << "\n"
+                          << std::endl;
             }
         }
     }
