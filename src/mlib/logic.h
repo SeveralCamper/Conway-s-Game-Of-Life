@@ -5,7 +5,6 @@
 #include <cstdlib>
 //#include <iomanip>
 #include <iostream>
-#
 
 class LifeAlgorithm {
 public:

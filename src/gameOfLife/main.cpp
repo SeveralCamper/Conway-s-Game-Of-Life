@@ -1,6 +1,5 @@
-//#include <SFML/Graphics.hpp>
 #include "logic.h"
-#include <iostream>
+#include <SFML/Graphics.hpp>
 
 int main()
 {
