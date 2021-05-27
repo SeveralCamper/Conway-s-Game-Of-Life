@@ -25,9 +25,9 @@ public:
 
     void printArray ()
     {
-        for (int i = 1; i < Widht - 1; i++) 
+        for (int i = 0; i < Widht; i++) 
         {
-            for (int j = 1; j < Height - 1; j++) 
+            for (int j = 0; j < Height; j++) 
             {
                 std::cout << "" << fieldArray[i][j];
             }
@@ -49,8 +49,10 @@ public:
                 {
                     for (int q = i - 1; q < i + 2; q++) {
                         for (int v = j - 1; v < j + 2; v++) {
-                            if (fieldArray[q][v] == true && fieldArray[q][v] != fieldArray[q][v])
-                                numNeigbours++;
+                            if (fieldArray[q][v] == true) 
+                                if (q !=i && v !=j)
+                                    numNeigbours--;
+                            numNeigbours++;
                             std::cout << "[q][v] = " << q << v << std::endl;
                             std::cout << "[q][v] эл. = " << fieldArray[q][v]
                                       << std::endl;
