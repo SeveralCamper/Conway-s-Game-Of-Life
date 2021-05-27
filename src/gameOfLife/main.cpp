@@ -1,10 +1,11 @@
 #include <SFML/Graphics.hpp>
-#include <array>
-#include <cmath>
-#include <iostream>
-#include <time.h>
-#include <vector>
+#include "logic.h"
 
-void main()
+int main()
 {
+    LifeAlgorithm LAExmpl;
+
+    LAExmpl.lifeGenerate();
+    LAExmpl.runLife();
+    return 0;
 }

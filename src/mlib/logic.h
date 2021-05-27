@@ -1,21 +1,26 @@
 #ifndef LOGIC_H_
 #define LOGIC_H_
 
+#include <ctime>
+#include <cstdlib>
+#include <array>
+#include <cmath>
 #include <iostream>
+#include <time.h>
+#include <vector>
+#include <iomanip>
 
 class LifeAlgorithm {
 public:
-    int Widht = 100;  // ширина массива/поля
-    int Height = 100; // высота массива/поля
+    int static constexpr Widht = 5;  // ширина массива/поля
+    int static constexpr Height = 5; // высота массива/поля
 
-    bool fieldArray[Widht][Height]
-            = {false}; // массив, в кот. будут лежать исходные данные о
-                       // состоянии клеток и в кот. состояния будут проверяться
-    bool tempArray[Widht][Height]
-            = {false}; // массив, в кот. будут записываться данные о состоянии
-                       // клеток и перезаписываться в исходный
+    int fieldArray[Widht][Height];
 
-    void Step();
+    void fillUniverse ();
+    void printUniverse ();
+    int lifeGenerate();
+    int runLife();
 };
 
 #endif

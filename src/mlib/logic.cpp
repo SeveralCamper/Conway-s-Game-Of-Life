@@ -1,18 +1,22 @@
-#include <iostream>
-#include <iomanip>
-class LifeAlgorithm {
-public:
-    int static constexpr Widht = 5;  // ширина массива/поля
-    int static constexpr Height = 5; // высота массива/поля
+#include "logic.h"
 
-    bool fieldArray[Widht][Height]
-            = {false}; // массив, в кот. будут лежать исходные данные о
-                       // состоянии клеток и в кот. состояния будут проверяться
-    bool tempArray[Widht][Height]
-            = {false}; // массив, в кот. будут записываться данные о состоянии
-                       // клеток и перезаписываться в исходный
+    int LifeAlgorithm::lifeGenerate()
+    {
+        for (int i = 0; i < Widht; i++) 
+        {
+            for (int j = 0; j < Height; j++) 
+            {
+                fieldArray[i][j] = 0;
+            }
+        }
+    }
 
-    void fillArray ()
+        int LifeAlgorithm::~lifeGenerate()
+    {
+        return 0;
+    }
+
+    void LifeAlgorithm::fillUniverse ()
     {
         for (int i = 1; i < Widht - 1; i++) 
         {
@@ -23,20 +27,30 @@ public:
         }
     }
 
-    void printArray ()
+    void LifeAlgorithm::printUniverse ()
     {
         for (int i = 0; i < Widht; i++) 
         {
             for (int j = 0; j < Height; j++) 
             {
-                std::cout << "" << fieldArray[i][j];
+               if (fieldArray[i][j] == 1)
+                    std::cout << "#";
+                else
+                    std::cout << " ";
             }
             std::cout << std::endl;
         }
     }
 
+    int LifeAlgorithm::runLife()
+    { 
+        LifeAlgorithm::lifeGenerate();
+        LifeAlgorithm::fillUniverse();
+        LifeAlgorithm::printUniverse();
+
+    }
     
-    void Step()
+   void LifeAlgorithm::Step()
     {
         for (int i = 1; i < Widht - 1; i++) {
             for (int j = 1; j < Height - 1;
@@ -49,14 +63,14 @@ public:
                 {
                     for (int q = i - 1; q < i + 2; q++) {
                         for (int v = j - 1; v < j + 2; v++) {
-                            if (fieldArray[q][v] == true) numNeigbours++;
+                            numNeigbours = numNeigbours + fieldArray[q][v];
                             std::cout << "[q][v] = " << q << v << std::endl;
                             std::cout << "[q][v] эл. = " << fieldArray[q][v]
                                       << std::endl;
                         }
+                    numNeigbours = numNeigbours - fieldArray[i][j];   
                     }
                 }
-                numNeigbours = numNeigbours - 1;
                 std::cout << "numNeigbours = " << numNeigbours << std::endl;
                 bool keepAlive
                         = isAlive && (numNeigbours == 2 || numNeigbours == 3);
@@ -69,13 +83,3 @@ public:
                 // второй проход: копируем вычисленное состояние в текущее
                 fieldArray[i][j] = tempArray[i][j];
     }
-};
-
-int main()
-{
-    LifeAlgorithm LAExmpl;
-    
-    LAExmpl.fillArray();
-    LAExmpl.printArray();
-    LAExmpl.Step();
-}
