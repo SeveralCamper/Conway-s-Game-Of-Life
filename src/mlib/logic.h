@@ -1,14 +1,14 @@
 #ifndef LOGIC_H_
 #define LOGIC_H_
 
-#include <ctime>
-#include <cstdlib>
 #include <array>
 #include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <iomanip>
 #include <iostream>
 #include <time.h>
 #include <vector>
-#include <iomanip>
 #include <windows.h>
 
 class LifeAlgorithm {
@@ -18,8 +18,8 @@ public:
 
     int fieldArray[Widht][Height];
 
-    void fillUniverse ();
-    void printUniverse ();
+    void fillUniverse();
+    void printUniverse();
     int lifeGenerate();
     int runLife();
     void Step();
