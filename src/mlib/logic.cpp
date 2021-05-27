@@ -35,6 +35,7 @@ public:
         }
     }
 
+    
     void Step()
     {
         for (int i = 1; i < Widht - 1; i++) {
@@ -45,20 +46,17 @@ public:
 
                 bool isAlive = fieldArray[i][j];
                 int numNeigbours = 0;
-                int numNeigboursCount();
                 {
                     for (int q = i - 1; q < i + 2; q++) {
                         for (int v = j - 1; v < j + 2; v++) {
-                            if (fieldArray[q][v] == true) 
-                                if (q !=i && v !=j)
-                                    numNeigbours--;
-                            numNeigbours++;
+                            if (fieldArray[q][v] == true) numNeigbours++;
                             std::cout << "[q][v] = " << q << v << std::endl;
                             std::cout << "[q][v] эл. = " << fieldArray[q][v]
                                       << std::endl;
                         }
                     }
                 }
+                numNeigbours = numNeigbours - 1;
                 std::cout << "numNeigbours = " << numNeigbours << std::endl;
                 bool keepAlive
                         = isAlive && (numNeigbours == 2 || numNeigbours == 3);
