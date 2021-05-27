@@ -9,6 +9,7 @@
 #include <time.h>
 #include <vector>
 #include <iomanip>
+#include <windows.h>
 
 class LifeAlgorithm {
 public:
@@ -21,6 +22,7 @@ public:
     void printUniverse ();
     int lifeGenerate();
     int runLife();
+    void Step();
 };
 
 #endif

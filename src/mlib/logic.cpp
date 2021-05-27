@@ -42,15 +42,7 @@
         }
     }
 
-    int LifeAlgorithm::runLife()
-    { 
-        LifeAlgorithm::lifeGenerate();
-        LifeAlgorithm::fillUniverse();
-        LifeAlgorithm::printUniverse();
-
-    }
-    
-   void LifeAlgorithm::Step()
+    void LifeAlgorithm::Step()
     {
         for (int i = 1; i < Widht - 1; i++) {
             for (int j = 1; j < Height - 1;
@@ -75,11 +67,24 @@
                 bool keepAlive
                         = isAlive && (numNeigbours == 2 || numNeigbours == 3);
                 bool makeNewLive = !isAlive && numNeigbours == 3;
-                tempArray[i][j] = keepAlive | makeNewLive;
-            }
+            }     
         }
-        for (int i = 1; i < Widht - 1; i++)
-            for (int j = 1; j < Height - 1; j++)
-                // второй проход: копируем вычисленное состояние в текущее
-                fieldArray[i][j] = tempArray[i][j];
     }
+
+    int LifeAlgorithm::runLife()
+    { 
+        LifeAlgorithm::lifeGenerate();
+        LifeAlgorithm::fillUniverse();
+        LifeAlgorithm::printUniverse();
+        Sleep(1000);
+        system("cls");
+        while (1)
+        {
+            LifeAlgorithm::Step();
+            LifeAlgorithm::printUniverse();
+                    Sleep(1000);
+                    system("cls");
+        }
+
+    }
+    
