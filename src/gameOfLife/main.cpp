@@ -2,6 +2,39 @@
 #include <iostream>
 using namespace sf;
 
+void frame(RenderWindow & window)
+{
+	window.clear(Color(255, 255, 255));
+	
+	RectangleShape rectangle(Vector2f(300.f, 155.f));
+	rectangle.setFillColor(Color(255, 255, 255));
+	rectangle.setOutlineThickness(6.f);
+	rectangle.setOutlineColor(Color(0, 0, 0));
+	rectangle.move(20, 30);
+	window.draw(rectangle);
+
+	for(int i = 1; i < 4; i++)
+	{
+		int y = 130;
+		rectangle.move(0, 30 + y);
+		window.draw(rectangle);
+	}
+
+	RectangleShape rectangle2(Vector2f(900.f, 635.f));
+	rectangle2.setFillColor(Color(255, 255, 255));
+	rectangle2.setOutlineThickness(6.f);
+	rectangle2.setOutlineColor(Color(0, 0, 0));
+	rectangle2.move(300, 30);
+	window.draw(rectangle2);
+
+	RectangleShape rectangle3(Vector2f(850.f, 530.f));
+	rectangle3.setFillColor(Color(255, 255, 255));
+	rectangle3.setOutlineThickness(6.f);
+	rectangle3.setOutlineColor(Color(0, 0, 0));
+	rectangle3.move(325, 60);
+	window.draw(rectangle3);
+}
+
 void menu(RenderWindow & window) {
 	Texture menuTexture1, menuTexture2, menuTexture3, menuTexture4,aboutTexture;
 	menuTexture1.loadFromFile("image/111.png");
@@ -63,35 +96,8 @@ int main(int argc, const char** argv) {
   		{
    			if (event.type == Event::Closed) window.close();
   		}
-	window.clear(Color(255, 255, 255));
-	
-	RectangleShape rectangle(Vector2f(300.f, 155.f));
-	rectangle.setFillColor(Color(255, 255, 255));
-	rectangle.setOutlineThickness(6.f);
-	rectangle.setOutlineColor(Color(0, 0, 0));
-	rectangle.move(20, 30);
-	window.draw(rectangle);
 
-	for(int i = 1; i < 4; i++){
-		int y = 130;
-		rectangle.move(0, 30 + y);
-		window.draw(rectangle);
-	}
-
-	RectangleShape rectangle2(Vector2f(900.f, 635.f));
-	rectangle2.setFillColor(Color(255, 255, 255));
-	rectangle2.setOutlineThickness(6.f);
-	rectangle2.setOutlineColor(Color(0, 0, 0));
-	rectangle2.move(300, 30);
-	window.draw(rectangle2);
-
-	RectangleShape rectangle3(Vector2f(850.f, 530.f));
-	rectangle3.setFillColor(Color(255, 255, 255));
-	rectangle3.setOutlineThickness(6.f);
-	rectangle3.setOutlineColor(Color(0, 0, 0));
-	rectangle3.move(325, 60);
-	window.draw(rectangle3);
-
+	frame(window);  
 	menu(window);//вызов меню
 
 	window.display();
