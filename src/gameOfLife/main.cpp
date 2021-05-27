@@ -64,7 +64,13 @@ int main(int argc, const char** argv) {
    			if (event.type == Event::Closed) window.close();
   		}
 	window.clear(Color(255, 255, 255));
-
+	
+	RectangleShape rectangle(Vector2f(300.f, 150.f));
+	rectangle.setFillColor(Color(255, 255, 255));
+	rectangle.setOutlineThickness(10.f);
+	rectangle.setOutlineColor(Color(0, 0, 0));
+	rectangle.move(20, 30);
+	window.draw(rectangle);
 	menu(window);//вызов меню
 
 	window.display();
