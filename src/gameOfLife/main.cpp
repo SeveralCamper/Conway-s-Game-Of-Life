@@ -54,7 +54,7 @@ void menu(RenderWindow & window) {
 }
 
 int main(int argc, const char** argv) {
-    RenderWindow window(sf::VideoMode(1500, 900), "LIFE");
+    RenderWindow window(sf::VideoMode(1300, 700), "LIFE");
 	
 	while (window.isOpen())
 	{
@@ -67,7 +67,7 @@ int main(int argc, const char** argv) {
 	
 	RectangleShape rectangle(Vector2f(300.f, 155.f));
 	rectangle.setFillColor(Color(255, 255, 255));
-	rectangle.setOutlineThickness(10.f);
+	rectangle.setOutlineThickness(6.f);
 	rectangle.setOutlineColor(Color(0, 0, 0));
 	rectangle.move(20, 30);
 	window.draw(rectangle);
@@ -80,10 +80,17 @@ int main(int argc, const char** argv) {
 
 	RectangleShape rectangle2(Vector2f(900.f, 635.f));
 	rectangle2.setFillColor(Color(255, 255, 255));
-	rectangle2.setOutlineThickness(10.f);
+	rectangle2.setOutlineThickness(6.f);
 	rectangle2.setOutlineColor(Color(0, 0, 0));
 	rectangle2.move(300, 30);
 	window.draw(rectangle2);
+
+	RectangleShape rectangle3(Vector2f(850.f, 530.f));
+	rectangle3.setFillColor(Color(255, 255, 255));
+	rectangle3.setOutlineThickness(6.f);
+	rectangle3.setOutlineColor(Color(0, 0, 0));
+	rectangle3.move(325, 60);
+	window.draw(rectangle3);
 
 	menu(window);//вызов меню
 
