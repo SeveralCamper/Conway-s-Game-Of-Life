@@ -77,6 +77,14 @@ int main(int argc, const char** argv) {
 		rectangle.move(0, 30 + y);
 		window.draw(rectangle);
 	}
+
+	RectangleShape rectangle2(Vector2f(900.f, 635.f));
+	rectangle2.setFillColor(Color(255, 255, 255));
+	rectangle2.setOutlineThickness(10.f);
+	rectangle2.setOutlineColor(Color(0, 0, 0));
+	rectangle2.move(300, 30);
+	window.draw(rectangle2);
+
 	menu(window);//вызов меню
 
 	window.display();
