@@ -5,13 +5,14 @@
 #include <cstdlib>
 #include <iostream>
 
+enum class CellStatus { BORN = 0, LIVE = 1, DIE = 2 };
 class LifeAlgorithm {
 public:
     int static constexpr Widht = 55;  // ширина массива/поля
     int static constexpr Height = 55; // высота массива/поля
 
-    bool fieldArray[Widht][Height];
-    bool tempArray[Widht][Height];
+    CellStatus fieldArray[Widht][Height];
+    CellStatus tempArray[Widht][Height];
 
     void CreateUniverse();
 

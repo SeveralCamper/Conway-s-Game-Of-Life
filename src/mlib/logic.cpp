@@ -4,7 +4,7 @@ void LifeAlgorithm::CreateUniverse()
 {
     for (int i = 0; i < Widht; i++) {
         for (int j = 0; j < Height; j++) {
-            fieldArray[i][j] = false;
+            fieldArray[i][j] = CellStatus::DIE;
         }
     }
 }
@@ -15,7 +15,7 @@ void LifeAlgorithm::RandFillUniverse()
 
     for (int i = 1; i < Widht - 1; i++) {
         for (int j = 1; j < Height - 1; j++) {
-            fieldArray[i][j] = rand() % 2;
+            fieldArray[i][j] = CellStatus(rand() % 3);
         }
     }
 }
@@ -27,25 +27,51 @@ void LifeAlgorithm::Step()
              j++) { // первый проход: вычисляем будущее состоянее
 
             int numNeigbours = 0;
-            bool isAlive = fieldArray[i][j];
+            CellStatus isAlive = fieldArray[i][j];
 
             for (int ii = i - 1; ii < i + 2; ii++) {
                 for (int jj = j - 1; jj < j + 2; jj++) {
                     {
-                        if (fieldArray[ii][jj])
+                        if (fieldArray[ii][jj] == CellStatus::LIVE
+                            || fieldArray[ii][jj] == CellStatus::BORN)
                             numNeigbours++;
                     }
                 }
             }
 
-            if (fieldArray[i][j]) {
+            if (fieldArray[i][j] == CellStatus::LIVE
+                || fieldArray[i][j] == CellStatus::BORN) {
                 numNeigbours--;
             }
 
-            bool keepAlive
-                    = isAlive && (numNeigbours == 2 || numNeigbours == 3);
-            bool makeNewLive = !isAlive && numNeigbours == 3;
-            tempArray[i][j] = keepAlive | makeNewLive;
+            bool keepAlive = (isAlive == CellStatus::LIVE
+                              || isAlive == CellStatus::BORN)
+                    && (numNeigbours == 2 || numNeigbours == 3);
+            bool makeNewLive = isAlive == CellStatus::DIE && numNeigbours == 3;
+
+            if (fieldArray[i][j] == CellStatus::LIVE && keepAlive) {
+                tempArray[i][j] = CellStatus::LIVE;
+            }
+
+            if (fieldArray[i][j] == CellStatus::LIVE && !keepAlive) {
+                tempArray[i][j] = CellStatus::DIE;
+            }
+
+            if (fieldArray[i][j] == CellStatus::DIE && makeNewLive) {
+                tempArray[i][j] = CellStatus::BORN;
+            }
+
+            if (fieldArray[i][j] == CellStatus::DIE && !makeNewLive) {
+                tempArray[i][j] = CellStatus::DIE;
+            }
+
+            if (fieldArray[i][j] == CellStatus::BORN && keepAlive) {
+                tempArray[i][j] = CellStatus::LIVE;
+            }
+
+            if (fieldArray[i][j] == CellStatus::BORN && !keepAlive) {
+                tempArray[i][j] = CellStatus::DIE;
+            }
         }
     }
     for (int i = 1; i < Widht - 1; i++)
