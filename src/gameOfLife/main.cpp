@@ -1,7 +1,6 @@
 #include "logic.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
-/* #include <unistd.h> */
 
 using namespace sf;
 
@@ -37,12 +36,9 @@ void ShowPixel(RenderWindow& window, bool fieldArray[55][55])
         }
 }
 
-int main()
+void DrawScrean(LifeAlgorithm LAExmpl)
 {
-    LifeAlgorithm LAExmpl;
-    LAExmpl.initLife();
-
-    RenderWindow window(sf::VideoMode(880, 880), "LIFE");
+    RenderWindow window(sf::VideoMode(880, 880), "Conway's Game Of Life");
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {
@@ -70,6 +66,13 @@ int main()
             window.display();
         }
     }
+}
 
+int main()
+{
+    LifeAlgorithm LAExmpl;
+    LAExmpl.initLife();
+
+    DrawScrean(LAExmpl);
     return 0;
 }

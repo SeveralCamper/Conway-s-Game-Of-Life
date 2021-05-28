@@ -43,22 +43,23 @@ public:
                 int numNeigbours = 0;
                 bool isAlive = fieldArray[i][j];
 
-                if (fieldArray[i - 1][j - 1])
-                    numNeigbours++;
-                if (fieldArray[i - 1][j])
-                    numNeigbours++;
-                if (fieldArray[i - 1][j + 1])
-                    numNeigbours++;
-                if (fieldArray[i][j - 1])
-                    numNeigbours++;
-                if (fieldArray[i][j + 1])
-                    numNeigbours++;
-                if (fieldArray[i + 1][j - 1])
-                    numNeigbours++;
-                if (fieldArray[i + 1][j])
-                    numNeigbours++;
-                if (fieldArray[i + 1][j + 1])
-                    numNeigbours++;
+                for (int ii = i -1 ; ii <  i + 2; ii++)
+                {
+                    for (int jj = j - 1; jj < j + 2; jj++)
+                    {
+                        {
+                            if (fieldArray[ii][jj])
+                                numNeigbours++;
+                        }
+                    }
+                }
+
+                if (fieldArray[i][j])
+                {
+                    numNeigbours--;
+                }
+
+
                 bool keepAlive
                         = isAlive && (numNeigbours == 2 || numNeigbours == 3);
                 bool makeNewLive = !isAlive && numNeigbours == 3;
