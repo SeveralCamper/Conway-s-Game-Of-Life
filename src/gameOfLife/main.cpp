@@ -40,12 +40,16 @@ int main()
                 window.close();
         }
         
-        while (true) {
+             sf::Clock clock;
+        float time = 0;
+        while (time < 1) {
+            time = clock.getElapsedTime().asSeconds();
             LAExmpl.RunLife();
-            Erecta(window, LAExmpl.fieldArray);
-            window.display();
 
-            sleep(1);
+            Erecta(window, LAExmpl.fieldArray);
+
+            sf::sleep(sf::milliseconds(300));
+            window.display();
         }
     }
 
