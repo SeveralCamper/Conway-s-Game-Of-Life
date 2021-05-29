@@ -7,14 +7,12 @@ class MyButton {
 private:
     int ID;
     std::string name;
-    std::string RUname;
 
 public:
-    MyButton(int ID, std::string name, std::string)
+    MyButton(int ID, std::string name)
     {
         this->ID = ID;
         this->name = name;
-        this->RUname = RUname;
     }
 
     ~MyButton()
@@ -30,11 +28,6 @@ public:
     std::string GetButtonName()
     {
         return this->name;
-    }
-
-    std::string GetButtonRUName()
-    {
-        return this->RUname;
     }
 };
 
@@ -70,94 +63,110 @@ void frame(RenderWindow& window)
     window.draw(rectangle3);
 }
 
-void ShowMainButtonMenu(RenderWindow& window)
+void ShowMainButtonMenu(
+        RenderWindow& window,
+        std::vector<MyButton>& collectionButtonMenu,
+        Font font)
+
+
 {
-/*     Texture menuTexture1, menuTexture2, menuTexture3, menuTexture4,
-            aboutTexture;
+    for (int item = 0; item < (int)collectionButtonMenu.size(); item++) {
+        Text text("", font, 20);
+        text.setFillColor(Color(0, 0, 0));
+        text.setString(collectionButtonMenu[item].GetButtonName());
+        text.setPosition(20, 30);
 
-    menuTexture1.loadFromFile("image/111.png");
-    menuTexture2.loadFromFile("image/222.png");
-    menuTexture3.loadFromFile("image/333.png");
-    menuTexture4.loadFromFile("image/444.png");
-    Sprite menu1(menuTexture1), menu2(menuTexture2), menu3(menuTexture3),
-            menu4(menuTexture4), about(aboutTexture);
-    bool isMenu = 1;
-    int menuNum = 0;
-    menu1.setPosition(20, 30);
-    menu2.setPosition(20, 185);
-    menu3.setPosition(20, 340);
-    menu4.setPosition(16, 495);
+        RectangleShape rectButton(Vector2f(300.f, 155.f));
+        rectButton.setFillColor(Color(255, 255, 255));
+        rectButton.setOutlineThickness(6.f);
+        rectButton.setOutlineColor(Color(0, 0, 0));
+        rectButton.move(20, 30);
 
-    //////////////////////////////МЕНЮ///////////////////
-    while (isMenu) {
-        menu1.setColor(Color::White);
-        menu2.setColor(Color::White);
-        menu3.setColor(Color::White);
-        menu4.setColor(Color::White);
-
-        menuNum = 0;
-        // window.clear(Color(255, 255, 255));
-
-        if (IntRect(100, 30, 300, 50).contains(Mouse::getPosition(window))) {
-            menu1.setColor(Color::Red);
-            menuNum = 1;
-        }
-        if (IntRect(100, 185, 300, 50).contains(Mouse::getPosition(window))) {
-            menu2.setColor(Color::Red);
-            menuNum = 2;
-        }
-        if (IntRect(100, 340, 300, 50).contains(Mouse::getPosition(window))) {
-            menu3.setColor(Color::Red);
-            menuNum = 3;
-        }
-        if (IntRect(100, 495, 300, 50).contains(Mouse::getPosition(window))) {
-            menu4.setColor(Color::Red);
-            menuNum = 4;
-        }
-
-        if (Mouse::isButtonPressed(Mouse::Left)) {
-            if (menuNum == 1)
-                isMenu = false; //если нажали первую кнопку, то выходим из меню
-            if (menuNum == 2) {
-                window.close();
-                isMenu = false;
-            }
-            if (menuNum == 3) {
-                window.close();
-                isMenu = false;
-            }
-            if (menuNum == 4) {
-                window.close();
-                isMenu = false;
-            }
-        }
-
-        window.draw(menu1);
-        window.draw(menu2);
-        window.draw(menu3);
-        window.draw(menu4); */
+        window.draw(rectButton);
+        window.draw(text);
 
         window.display();
+    }
+
+    /*     Texture menuTexture1, menuTexture2, menuTexture3, menuTexture4,
+                aboutTexture;
+
+        menuTexture1.loadFromFile("image/111.png");
+        menuTexture2.loadFromFile("image/222.png");
+        menuTexture3.loadFromFile("image/333.png");
+        menuTexture4.loadFromFile("image/444.png");
+        Sprite menu1(menuTexture1), menu2(menuTexture2), menu3(menuTexture3),
+                menu4(menuTexture4), about(aboutTexture);
+        bool isMenu = 1;
+        int menuNum = 0;
+        menu1.setPosition(20, 30);
+        menu2.setPosition(20, 185);
+        menu3.setPosition(20, 340);
+        menu4.setPosition(16, 495);
+
+        //////////////////////////////МЕНЮ///////////////////
+        while (isMenu) {
+            menu1.setColor(Color::White);
+            menu2.setColor(Color::White);
+            menu3.setColor(Color::White);
+            menu4.setColor(Color::White);
+
+            menuNum = 0;
+            // window.clear(Color(255, 255, 255));
+
+            if (IntRect(100, 30, 300, 50).contains(Mouse::getPosition(window)))
+       { menu1.setColor(Color::Red); menuNum = 1;
+            }
+            if (IntRect(100, 185, 300, 50).contains(Mouse::getPosition(window)))
+       { menu2.setColor(Color::Red); menuNum = 2;
+            }
+            if (IntRect(100, 340, 300, 50).contains(Mouse::getPosition(window)))
+       { menu3.setColor(Color::Red); menuNum = 3;
+            }
+            if (IntRect(100, 495, 300, 50).contains(Mouse::getPosition(window)))
+       { menu4.setColor(Color::Red); menuNum = 4;
+            }
+
+            if (Mouse::isButtonPressed(Mouse::Left)) {
+                if (menuNum == 1)
+                    isMenu = false; //если нажали первую кнопку, то выходим из
+       меню if (menuNum == 2) { window.close(); isMenu = false;
+                }
+                if (menuNum == 3) {
+                    window.close();
+                    isMenu = false;
+                }
+                if (menuNum == 4) {
+                    window.close();
+                    isMenu = false;
+                }
+            }
+
+            window.draw(menu1);
+            window.draw(menu2);
+            window.draw(menu3);
+            window.draw(menu4); */
+
     //}
     ////////////////////////////////////////////////////
 }
 
-void initButton(std::vector<MyButton> collectionButtonMenu)
+void initButton(std::vector<MyButton>& collectionButtonMenu)
 {
-    MyButton BtnExit(1, "exit", "Выход");
+    MyButton BtnExit(1, "exit");
     collectionButtonMenu.push_back(BtnExit);
 
-    MyButton BtnStart(1, "start", "Начать");
+    MyButton BtnStart(1, "start");
     collectionButtonMenu.push_back(BtnStart);
 
-    MyButton BtnModels(1, "exmodelsit", "Модели");
+    MyButton BtnModels(1, "exmodelsit");
     collectionButtonMenu.push_back(BtnModels);
 
-    MyButton BtnRandom(1, "random", "Случайно");
+    MyButton BtnRandom(1, "random");
     collectionButtonMenu.push_back(BtnRandom);
 
-        MyButton BtnPause(1, "pause", "Пауза");
-        
+    MyButton BtnPause(1, "pause");
+
     collectionButtonMenu.push_back(BtnPause);
 }
 
@@ -170,7 +179,8 @@ int main(int argc, const char** argv)
     RenderWindow window(sf::VideoMode(1300, 700), "LIFE");
 
     Font font; //шрифт
-    font.loadFromFile("fonts/arial.ttf"); //передаем нашему шрифту файл шрифта
+
+    font.loadFromFile("fonts/arial.ttf");
 
     while (window.isOpen()) {
         Event event;
@@ -178,14 +188,8 @@ int main(int argc, const char** argv)
             if (event.type == Event::Closed)
                 window.close();
         }
-
-        Text text("", font, 20);
-        text.setFillColor(Color(255, 255, 255));
-
-        text.setString(L"Собрано камней:"); //задает строку тексту
-        text.setPosition(200,
-                         200); //задаем позицию текста, центр камеры
-        window.draw(text); //рисую этот текст
+        frame(window);
+        ShowMainButtonMenu(window, collectionButtonMenu, font);
 
         window.display();
     }
