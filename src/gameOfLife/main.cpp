@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-#include "logic.h"
-#include <SFML/Graphics.hpp>
-=======
+
 #include "DrawScrean.h"
 #include "ShowGrid.h"
 #include "ShowPixel.h"
 #include "logic.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
->>>>>>> FixBadLogic
 
 using namespace sf;
 
