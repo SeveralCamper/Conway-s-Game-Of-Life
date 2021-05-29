@@ -2,7 +2,7 @@
 
 void DrawScrean(LifeAlgorithm LAExmpl)
 {
-    RenderWindow window(sf::VideoMode(880, 880), "Conway's Game Of Life");
+    RenderWindow window(sf::VideoMode(1040, 640), "Conway's Game Of Life");
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {

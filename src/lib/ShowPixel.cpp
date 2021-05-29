@@ -1,11 +1,11 @@
 #include "ShowPixel.h"
 
-void ShowPixel(RenderWindow& window, CellStatus fieldArray[55][55])
+void ShowPixel(RenderWindow& window, CellStatus fieldArray[65][40])
 {
     // window.clear(Color(0, 0, 0));
 
-    for (int i = 0; i < 55; i++)
-        for (int j = 0; j < 55; j++) {
+    for (int i = 0; i < 65; i++)
+        for (int j = 0; j < 40; j++) {
             if (fieldArray[i][j] != CellStatus::DIE) {
                 RectangleShape rectangle(Vector2f(10.f, 10.f));
                 rectangle.setFillColor(Color(255, 136, 0));
