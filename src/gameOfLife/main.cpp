@@ -57,7 +57,7 @@ void frame(RenderWindow& window)
 
     RectangleShape rectangle3(Vector2f(1040.f, 640.f));
     rectangle3.setFillColor(Color(255, 255, 255));
-    rectangle3.setOutlineThickness(3.f);
+    rectangle3.setOutlineThickness(3.5f);
     rectangle3.setOutlineColor(Color(75, 0, 130));
     rectangle3.move(305, 30);
     window.draw(rectangle3);
