@@ -74,7 +74,7 @@ void ShowMainButtonMenu(
         Text text("", font, 40);
         text.setFillColor(Color(0, 0, 0));
         text.setString(collectionButtonMenu[item].GetButtonName());
-        text.setPosition(70, y);
+        text.setPosition(40, y);
         y += 160;
         window.draw(text);
 
@@ -156,19 +156,19 @@ void ShowMainButtonMenu(
 
 void initButton(std::vector<MyButton>& collectionButtonMenu)
 {
-    MyButton BtnExit(1, "exit");
+    MyButton BtnExit(1, "Custom mode");
     collectionButtonMenu.push_back(BtnExit);
 
-    MyButton BtnStart(2, "start");
+    MyButton BtnStart(2, "Exmodelsit");
     collectionButtonMenu.push_back(BtnStart);
 
-    MyButton BtnModels(3, "exmodelsit");
+    MyButton BtnModels(3, "Random");
     collectionButtonMenu.push_back(BtnModels);
 
-    MyButton BtnRandom(4, "random");
+    MyButton BtnRandom(4, "Authors");
     collectionButtonMenu.push_back(BtnRandom);
 
-    MyButton BtnPause(5, "pause");
+    MyButton BtnPause(5, "Exit");
 
     collectionButtonMenu.push_back(BtnPause);
 }
