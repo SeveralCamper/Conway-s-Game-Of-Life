@@ -68,24 +68,27 @@ void ShowMainButtonMenu(
         std::vector<MyButton>& collectionButtonMenu,
         Font font)
 
-
 {
+    int y = 90;
     for (int item = 0; item < (int)collectionButtonMenu.size(); item++) {
-        Text text("", font, 20);
+        Text text("", font, 40);
         text.setFillColor(Color(0, 0, 0));
         text.setString(collectionButtonMenu[item].GetButtonName());
-        text.setPosition(20, 30);
+        text.setPosition(90, y);
+        y += 130;
+        window.draw(text);
 
-        RectangleShape rectButton(Vector2f(300.f, 155.f));
+        /*RectangleShape rectButton(Vector2f(300.f, 155.f));
         rectButton.setFillColor(Color(255, 255, 255));
         rectButton.setOutlineThickness(6.f);
         rectButton.setOutlineColor(Color(0, 0, 0));
         rectButton.move(20, 30);
 
-        window.draw(rectButton);
-        window.draw(text);
+        window.draw(rectButton);*/
 
-        window.display();
+        
+
+        //window.display();
     }
 
     /*     Texture menuTexture1, menuTexture2, menuTexture3, menuTexture4,
@@ -156,16 +159,16 @@ void initButton(std::vector<MyButton>& collectionButtonMenu)
     MyButton BtnExit(1, "exit");
     collectionButtonMenu.push_back(BtnExit);
 
-    MyButton BtnStart(1, "start");
+    MyButton BtnStart(2, "start");
     collectionButtonMenu.push_back(BtnStart);
 
-    MyButton BtnModels(1, "exmodelsit");
+    MyButton BtnModels(3, "exmodelsit");
     collectionButtonMenu.push_back(BtnModels);
 
-    MyButton BtnRandom(1, "random");
+    MyButton BtnRandom(4, "random");
     collectionButtonMenu.push_back(BtnRandom);
 
-    MyButton BtnPause(1, "pause");
+    MyButton BtnPause(5, "pause");
 
     collectionButtonMenu.push_back(BtnPause);
 }
@@ -191,7 +194,7 @@ int main(int argc, const char** argv)
         frame(window);
         ShowMainButtonMenu(window, collectionButtonMenu, font);
 
-        window.display();
+       window.display();
     }
 
     return 0;
