@@ -35,31 +35,31 @@ void frame(RenderWindow& window)
 {
     window.clear(Color(255, 255, 255));
 
-    RectangleShape rectangle(Vector2f(300.f, 155.f));
-    rectangle.setFillColor(Color(255, 255, 255));
-    rectangle.setOutlineThickness(6.f);
-    rectangle.setOutlineColor(Color(0, 0, 0));
-    rectangle.move(20, 30);
+    RectangleShape rectangle(Vector2f(275.f, 155.f));
+    rectangle.setFillColor(Color(0, 0, 0));
+    rectangle.setOutlineThickness(2.f);
+    rectangle.setOutlineColor(Color(75, 0, 130));
+    rectangle.move(2, 2);
     window.draw(rectangle);
 
     for (int i = 1; i < 5; i++) {
-        int y = 130;
+        int y = 129;
         rectangle.move(0, 30 + y);
         window.draw(rectangle);
     }
 
-    RectangleShape rectangle2(Vector2f(1090.f, 795.f));
-    rectangle2.setFillColor(Color(255, 255, 255));
-    rectangle2.setOutlineThickness(6.f);
-    rectangle2.setOutlineColor(Color(0, 0, 0));
-    rectangle2.move(300, 30);
+    RectangleShape rectangle2(Vector2f(1090.f, 790.f));
+    rectangle2.setFillColor(Color(255, 136, 0));
+    rectangle2.setOutlineThickness(3.f);
+    rectangle2.setOutlineColor(Color(75, 0, 130));
+    rectangle2.move(281, 2);
     window.draw(rectangle2);
 
     RectangleShape rectangle3(Vector2f(1040.f, 640.f));
     rectangle3.setFillColor(Color(255, 255, 255));
-    rectangle3.setOutlineThickness(6.f);
-    rectangle3.setOutlineColor(Color(0, 0, 0));
-    rectangle3.move(325, 60);
+    rectangle3.setOutlineThickness(3.f);
+    rectangle3.setOutlineColor(Color(75, 0, 130));
+    rectangle3.move(305, 30);
     window.draw(rectangle3);
 }
 
@@ -69,12 +69,12 @@ void ShowMainButtonMenu(
         Font font)
 
 {
-    int y = 80;
+    int y = 60;
     for (int item = 0; item < (int)collectionButtonMenu.size(); item++) {
         Text text("", font, 40);
-        text.setFillColor(Color(0, 0, 0));
+        text.setFillColor(Color(255, 136, 0));
         text.setString(collectionButtonMenu[item].GetButtonName());
-        text.setPosition(40, y);
+        text.setPosition(20, y);
         y += 160;
         window.draw(text);
 
@@ -179,7 +179,7 @@ int main(int argc, const char** argv)
 
     initButton(collectionButtonMenu);
 
-    RenderWindow window(sf::VideoMode(1500, 1000), "LIFE");
+    RenderWindow window(sf::VideoMode(1374, 795), "LIFE");
 
     Font font; //шрифт
 
