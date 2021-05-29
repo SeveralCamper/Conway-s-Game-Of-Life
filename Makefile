@@ -16,7 +16,7 @@ MLIB := obj/mlib/methodsLib.a
 
 OBJ := $(patsubst src/gameOfLife/%.cpp, obj/src/%.o, $(SOURCES))
 
-LIBS= -DSFML_STATIC -lsfml-graphics -lsfml-window 
+LIBS= -lsfml-graphics -lsfml-window -lsfml-system
 
 TEST := $(wildcard test/*.cpp) 
 TESTOBJ := $(patsubst test/%.cpp, obj/test/%.o, $(TEST))
@@ -25,8 +25,8 @@ CTEST := thirdparty/ctest.h
 
 all:$(TARGET)
 
-$(TARGET): $(OBJ) 
-	$(CXX) $(CFLAGS) $(CPPFLAGS) -o $(TARGET) $(OBJ) $(LIBS) 
+$(TARGET): $(LIB) $(MLIB) $(OBJ) 
+	$(CXX) $(CFLAGS) $(CPPFLAGS) -o $(TARGET) $(OBJ) -L. $(LIB) -L. $(MLIB) $(LIBS)
 	
 $(LIB): $(LIBOBJ)
 	ar rcs $@ $^
@@ -34,23 +34,23 @@ $(LIB): $(LIBOBJ)
 $(MLIB): $(MLIBOBJ)
 	ar rcs $@ $^
 
-obj/lib/%.o: src/lib/%.cpp
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@  -I$(SFMLINCLUDE) -Isrc/lib -Isrc/mlib
+obj/src/%.o: src/lib/%.cpp
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -L$(LIBS) -I src/lib -I src/mlib
 
-obj/mlib/%.o: src/mlib/%.cpp 
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I$(SFMLINCLUDE) -Isrc/lib -Isrc/mlib
+obj/src/%.o: src/mlib/%.cpp 
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -L$(LIBS) -I src/lib -I src/mlib
 
 obj/src/%.o: src/gameOfLife/%.cpp 
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -I$(SFMLINCLUDE) -Isrc/lib -Isrc/mlib
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@  -L$(LIBS) -Isrc/lib -I src/mlib
 	
 test: $(TESTTARGET)
 	./$(TESTTARGET)
 
 $(TESTTARGET): $(TESTOBJ) $(CTEST) $(LIB)
-	$(CXX) $(CPPFLAGS) $(CFLAGS)  $(TESTOBJ) -o $@ -L$(LIB) -I src/lib -Isrc/mlib -Ithirdparty
+	$(CXX) $(CPPFLAGS) $(CFLAGS)  $(TESTOBJ) -o $@ -L. $(LIB) $(MLIB) -L$(LIBS) -I src/lib -I src/mlib -I 2thirdparty
 
 obj/test/%.o: test/%.cpp $(CTEST)
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@ -Isrc/lib -Isrc/mlib -Ithirdparty
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c  $< -o $@ -L. $(LIB) $(MLIB) -L$(LIBS)  -Isrc/lib -I src/mlib -I thirdparty
 		
 run: $(TARGET)
 	./bin/GameOfLife
