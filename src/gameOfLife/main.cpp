@@ -66,7 +66,7 @@ void frame(RenderWindow& window)
     window.draw(rectangle2);
 
     RectangleShape rectangle3(Vector2f(1040.f, 640.f));
-    rectangle3.setFillColor(Color(255, 255, 255));
+    rectangle3.setFillColor(Color(0, 0, 0));
     rectangle3.setOutlineThickness(3.5f);
     rectangle3.setOutlineColor(Color(75, 0, 130));
     rectangle3.move(305, 30);
@@ -87,17 +87,6 @@ void ShowMainButtonMenu(
         text.setPosition(20, y);
         y += 160;
         window.draw(text);
-
-        /*RectangleShape rectButton(Vector2f(300.f, 155.f));
-        rectButton.setFillColor(Color(255, 255, 255));
-        rectButton.setOutlineThickness(6.f);
-        rectButton.setOutlineColor(Color(0, 0, 0));
-        rectButton.move(20, 30);
-        window.draw(rectButton);*/
-
-        
-
-        //window.display();
     }
 
     /*     Texture menuTexture1, menuTexture2, menuTexture3, menuTexture4,
@@ -177,7 +166,7 @@ void initButton(std::vector<MyButton>& collectionButtonMenu)
 }
 
 int main()
-{       
+{
     LifeAlgorithm LAExmpl;
     LAExmpl.initLife();
     std::vector<MyButton> collectionButtonMenu;
@@ -196,11 +185,24 @@ int main()
             if (event.type == Event::Closed)
                 window.close();
         }
-        frame(window);
-        ShowMainButtonMenu(window, collectionButtonMenu, font);
-        DrawScrean(LAExmpl);
+        // DrawScrean(LAExmpl);
+        sf::Clock clock;
+        float time = 0;
+        while (time < 1) {
+            frame(window);
+            ShowMainButtonMenu(window, collectionButtonMenu, font);
+            time = clock.getElapsedTime().asSeconds();
+            LAExmpl.RunLife();
 
-       window.display();
+            ShowGrid(window);
+
+            ShowPixel(window, LAExmpl.fieldArray);
+
+            sf::sleep(sf::milliseconds(300));
+
+            window.display();
+        }
+        window.display();
     }
 
     return 0;

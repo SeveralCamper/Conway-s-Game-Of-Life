@@ -11,7 +11,7 @@ void ShowPixel(RenderWindow& window, CellStatus fieldArray[65][40])
                 rectangle.setFillColor(Color(255, 136, 0));
                 rectangle.setOutlineThickness(.5f);
                 rectangle.setOutlineColor(Color(255, 165, 0));
-                rectangle.move(16 * i, 16 * j);
+                rectangle.move(305 + 16 * i,30 + 16 * j);
                 window.draw(rectangle);
             }
 
@@ -20,7 +20,7 @@ void ShowPixel(RenderWindow& window, CellStatus fieldArray[65][40])
                 rectangle.setFillColor(Color(50, 205, 50));
                 rectangle.setOutlineThickness(.5f);
                 rectangle.setOutlineColor(Color(0, 255, 0));
-                rectangle.move(16 * i, 16 * j);
+                rectangle.move(305 + 16 * i,30 + 16 * j);
                 window.draw(rectangle);
             }
         }

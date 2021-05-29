@@ -2,7 +2,7 @@
 
 void ShowGrid(RenderWindow& window)
 {
-    window.clear(Color(0, 0, 0));
+    //window.clear(Color(0, 0, 0));
 
     for (int i = 0; i < 65; i++)
         for (int j = 0; j < 40; j++) {
@@ -10,7 +10,8 @@ void ShowGrid(RenderWindow& window)
             rectangle.setFillColor(Color(0, 0, 0));
             rectangle.setOutlineThickness(.5f);
             rectangle.setOutlineColor(Color(75, 0, 130));
-            rectangle.move(16 * i, 16 * j);
+            rectangle.move(305 + 16 * i,30 + 16 * j);
+
             window.draw(rectangle);
         }
 }
