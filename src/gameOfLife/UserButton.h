@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-
 class UserButton {
 private:
     std::string name;
@@ -19,6 +18,9 @@ private:
     // Цвет фона кнопки
     sf::Color color;
 
+    // Шрифт текста кнопки
+    sf::Font font;
+
     sf::RenderWindow* window;
 
 public:
@@ -32,12 +34,15 @@ public:
     {
         this->name = name;
 
-        //  По дефолту ставим значения
         this->buttonPositionX = x;
         this->buttonPositionY = y;
 
         this->width = width;
         this->height = height;
+
+        //  По дефолту ставим значения
+
+        SetFont("arial.ttf");
 
         this->color = sf::Color(255, 255, 255);
 
@@ -49,11 +54,11 @@ public:
         //
     }
 
-    /*     UserButton& Less()
-        {
-            std::cout << "ups" << std::endl;
-            return *this;
-        } */
+    // Установка шрифта
+    void SetFont(std::string nameFont)
+    {
+        font.loadFromFile("fonts/" + nameFont);
+    }
 
     // Имя кнопки
     std::string GetButtonName()
@@ -74,14 +79,47 @@ public:
     }
 
     // Отрисовка кнопки
-    sf::RectangleShape DrawButton()
+    void DrawButton()
     {
+        int midleRectHeight;
+        int midleRectWidth;
+
+        int midleTextHeight;
+        int midleTextWidth;
+
         sf::RectangleShape rectButton(sf::Vector2f(this->width, this->height));
+
+        rectButton.setPosition(this->buttonPositionX, this->buttonPositionY);
         rectButton.setFillColor(this->color);
 
         rectButton.setOutlineThickness(6.f);
 
-        return rectButton;
+        sf::Color colorTextBt1n = sf::Color(123, 2, 55);
+
+        sf::Text text(this->name, font, 20);
+
+        text.setFillColor(colorTextBt1n);
+        text.setOutlineColor(colorTextBt1n);
+        text.setStyle(sf::Text::Bold);
+
+        midleRectHeight = this->width / 2;
+        midleRectWidth = this->height / 2;
+
+        midleTextHeight = text.getGlobalBounds().height / 2;
+        midleTextWidth = text.getGlobalBounds().width / 2;
+
+
+        text.setPosition(this->buttonPositionX + midleRectHeight - midleTextWidth,
+                this->buttonPositionY + midleRectWidth - midleTextHeight);
+
+        /* std::cout << "Pos. Rect = " << this->buttonPositionX << " - "<<
+        this->buttonPositionY << std::endl; std::cout << "Size. Text = " <<
+        text.getGlobalBounds().height << " - "<< text.getGlobalBounds().width <<
+        std::endl; std::cout << "Size. rect = " << this->height << " - "<<
+        this->width << std::endl;
+ */
+        window->draw(rectButton);
+        window->draw(text);
     }
 
     // Клик мышью в зоне кнопки

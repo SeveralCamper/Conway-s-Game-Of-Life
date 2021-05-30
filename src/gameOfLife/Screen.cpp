@@ -13,7 +13,7 @@ void Screen(int width, int height, std::string name)
     sf::RenderWindow window(sf::VideoMode(width, height), name);
     window.setVerticalSyncEnabled(true);
 
-    UserButton btn("CLOSE", 30, 30, 300, 70, &window);
+    UserButton btn("CLOSE", 600, 20, 100, 70, &window);
     btn.SetFillColor(sf::Color(34, 123, 34));
     btn.ClickButton = CloseWindow;
 
@@ -31,7 +31,7 @@ void Screen(int width, int height, std::string name)
         // Установка цвета фона
         window.clear(sf::Color(0, 220, 100, 0));
 
-        window.draw(btn.DrawButton());
+        btn.DrawButton();
         btn.IsClickButton(sf::Mouse::getPosition(window));
 
         // Отрисовка окна
