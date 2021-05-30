@@ -5,59 +5,50 @@ void CloseWindow(sf::RenderWindow& window)
     window.close();
 }
 
-// Создание зоны меню
-void CreateMenuZone(sf::RenderWindow& window)
-{
-    sf::RectangleShape menuZone;
-    menuZone.setSize(sf::Vector2f(
-            (window.getSize().x / 3) - 15, window.getSize().y - 10));
-    menuZone.setPosition(sf::Vector2f(5, 5));
-    window.draw(menuZone);
-}
-
-// Создание игровой зоны
-void CreateGameZone(sf::RenderWindow& window)
-{
-    sf::RectangleShape gameZone;
-    gameZone.setSize(sf::Vector2f(
-            ((window.getSize().x / 3) * 2) - 20, window.getSize().y - 105));
-
-    gameZone.setPosition(sf::Vector2f((window.getSize().x / 3) + 15, 5));
-    window.draw(gameZone);
-}
-
-// Создание зоны отображения статуса игры
-void CreateStatusZone(sf::RenderWindow& window)
-{
-    sf::RectangleShape statusZone;
-    statusZone.setSize(sf::Vector2f(((window.getSize().x / 3) * 2) - 20, 70));
-
-    statusZone.setPosition(sf::Vector2f(
-            (window.getSize().x / 3) + 15, window.getSize().y - 75));
-
-    window.draw(statusZone);
-}
-
 void Screen(int width, int height, std::string name)
 {
     sf::RenderWindow window(sf::VideoMode(width, height), name);
     window.setVerticalSyncEnabled(true);
 
-    /////////////////////////////
+    /* Зоны */
+    UserZone menuZone(
+            5, 5, window.getSize().y - 10, window.getSize().x / 4, &window);
+    menuZone.SetFillColor(sf::Color(212, 0, 45));
 
-    UserZone menuZone(5, 5, window.getSize().y - 10, window.getSize().x / 4, &window);
-    /////////////////////////////
+    UserZone gameZone(
+            (window.getSize().x / 4) + 10,
+            5,
+            window.getSize().y - 100,
+            ((window.getSize().x / 4) * 3) - 15,
+            &window);
 
-    ///////////////////////////////
-    UserButton btn("CLOSE", 600, 20, 100, 100, &window);
-    btn.SetFillColor(sf::Color(34, 123, 34));
-    btn.ClickButton = CloseWindow;
-    /////////////////////////
+    UserZone statusZone(
+            (window.getSize().x / 4) + 10,
+            710,
+            80,
+            ((window.getSize().x / 4) * 3) - 15,
+            &window);
 
-    menuZone.PushButton(btn);
-    menuZone.PushButton(btn);
-    menuZone.PushButton(btn);
-    menuZone.PushButton(btn);
+    statusZone.SetFillColor(sf::Color(45, 0, 45));
+    /* --- */
+
+    /* кнопки */
+    UserButton btnRandomMode("RANDOM MODE", 600, 20, 100, 100, &window);
+    btnRandomMode.SetFillColor(sf::Color(34, 123, 34));
+    btnRandomMode.ClickButton = CloseWindow;
+
+    UserButton btnCustomMode("CUSTOM MODE", 600, 20, 100, 100, &window);
+    btnCustomMode.SetFillColor(sf::Color(255, 123, 34));
+    btnCustomMode.ClickButton = CloseWindow;
+
+    UserButton btnClose("CLOSE", 600, 20, 100, 100, &window);
+    btnClose.SetFillColor(sf::Color(34, 123, 34));
+    btnClose.ClickButton = CloseWindow;
+    /* --- */
+
+    menuZone.PushButton(btnRandomMode);
+    menuZone.PushButton(btnCustomMode);
+    menuZone.PushButton(btnClose);
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {
@@ -73,11 +64,9 @@ void Screen(int width, int height, std::string name)
         // Установка цвета фона
         window.clear(sf::Color(0, 220, 100, 0));
 
-        /*         CreateMenuZone(window);
-                CreateGameZone(window);
-                CreateStatusZone(window); */
-
         menuZone.DrawZone();
+        gameZone.DrawZone();
+        statusZone.DrawZone();
 
         // Отрисовка окна
         window.display();

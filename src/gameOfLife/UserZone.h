@@ -16,6 +16,8 @@ private:
     float width = 0;
     float height = 0;
 
+    sf::Color color;
+
     sf::RenderWindow* window;
 
 public:
@@ -29,6 +31,8 @@ public:
         this->width = width;
         this->height = height;
         this->window = window;
+
+        this->color = sf::Color(255, 255, 255);
     }
 
     ~UserZone()
@@ -54,21 +58,23 @@ public:
         collectionButtons.push_back(userButton);
     }
 
+    void SetFillColor(sf::Color color)
+    {
+        this->color = color;
+    }
+
     void ShowButtons()
     {
         for (int item = 0; item < (int)collectionButtons.size(); item++) {
-            
             sf::Vector2i buttonSize = collectionButtons[item].GetSize();
 
             collectionButtons[item].SetSize(height, buttonSize.y);
             collectionButtons[item].SetButtonPosition(
-                    zonePositionX, (zonePositionY  + buttonSize.y + 5 ) * item);
+                    zonePositionX, (zonePositionY + buttonSize.y + 5) * item);
 
             collectionButtons[item].DrawButton();
             collectionButtons[item].IsClickButton(
                     sf::Mouse::getPosition(*window));
-
-            
         }
     }
 
@@ -81,11 +87,11 @@ public:
 
         zone.setPosition(sf::Vector2f(zonePositionX, zonePositionY));
 
-        zone.setFillColor(sf::Color(124, 12, 35));
+        zone.setFillColor(this->color);
 
         window->draw(zone);
 
-       ShowButtons();
+        ShowButtons();
     }
 };
 
