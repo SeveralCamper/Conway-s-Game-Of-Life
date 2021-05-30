@@ -1,19 +1,23 @@
 
-#include <SFML/Graphics.hpp>
-#include <iostream>
 #include "Screen.h"
-#include "UserButton.h"
 #include "ShowGrid.h"
 #include "ShowPixel.h"
+#include "UserButton.h"
 #include "logic.h"
+#include <SFML/Graphics.hpp>
+#include <iostream>
 
 int main()
 {
     LifeAlgorithm LAExmpl;
     LAExmpl.initLife();
 
+    int screenWidth = 1374;
+    int screenHeight = 795;
+    std::string nameWindow = "Life";
+
     // Отрисовка окна программы
-    Screen(1374, 795, "Life");
+    Screen(screenWidth, screenHeight, nameWindow);
 
     return 0;
 }

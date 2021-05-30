@@ -2,10 +2,7 @@
 
 void CloseWindow(sf::RenderWindow& window)
 {
-    std::cout << window.getSize().x << std::endl;
-
     window.close();
-    // window.close(window);
 }
 
 void Screen(int width, int height, std::string name)

@@ -108,8 +108,8 @@ public:
         midleTextHeight = text.getGlobalBounds().height / 2;
         midleTextWidth = text.getGlobalBounds().width / 2;
 
-
-        text.setPosition(this->buttonPositionX + midleRectHeight - midleTextWidth,
+        text.setPosition(
+                this->buttonPositionX + midleRectHeight - midleTextWidth,
                 this->buttonPositionY + midleRectWidth - midleTextHeight);
 
         /* std::cout << "Pos. Rect = " << this->buttonPositionX << " - "<<
