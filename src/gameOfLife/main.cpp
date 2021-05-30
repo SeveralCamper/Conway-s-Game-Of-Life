@@ -1,36 +1,10 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-using namespace sf;
+#include "Screen.h"
+#include "UserButton.h"
 
-class MyButton {
-private:
-    int ID;
-    std::string name;
-
-public:
-    MyButton(int ID, std::string name)
-    {
-        this->ID = ID;
-        this->name = name;
-    }
-
-    ~MyButton()
-    {
-        //
-    }
-
-    int GetButtonInt()
-    {
-        return this->ID;
-    }
-
-    std::string GetButtonName()
-    {
-        return this->name;
-    }
-};
-
+/*
 void frame(RenderWindow& window)
 {
     window.clear(Color(255, 255, 255));
@@ -62,17 +36,17 @@ void frame(RenderWindow& window)
     rectangle3.move(305, 30);
     window.draw(rectangle3);
 }
-
+ */
 void ShowMainButtonMenu(
-        RenderWindow& window,
-        std::vector<MyButton>& collectionButtonMenu,
-        Font font)
+        sf::RenderWindow& window,
+        std::vector<UserButton>& collectionButtonMenu,
+        sf::Font font)
 
 {
     int y = 60;
     for (int item = 0; item < (int)collectionButtonMenu.size(); item++) {
-        Text text("", font, 40);
-        text.setFillColor(Color(255, 136, 0));
+        sf::Text text("", font, 40);
+        text.setFillColor(sf::Color(255, 136, 0));
         text.setString(collectionButtonMenu[item].GetButtonName());
         text.setPosition(20, y);
         y += 160;
@@ -86,9 +60,7 @@ void ShowMainButtonMenu(
 
         window.draw(rectButton);*/
 
-        
-
-        //window.display();
+        // window.display();
     }
 
     /*     Texture menuTexture1, menuTexture2, menuTexture3, menuTexture4,
@@ -154,48 +126,30 @@ void ShowMainButtonMenu(
     ////////////////////////////////////////////////////
 }
 
-void initButton(std::vector<MyButton>& collectionButtonMenu)
+void initButton(
+        std::vector<UserButton>& collectionButtonMenu, sf::RenderWindow& window)
 {
-    MyButton BtnExit(1, "Custom mode");
-    collectionButtonMenu.push_back(BtnExit);
+    // UserButton BtnExit(1, "Custom mode", window);
+    // collectionButtonMenu.push_back(BtnExit);
 
-    MyButton BtnStart(2, "Exmodelsit");
-    collectionButtonMenu.push_back(BtnStart);
+    /*  UserButton BtnStart(2, "Exmodelsit");
+     collectionButtonMenu.push_back(BtnStart);
 
-    MyButton BtnModels(3, "Random");
-    collectionButtonMenu.push_back(BtnModels);
+     UserButton BtnModels(3, "Random");
+     collectionButtonMenu.push_back(BtnModels);
 
-    MyButton BtnRandom(4, "Authors");
-    collectionButtonMenu.push_back(BtnRandom);
+     UserButton BtnRandom(4, "Authors");
+     collectionButtonMenu.push_back(BtnRandom);
 
-    MyButton BtnPause(5, "Exit");
+     UserButton BtnPause(5, "Exit");
 
-    collectionButtonMenu.push_back(BtnPause);
+     collectionButtonMenu.push_back(BtnPause); */
 }
 
 int main(int argc, const char** argv)
 {
-    std::vector<MyButton> collectionButtonMenu;
-
-    initButton(collectionButtonMenu);
-
-    RenderWindow window(sf::VideoMode(1374, 795), "LIFE");
-
-    Font font; //шрифт
-
-    font.loadFromFile("fonts/arial.ttf");
-
-    while (window.isOpen()) {
-        Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == Event::Closed)
-                window.close();
-        }
-        frame(window);
-        ShowMainButtonMenu(window, collectionButtonMenu, font);
-
-       window.display();
-    }
+    // Отрисовка окна программы
+    Screen(1374, 795, "Life");
 
     return 0;
 }
