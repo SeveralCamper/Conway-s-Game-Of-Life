@@ -37,7 +37,7 @@ void Screen(int width, int height, std::string name)
     /* Зоны */
     UserZone menuZone(
             5, 5, window.getSize().y - 10, window.getSize().x / 4, &window);
-    menuZone.SetFillColor(sf::Color(212, 0, 45));
+    menuZone.SetFillColor(sf::Color(0, 0, 0));
 
     UserZone gameZone(
             (window.getSize().x / 4) + 10,
@@ -54,20 +54,20 @@ void Screen(int width, int height, std::string name)
             ((window.getSize().x / 4) * 3) - 15,
             &window);
 
-    statusZone.SetFillColor(sf::Color(45, 0, 45));
+    statusZone.SetFillColor(sf::Color(0, 0, 0));
     /* --- */
 
     /* кнопки */
     UserButton btnRandomMode("RANDOM MODE", 600, 20, 100, 100, &window);
-    btnRandomMode.SetFillColor(sf::Color(34, 123, 34));
+    btnRandomMode.SetFillColor(sf::Color(0, 0, 0));
     btnRandomMode.ClickButton = RandomGrid;
 
     UserButton btnCustomMode("CUSTOM MODE", 600, 20, 100, 100, &window);
-    btnCustomMode.SetFillColor(sf::Color(255, 123, 34));
+    btnCustomMode.SetFillColor(sf::Color(0, 0, 0));
     btnCustomMode.ClickButton = CustomModeGrid;
 
     UserButton btnClose("CLOSE", 600, 20, 100, 100, &window);
-    btnClose.SetFillColor(sf::Color(34, 123, 34));
+    btnClose.SetFillColor(sf::Color(0, 0, 0));
     btnClose.ClickButton = CloseWindow;
     /* --- */
 
@@ -87,7 +87,7 @@ void Screen(int width, int height, std::string name)
         }
 
         // Установка цвета фона
-        window.clear(sf::Color(0, 220, 100, 0));
+        window.clear(sf::Color(255, 136, 0, 0));
 
         menuZone.DrawZone();
         gameZone.DrawZone();

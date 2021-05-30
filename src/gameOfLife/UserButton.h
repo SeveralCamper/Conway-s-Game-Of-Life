@@ -100,12 +100,14 @@ public:
 
         sf::RectangleShape rectButton(sf::Vector2f(this->width, this->height));
 
-        rectButton.setPosition(this->buttonPositionX, this->buttonPositionY);
+        rectButton.setPosition(
+                this->buttonPositionX, (this->buttonPositionY) + 5);
         rectButton.setFillColor(this->color);
 
         rectButton.setOutlineThickness(-4.f);
+        rectButton.setOutlineColor(sf::Color(75, 0, 130));
 
-        sf::Color colorTextBtn = sf::Color(123, 2, 55);
+        sf::Color colorTextBtn = sf::Color(255, 136, 0);
 
         sf::Text text(this->name, font, 20);
 
