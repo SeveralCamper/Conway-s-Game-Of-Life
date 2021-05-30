@@ -9,7 +9,6 @@
 
 int main()
 {
-
     int screenWidth = 1374;
     int screenHeight = 795;
     std::string nameWindow = "Life";

@@ -85,4 +85,3 @@ void LifeAlgorithm::initLife()
     LifeAlgorithm::CreateUniverse();
     LifeAlgorithm::RandFillUniverse();
 }
-

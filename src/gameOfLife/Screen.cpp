@@ -21,7 +21,6 @@ void RandomGrid(sf::RenderWindow& window)
 
 void CustomModeGrid(sf::RenderWindow& window)
 {
-
 }
 
 bool Helper::RandomGrid = false;
