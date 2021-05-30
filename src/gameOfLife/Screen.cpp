@@ -4,7 +4,7 @@
 
 class Helper {
 public:
-    static bool emptyGridFlag;
+    static bool RandomGrid;
     static bool customModeFlag;
 };
 
@@ -13,19 +13,18 @@ void CloseWindow(sf::RenderWindow& window)
     window.close();
 }
 
-void EmptyGrid(sf::RenderWindow& window)
+void RandomGrid(sf::RenderWindow& window)
 {
-    Helper::emptyGridFlag = true;
     Helper::customModeFlag = false;
+    Helper::RandomGrid = true;
 }
 
 void CustomModeGrid(sf::RenderWindow& window)
 {
-    Helper::customModeFlag = true;
-    Helper::emptyGridFlag = false;
+
 }
 
-bool Helper::emptyGridFlag = false;
+bool Helper::RandomGrid = false;
 bool Helper::customModeFlag = false;
 
 void Screen(int width, int height, std::string name)
@@ -62,7 +61,7 @@ void Screen(int width, int height, std::string name)
     /* кнопки */
     UserButton btnRandomMode("RANDOM MODE", 600, 20, 100, 100, &window);
     btnRandomMode.SetFillColor(sf::Color(34, 123, 34));
-    btnRandomMode.ClickButton = EmptyGrid;
+    btnRandomMode.ClickButton = RandomGrid;
 
     UserButton btnCustomMode("CUSTOM MODE", 600, 20, 100, 100, &window);
     btnCustomMode.SetFillColor(sf::Color(255, 123, 34));
@@ -73,8 +72,8 @@ void Screen(int width, int height, std::string name)
     btnClose.ClickButton = CloseWindow;
     /* --- */
 
-    menuZone.PushButton(btnRandomMode);
     menuZone.PushButton(btnCustomMode);
+    menuZone.PushButton(btnRandomMode);
     menuZone.PushButton(btnClose);
 
     // программа работает сколь угодно долго,пока открыто наше окно
@@ -95,14 +94,20 @@ void Screen(int width, int height, std::string name)
         gameZone.DrawZone();
         statusZone.DrawZone();
 
-        if (Helper::emptyGridFlag) {
-            ShowGrid(window);
-        }
+        ShowGrid(window);
 
-        if (Helper::customModeFlag) {
-            LAExmpl.RunLife();
+        if (Helper::RandomGrid) {
+            LAExmpl.Step();
+            // sf::Clock clock;
+            // float time = 0;
+            // while (time < 1) {
+            // time = clock.getElapsedTime().asSeconds();
 
+            // ShowGrid(window);
             ShowPixel(window, LAExmpl.fieldArray);
+
+            sf::sleep(sf::milliseconds(300));
+            // }
         }
 
         // Отрисовка окна

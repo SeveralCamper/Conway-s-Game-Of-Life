@@ -7,6 +7,6 @@
 
 using namespace sf;
 
-void ShowPixel(RenderWindow& window, CellStatus fieldArray[65][40]);
+void ShowPixel(RenderWindow& window, CellStatus fieldArray[63][43]);
 
 #endif

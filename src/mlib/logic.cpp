@@ -86,7 +86,3 @@ void LifeAlgorithm::initLife()
     LifeAlgorithm::RandFillUniverse();
 }
 
-void LifeAlgorithm::RunLife()
-{
-    LifeAlgorithm::Step();
-}
