@@ -1,5 +1,5 @@
-#ifndef _USER_BUTTON_
-#define _USER_BUTTON_
+#ifndef USER_BUTTON_H_
+#define USER_BUTTON_H_
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -54,6 +54,17 @@ public:
         //
     }
 
+    sf::Vector2i GetSize()
+    {
+        return sf::Vector2i(width, height);
+    }
+
+    void SetSize(int width, int height)
+    {
+        this->height = height;
+        this->width = width;
+    }
+
     // Установка шрифта
     void SetFont(std::string nameFont)
     {
@@ -92,14 +103,14 @@ public:
         rectButton.setPosition(this->buttonPositionX, this->buttonPositionY);
         rectButton.setFillColor(this->color);
 
-        rectButton.setOutlineThickness(6.f);
+        rectButton.setOutlineThickness(-4.f);
 
-        sf::Color colorTextBt1n = sf::Color(123, 2, 55);
+        sf::Color colorTextBtn = sf::Color(123, 2, 55);
 
         sf::Text text(this->name, font, 20);
 
-        text.setFillColor(colorTextBt1n);
-        text.setOutlineColor(colorTextBt1n);
+        text.setFillColor(colorTextBtn);
+        text.setOutlineColor(colorTextBtn);
         text.setStyle(sf::Text::Bold);
 
         midleRectHeight = this->width / 2;
@@ -112,12 +123,6 @@ public:
                 this->buttonPositionX + midleRectHeight - midleTextWidth,
                 this->buttonPositionY + midleRectWidth - midleTextHeight);
 
-        /* std::cout << "Pos. Rect = " << this->buttonPositionX << " - "<<
-        this->buttonPositionY << std::endl; std::cout << "Size. Text = " <<
-        text.getGlobalBounds().height << " - "<< text.getGlobalBounds().width <<
-        std::endl; std::cout << "Size. rect = " << this->height << " - "<<
-        this->width << std::endl;
- */
         window->draw(rectButton);
         window->draw(text);
     }

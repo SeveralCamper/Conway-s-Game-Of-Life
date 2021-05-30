@@ -2,6 +2,7 @@
 #define SREEN_H_
 
 #include "UserButton.h"
+#include "UserZone.h"
 #include <iostream>
 
 void CloseWindow(sf::RenderWindow& window);
