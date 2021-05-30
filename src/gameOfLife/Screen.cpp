@@ -1,12 +1,38 @@
 #include "Screen.h"
+#include "ShowGrid.h"
+#include "ShowPixel.h"
+
+class Helper {
+public:
+    static bool emptyGridFlag;
+    static bool customModeFlag;
+};
 
 void CloseWindow(sf::RenderWindow& window)
 {
     window.close();
 }
 
+void EmptyGrid(sf::RenderWindow& window)
+{
+    Helper::emptyGridFlag = true;
+    Helper::customModeFlag = false;
+}
+
+void CustomModeGrid(sf::RenderWindow& window)
+{
+    Helper::customModeFlag = true;
+    Helper::emptyGridFlag = false;
+}
+
+bool Helper::emptyGridFlag = false;
+bool Helper::customModeFlag = false;
+
 void Screen(int width, int height, std::string name)
 {
+    LifeAlgorithm LAExmpl;
+    LAExmpl.initLife();
+
     sf::RenderWindow window(sf::VideoMode(width, height), name);
     window.setVerticalSyncEnabled(true);
 
@@ -21,6 +47,7 @@ void Screen(int width, int height, std::string name)
             window.getSize().y - 100,
             ((window.getSize().x / 4) * 3) - 15,
             &window);
+    gameZone.SetFillColor(sf::Color(0, 0, 0));
 
     UserZone statusZone(
             (window.getSize().x / 4) + 10,
@@ -35,11 +62,11 @@ void Screen(int width, int height, std::string name)
     /* кнопки */
     UserButton btnRandomMode("RANDOM MODE", 600, 20, 100, 100, &window);
     btnRandomMode.SetFillColor(sf::Color(34, 123, 34));
-    btnRandomMode.ClickButton = CloseWindow;
+    btnRandomMode.ClickButton = EmptyGrid;
 
     UserButton btnCustomMode("CUSTOM MODE", 600, 20, 100, 100, &window);
     btnCustomMode.SetFillColor(sf::Color(255, 123, 34));
-    btnCustomMode.ClickButton = CloseWindow;
+    btnCustomMode.ClickButton = CustomModeGrid;
 
     UserButton btnClose("CLOSE", 600, 20, 100, 100, &window);
     btnClose.SetFillColor(sf::Color(34, 123, 34));
@@ -67,6 +94,16 @@ void Screen(int width, int height, std::string name)
         menuZone.DrawZone();
         gameZone.DrawZone();
         statusZone.DrawZone();
+
+        if (Helper::emptyGridFlag) {
+            ShowGrid(window);
+        }
+
+        if (Helper::customModeFlag) {
+            LAExmpl.RunLife();
+
+            ShowPixel(window, LAExmpl.fieldArray);
+        }
 
         // Отрисовка окна
         window.display();

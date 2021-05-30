@@ -9,8 +9,6 @@
 
 int main()
 {
-    LifeAlgorithm LAExmpl;
-    LAExmpl.initLife();
 
     int screenWidth = 1374;
     int screenHeight = 795;
