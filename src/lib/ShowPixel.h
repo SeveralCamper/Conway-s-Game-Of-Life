@@ -5,8 +5,6 @@
 #include <iostream>
 #include <logic.h>
 
-using namespace sf;
-
-void ShowPixel(RenderWindow& window, CellStatus fieldArray[63][43]);
+void ShowPixel(sf::RenderWindow& window, CellStatus fieldArray[63][43]);
 
 #endif

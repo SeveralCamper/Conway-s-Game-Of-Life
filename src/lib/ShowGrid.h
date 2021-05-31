@@ -5,8 +5,6 @@
 #include <iostream>
 #include <logic.h>
 
-using namespace sf;
-
-void ShowGrid(RenderWindow& window);
+void ShowGrid(sf::RenderWindow& window);
 
 #endif

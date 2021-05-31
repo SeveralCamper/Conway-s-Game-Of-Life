@@ -47,7 +47,7 @@ test: $(TESTTARGET)
 	./$(TESTTARGET)
 
 $(TESTTARGET): $(TESTOBJ) $(CTEST) $(LIB)
-	$(CXX) $(CPPFLAGS) $(CFLAGS) $(TESTOBJ) -o $@ -L. $(LIB) $(MLIB) -L$(LIBS) -I src/lib -I src/mlib -I 2thirdparty
+	$(CXX) $(CPPFLAGS) $(CFLAGS) $(TESTOBJ) -o $@ -L. $(LIB) $(MLIB) -L$(LIBS) -I src/lib -I src/mlib -I thirdparty
 
 obj/test/%.o: test/%.cpp $(CTEST)
 	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -L. $(LIB) $(MLIB) -L$(LIBS) -Isrc/lib -I src/mlib -I thirdparty

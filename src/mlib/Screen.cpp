@@ -1,6 +1,4 @@
 #include "Screen.h"
-#include "ShowGrid.h"
-#include "ShowPixel.h"
 
 class Helper {
 public:
