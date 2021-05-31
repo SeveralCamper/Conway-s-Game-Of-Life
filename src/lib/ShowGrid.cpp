@@ -1,4 +1,5 @@
 #include "ShowGrid.h"
+#include <SFML/Graphics.hpp>
 
 void ShowGrid(sf::RenderWindow& window)
 {

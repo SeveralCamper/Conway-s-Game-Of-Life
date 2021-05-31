@@ -26,7 +26,7 @@ CTEST := thirdparty/ctest.h
 all:$(TARGET)
 
 $(TARGET): $(LIB) $(MLIB) $(OBJ)
-	$(CXX) $(CFLAGS) $(CPPFLAGS) -o $(TARGET) $(OBJ) -L. $(LIB) -L. $(MLIB) $(LIBS)
+	$(CXX) $(CFLAGS) $(CPPFLAGS) -o $(TARGET) $(OBJ)  -L. $(MLIB) -L. $(LIB)  $(LIBS)
 
 $(LIB): $(LIBOBJ)
 	ar rcs $@ $^
@@ -35,22 +35,22 @@ $(MLIB): $(MLIBOBJ)
 	ar rcs $@ $^
 
 obj/src/%.o: src/lib/%.cpp
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -L$(LIBS) -I src/lib -I src/mlib
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ $(LIBS) -I src/lib -I src/mlib
 
 obj/src/%.o: src/mlib/%.cpp
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -L$(LIBS) -I src/lib -I src/mlib
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ $(LIBS) -I src/lib -I src/mlib
 
 obj/src/%.o: src/gameOfLife/%.cpp
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -L$(LIBS) -Isrc/lib -I src/mlib
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ $(LIBS) -Isrc/lib -I src/mlib  
 
 test: $(TESTTARGET)
 	./$(TESTTARGET)
 
 $(TESTTARGET): $(TESTOBJ) $(CTEST) $(LIB)
-	$(CXX) $(CPPFLAGS) $(CFLAGS) $(TESTOBJ) -o $@ -L. $(LIB) $(MLIB) -L$(LIBS) -I src/lib -I src/mlib -I thirdparty
+	$(CXX) $(CPPFLAGS) $(CFLAGS) $(TESTOBJ) -o $@ -L. $(MLIB) -L. $(LIB) $(LIBS) -I src/lib -I src/mlib -I thirdparty
 
 obj/test/%.o: test/%.cpp $(CTEST)
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -L. $(LIB) $(MLIB) -L$(LIBS) -Isrc/lib -I src/mlib -I thirdparty
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@ -L. $(MLIB) -L. $(LIB) $(LIBS) -Isrc/lib -I src/mlib -I thirdparty
 
 run: $(TARGET)
 	./bin/GameOfLife

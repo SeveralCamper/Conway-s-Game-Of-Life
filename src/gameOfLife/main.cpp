@@ -1,9 +1,9 @@
 
-#include "Screen.h"
-#include "ShowGrid.h"
-#include "ShowPixel.h"
-#include "UserButton.h"
-#include "logic.h"
+#include <Screen.h>
+#include <ShowGrid.h>
+#include <ShowPixel.h>
+#include <UserButton.h>
+#include <logic.h>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 

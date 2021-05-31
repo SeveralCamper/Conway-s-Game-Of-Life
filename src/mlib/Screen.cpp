@@ -1,4 +1,5 @@
 #include "Screen.h"
+#include <SFML/Graphics.hpp>
 
 class Helper {
 public:
