@@ -2,6 +2,7 @@
 
 void LifeAlgorithm::CreateUniverse()
 {
+    std::cout << "debug2" << std::endl;
     for (int i = 0; i < Widht; i++) {
         for (int j = 0; j < Height; j++) {
             fieldArray[i][j] = CellStatus::DIE;
@@ -12,7 +13,7 @@ void LifeAlgorithm::CreateUniverse()
 void LifeAlgorithm::RandFillUniverse()
 {
     srand(time(NULL));
-
+    std::cout << "007" << std::endl;
     for (int i = 1; i < Widht - 1; i++) {
         for (int j = 1; j < Height - 1; j++) {
             fieldArray[i][j] = CellStatus(rand() % 3);
@@ -20,8 +21,12 @@ void LifeAlgorithm::RandFillUniverse()
     }
 }
 
+int a = 0;
+
 void LifeAlgorithm::Step()
 {
+    a++;
+    std::cout << a << std::endl;
     for (int i = 1; i < Widht - 1; i++) {
         for (int j = 1; j < Height - 1;
              j++) { // первый проход: вычисляем будущее состоянее
@@ -80,8 +85,3 @@ void LifeAlgorithm::Step()
             fieldArray[i][j] = tempArray[i][j];
 }
 
-void LifeAlgorithm::initLife()
-{
-    LifeAlgorithm::CreateUniverse();
-    LifeAlgorithm::RandFillUniverse();
-}

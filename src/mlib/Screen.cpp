@@ -1,11 +1,7 @@
 #include "Screen.h"
 #include <SFML/Graphics.hpp>
 
-class Helper {
-public:
-    static bool RandomGrid;
-    static bool customModeFlag;
-};
+LifeAlgorithm LAExmpl;
 
 void CloseWindow(sf::RenderWindow& window)
 {
@@ -14,21 +10,16 @@ void CloseWindow(sf::RenderWindow& window)
 
 void RandomGrid(sf::RenderWindow& window)
 {
-    Helper::customModeFlag = false;
-    Helper::RandomGrid = true;
+    LAExmpl.RandFillUniverse();
 }
 
 void CustomModeGrid(sf::RenderWindow& window)
 {
 }
 
-bool Helper::RandomGrid = false;
-bool Helper::customModeFlag = false;
-
 void Screen(int width, int height, std::string name)
 {
-    LifeAlgorithm LAExmpl;
-    LAExmpl.initLife();
+    LAExmpl.CreateUniverse();
 
     sf::RenderWindow window(sf::VideoMode(width, height), name);
     window.setVerticalSyncEnabled(true);
@@ -78,37 +69,36 @@ void Screen(int width, int height, std::string name)
     while (window.isOpen()) {
         // проверяем все события окна,которые были запущены после последней
         // итерации цикла
+
         sf::Event event;
-        while (window.pollEvent(event)) {
-            // если произошло событие Закрытие,закрываем наше окно
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
 
-        // Установка цвета фона
-        window.clear(sf::Color(255, 136, 0, 0));
+        int timer = 0;
+        if (timer > 10) {
+            while (window.pollEvent(event)) {
+                // если произошло событие Закрытие,закрываем наше окно
+                if (event.type == sf::Event::Closed)
+                    window.close();
+            }
 
-        menuZone.DrawZone();
-        gameZone.DrawZone();
-        statusZone.DrawZone();
+            // Установка цвета фона
+            window.clear(sf::Color(255, 136, 0, 0));
 
-        ShowGrid(window);
+            menuZone.DrawZone();
+            statusZone.DrawZone();
+            gameZone.DrawZone();
 
-        if (Helper::RandomGrid) {
+            ShowGrid(window);
+
             LAExmpl.Step();
-            // sf::Clock clock;
-            // float time = 0;
-            // while (time < 1) {
-            // time = clock.getElapsedTime().asSeconds();
 
-            // ShowGrid(window);
             ShowPixel(window, LAExmpl.fieldArray);
 
-            sf::sleep(sf::milliseconds(300));
             // }
-        }
 
-        // Отрисовка окна
-        window.display();
+            // Отрисовка окна
+            window.display();
+            timer = 0;
+        } else
+            timer++;
     }
 }

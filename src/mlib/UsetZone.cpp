@@ -40,6 +40,7 @@ void UserZone::ShowButtons()
 // Отрисовка зоны
 void UserZone::DrawZone()
 {
+    std::cout << "debug3" << std::endl;
     sf::RectangleShape zone;
 
     zone.setSize(sf::Vector2f(height, width));

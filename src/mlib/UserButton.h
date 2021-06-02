@@ -3,6 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+
+#include "logic.h"
+
 class UserButton {
 private:
     std::string name;

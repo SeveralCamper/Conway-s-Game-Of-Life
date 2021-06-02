@@ -15,4 +15,5 @@ void CloseWindow(sf::RenderWindow& window);
 
 void Screen(int width, int height, std::string name);
 
+
 #endif

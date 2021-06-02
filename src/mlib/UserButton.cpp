@@ -77,6 +77,7 @@ void UserButton::DrawButton()
 // Клик мышью в зоне кнопки
 void UserButton::IsClickButton(sf::Vector2i mousePosition)
 {
+    std::cout << "debug" << std::endl;
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
         if (mousePosition.x > buttonPositionX
             && mousePosition.x < buttonPositionX + width
