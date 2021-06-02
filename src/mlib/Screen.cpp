@@ -65,40 +65,45 @@ void Screen(int width, int height, std::string name)
     menuZone.PushButton(btnRandomMode);
     menuZone.PushButton(btnClose);
 
+    sf::Clock clock;
+
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {
+        
+        sf::Time time1 = clock.getElapsedTime();
         // проверяем все события окна,которые были запущены после последней
         // итерации цикла
 
         sf::Event event;
 
-        int timer = 0;
-        if (timer > 10) {
-            while (window.pollEvent(event)) {
-                // если произошло событие Закрытие,закрываем наше окно
-                if (event.type == sf::Event::Closed)
-                    window.close();
-            }
+        while (window.pollEvent(event)) {
+            // если произошло событие Закрытие,закрываем наше окно
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
 
-            // Установка цвета фона
-            window.clear(sf::Color(255, 136, 0, 0));
+        // Установка цвета фона
+        window.clear(sf::Color(255, 136, 0, 0));
 
-            menuZone.DrawZone();
-            statusZone.DrawZone();
-            gameZone.DrawZone();
+        menuZone.DrawZone();
+        statusZone.DrawZone();
 
-            ShowGrid(window);
+        gameZone.DrawZone();
 
+        std::cout << time1.asMilliseconds() << std::endl;
+
+        ShowGrid(window);
+
+        ShowPixel(window, LAExmpl.fieldArray);
+
+        if (time1.asMilliseconds() > 100) {
             LAExmpl.Step();
 
-            ShowPixel(window, LAExmpl.fieldArray);
+            clock.restart();
+        }
 
-            // }
 
-            // Отрисовка окна
-            window.display();
-            timer = 0;
-        } else
-            timer++;
+        // Отрисовка окна
+        window.display();
     }
 }
