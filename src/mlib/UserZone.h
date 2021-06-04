@@ -16,6 +16,8 @@ private:
 
     sf::Color color;
 
+    DirectionZoneButtons direction;
+
     sf::RenderWindow* window;
 
 public:
@@ -36,6 +38,8 @@ public:
 
     sf::Vector2f GetPosition();
 
+    DirectionZoneButtons GetDirection();
+
     // Позиция зоны
     void SetZonePosition(sf::Vector2f position);
 
@@ -44,6 +48,8 @@ public:
     void AddButton(UserButton userButton);
 
     void SetFillColor(sf::Color color);
+
+    void SetDirection(DirectionZoneButtons direction);
 
     void ShowButtons();
 

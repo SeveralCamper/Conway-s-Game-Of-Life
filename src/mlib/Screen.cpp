@@ -32,6 +32,7 @@ void Screen(int width, int height, std::string name)
             = sf::Vector2f(window.getSize().x * 0.25f, window.getSize().y - 10);
 
     UserZone menuZone(menuZonePosition, menuZoneSize, &window);
+    menuZone.SetDirection(DirectionZoneButtons::VERTICAL);
     menuZone.SetFillColor(BLACK_COLOR);
 
     /* Зона Игрового поля */
@@ -52,14 +53,14 @@ void Screen(int width, int height, std::string name)
             (window.getSize().y * 0.2f) - 15);
 
     UserZone statusZone(statusZonePosition, statusZoneSize, &window);
-
+    statusZone.SetDirection(DirectionZoneButtons::HORIZONTAL);
     statusZone.SetFillColor(INDIGO_COLOR);
     /* --- */
 
     /* кнопки */
     UserButton btnRandomMode("RANDOM MODE", &window);
     btnRandomMode.SetFillColor(WHITE_COLOR);
-    btnRandomMode.SetSize(sf::Vector2f(300, 60));
+    btnRandomMode.SetSize(sf::Vector2f(80, 60));
     btnRandomMode.ClickButton = RandomGrid;
 
     UserButton btnCustomMode("CUSTOM MODE", &window);
@@ -75,11 +76,10 @@ void Screen(int width, int height, std::string name)
     menuZone.AddButton(btnCustomMode);
     menuZone.AddButton(btnRandomMode);
     statusZone.AddButton(btnClose);
+    statusZone.AddButton(btnClose);
 
     sf::Clock clock;
     statusZone.ShowButtons();
-    std::cout << statusZone.GetPosition().y << std::endl;
-    std::cout << statusZone.collectionButtons[0].GetPosition().y << std::endl;
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {

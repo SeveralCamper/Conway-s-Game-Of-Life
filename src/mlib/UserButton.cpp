@@ -41,18 +41,18 @@ void UserButton::SetFillColor(sf::Color color)
 // Подгонка размера текста кнопки под размер кнопки
 void UserButton::FitText(sf::Text* textButton)
 {
-    if (textButton->getGlobalBounds().width > this->size.y) {
+    if (textButton->getGlobalBounds().width > this->size.x) {
         bool okSize = false;
 
         int ratio = 1;
 
         while (!okSize) {
-            if (textButton->getGlobalBounds().width > this->size.y) {
+            if (textButton->getGlobalBounds().width > this->size.x) {
                 textButton->setCharacterSize(DEFAULT_FONT_SIZE - ratio);
                 ratio++;
             } else {
                 okSize = true;
-                this->fontSize = DEFAULT_FONT_SIZE - ratio - 2;
+                this->fontSize = DEFAULT_FONT_SIZE - ratio - 1;
             }
         }
     }
@@ -84,12 +84,11 @@ void UserButton::DrawButton()
 
     sf::Text textButton(this->name, font, this->fontSize);
 
-    FitText(&textButton);
-
     textButton.setFillColor(TANGERINE_COLOR);
     textButton.setOutlineColor(TANGERINE_COLOR);
     textButton.setStyle(sf::Text::Bold | sf::Text::Italic);
 
+    FitText(&textButton);
     TextAlignCenter(&textButton);
 
     window->draw(rectButton);
@@ -100,8 +99,10 @@ void UserButton::DrawButton()
 void UserButton::IsClickButton(sf::Vector2i mousePosition)
 {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        if ((mousePosition.x > position.x && mousePosition.x < position.x + size.x)
-            && (mousePosition.y > position.y && mousePosition.y < position.y + size.y))
+        if ((mousePosition.x > position.x
+             && mousePosition.x < position.x + size.x)
+            && (mousePosition.y > position.y
+                && mousePosition.y < position.y + size.y))
             ClickButton(*window);
     }
 }

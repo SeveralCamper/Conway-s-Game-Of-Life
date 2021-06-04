@@ -82,4 +82,3 @@ void LifeAlgorithm::Step()
             // второй проход: копируем вычисленное состояние в текущее
             fieldArray[i][j] = tempArray[i][j];
 }
-
