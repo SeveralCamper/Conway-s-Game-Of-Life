@@ -1,20 +1,18 @@
 #ifndef USER_ZONE_H_
 #define USER_ZONE_H_
 
+#include "Settings.h"
+#include "UserButton.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "UserButton.h"
-
 class UserZone {
 private:
-    // Координаты позиции зоны
-    int zonePositionX = 0;
-    int zonePositionY = 0;
+    // Координаты позиции зоны по умолчанию
+    sf::Vector2f position = sf::Vector2f(0, 0);
 
-    // Размер зоны
-    float width = 0;
-    float height = 0;
+    // Размер зоны по умолчанию
+    sf::Vector2f size = sf::Vector2f(100, 100);
 
     sf::Color color;
 
@@ -23,16 +21,12 @@ private:
 public:
     std::vector<UserButton> collectionButtons;
 
-    UserZone(int x, int y, float width, float height, sf::RenderWindow* window)
+    UserZone(sf::Vector2f position, sf::Vector2f size, sf::RenderWindow* window)
     {
-        this->zonePositionX = x;
-        this->zonePositionY = y;
-
-        this->width = width;
-        this->height = height;
+        this->position = position;
+        this->size = size;
         this->window = window;
-
-        this->color = sf::Color(255, 255, 255);
+        this->color = WHITE_COLOR;
     }
 
     ~UserZone()
@@ -40,12 +34,14 @@ public:
         //
     }
 
+    sf::Vector2f GetPosition();
+
     // Позиция зоны
-    void SetZonePosition(int xPosition, int yPosition);
+    void SetZonePosition(sf::Vector2f position);
 
-    void SetZoneSize(int width, int height);
+    void SetZoneSize(sf::Vector2f size);
 
-    void PushButton(UserButton userButton);
+    void AddButton(UserButton userButton);
 
     void SetFillColor(sf::Color color);
 

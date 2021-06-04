@@ -4,19 +4,19 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "Settings.h"
+
 #include "logic.h"
 
 class UserButton {
 private:
     std::string name;
 
-    // Координаты позиции кнопки
-    int buttonPositionX = 100;
-    int buttonPositionY = 100;
+    // Координаты позиции кнопки по умолчанию
+    sf::Vector2f position = sf::Vector2f(0, 0);
 
-    // Размер кнопки
-    float width = 100;
-    float height = 30;
+    // Размер кнопки по умолчанию
+    sf::Vector2f size = sf::Vector2f(100, 40);
 
     // Цвет фона кнопки
     sf::Color color;
@@ -26,28 +26,24 @@ private:
 
     sf::RenderWindow* window;
 
+    int midleRectHeight;
+    int midleRectWidth;
+
+    int midleTextHeight;
+    int midleTextWidth;
+
+    int fontSize = DEFAULT_FONT_SIZE;
+
+    void FitText(sf::Text* textButton);
+    void TextAlignCenter(sf::Text* textButton);
+
 public:
-    UserButton(
-            std::string name,
-            int x,
-            int y,
-            float width,
-            float height,
-            sf::RenderWindow* window)
+    UserButton(std::string name, sf::RenderWindow* window)
     {
         this->name = name;
 
-        this->buttonPositionX = x;
-        this->buttonPositionY = y;
-
-        this->width = width;
-        this->height = height;
-
-        //  По дефолту ставим значения
-
-        SetFont("arial.ttf");
-
-        this->color = sf::Color(255, 255, 255);
+        SetFont(DEFAULT_FONT);
+        this->color = WHITE_COLOR;
 
         this->window = window;
     }
@@ -57,18 +53,20 @@ public:
         //
     }
 
-    sf::Vector2i GetSize();
+    sf::Vector2f GetSize();
 
-    void SetSize(int width, int height);
-
-    // Установка шрифта
-    void SetFont(std::string nameFont);
+    sf::Vector2f GetPosition();
 
     // Имя кнопки
     std::string GetButtonName();
 
+    void SetSize(sf::Vector2f size);
+
+    // Установка шрифта
+    void SetFont(std::string nameFont);
+
     // Позиция кнопки
-    void SetButtonPosition(int xPosition, int yPosition);
+    void SetButtonPosition(sf::Vector2f position);
 
     void SetFillColor(sf::Color color);
 

@@ -1,14 +1,18 @@
 #include "UserButton.h"
 
-sf::Vector2i UserButton::GetSize()
+sf::Vector2f UserButton::GetSize()
 {
-    return sf::Vector2i(width, height);
+    return size;
 }
 
-void UserButton::SetSize(int width, int height)
+sf::Vector2f UserButton::GetPosition()
 {
-    this->height = height;
-    this->width = width;
+    return position;
+}
+
+void UserButton::SetSize(sf::Vector2f size)
+{
+    this->size = size;
 }
 
 // Установка шрифта
@@ -24,10 +28,9 @@ std::string UserButton::GetButtonName()
 }
 
 // Позиция кнопки
-void UserButton::SetButtonPosition(int xPosition, int yPosition)
+void UserButton::SetButtonPosition(sf::Vector2f position)
 {
-    this->buttonPositionX = xPosition;
-    this->buttonPositionY = yPosition;
+    this->position = position;
 }
 
 void UserButton::SetFillColor(sf::Color color)
@@ -35,54 +38,70 @@ void UserButton::SetFillColor(sf::Color color)
     this->color = color;
 }
 
+// Подгонка размера текста кнопки под размер кнопки
+void UserButton::FitText(sf::Text* textButton)
+{
+    if (textButton->getGlobalBounds().width > this->size.y) {
+        bool okSize = false;
+
+        int ratio = 1;
+
+        while (!okSize) {
+            if (textButton->getGlobalBounds().width > this->size.y) {
+                textButton->setCharacterSize(DEFAULT_FONT_SIZE - ratio);
+                ratio++;
+            } else {
+                okSize = true;
+                this->fontSize = DEFAULT_FONT_SIZE - ratio - 2;
+            }
+        }
+    }
+}
+
+void UserButton::TextAlignCenter(sf::Text* textButton)
+{
+    midleRectHeight = this->size.y / 2;
+    midleRectWidth = this->size.x / 2;
+
+    midleTextHeight = textButton->getGlobalBounds().height / 2;
+    midleTextWidth = textButton->getGlobalBounds().width / 2;
+
+    textButton->setPosition(
+            this->position.x + midleRectWidth - midleTextWidth,
+            this->position.y + midleRectHeight - midleTextHeight);
+}
+
 // Отрисовка кнопки
 void UserButton::DrawButton()
 {
-    int midleRectHeight;
-    int midleRectWidth;
+    sf::RectangleShape rectButton(size);
 
-    int midleTextHeight;
-    int midleTextWidth;
-
-    sf::RectangleShape rectButton(sf::Vector2f(this->width, this->height));
-
-    rectButton.setPosition(this->buttonPositionX, (this->buttonPositionY) + 5);
+    rectButton.setPosition(position);
     rectButton.setFillColor(this->color);
 
-    rectButton.setOutlineThickness(-4.f);
-    rectButton.setOutlineColor(sf::Color(75, 0, 130));
+    rectButton.setOutlineThickness(4.f);
+    rectButton.setOutlineColor(INDIGO_COLOR);
 
-    sf::Color colorTextBtn = sf::Color(255, 136, 0);
+    sf::Text textButton(this->name, font, this->fontSize);
 
-    sf::Text text(this->name, font, 20);
+    FitText(&textButton);
 
-    text.setFillColor(colorTextBtn);
-    text.setOutlineColor(colorTextBtn);
-    text.setStyle(sf::Text::Bold);
+    textButton.setFillColor(TANGERINE_COLOR);
+    textButton.setOutlineColor(TANGERINE_COLOR);
+    textButton.setStyle(sf::Text::Bold | sf::Text::Italic);
 
-    midleRectHeight = this->width / 2;
-    midleRectWidth = this->height / 2;
-
-    midleTextHeight = text.getGlobalBounds().height / 2;
-    midleTextWidth = text.getGlobalBounds().width / 2;
-
-    text.setPosition(
-            this->buttonPositionX + midleRectHeight - midleTextWidth,
-            this->buttonPositionY + midleRectWidth - midleTextHeight);
+    TextAlignCenter(&textButton);
 
     window->draw(rectButton);
-    window->draw(text);
+    window->draw(textButton);
 }
 
 // Клик мышью в зоне кнопки
 void UserButton::IsClickButton(sf::Vector2i mousePosition)
 {
-    std::cout << "debug" << std::endl;
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        if (mousePosition.x > buttonPositionX
-            && mousePosition.x < buttonPositionX + width
-            && mousePosition.y > buttonPositionY
-            && mousePosition.y < buttonPositionY + height)
+        if ((mousePosition.x > position.x && mousePosition.x < position.x + size.x)
+            && (mousePosition.y > position.y && mousePosition.y < position.y + size.y))
             ClickButton(*window);
     }
 }

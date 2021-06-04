@@ -2,7 +2,6 @@
 
 void LifeAlgorithm::CreateUniverse()
 {
-    std::cout << "debug2" << std::endl;
     for (int i = 0; i < Widht; i++) {
         for (int j = 0; j < Height; j++) {
             fieldArray[i][j] = CellStatus::DIE;
@@ -13,7 +12,6 @@ void LifeAlgorithm::CreateUniverse()
 void LifeAlgorithm::RandFillUniverse()
 {
     srand(time(NULL));
-    std::cout << "007" << std::endl;
     for (int i = 1; i < Widht - 1; i++) {
         for (int j = 1; j < Height - 1; j++) {
             fieldArray[i][j] = CellStatus(rand() % 3);
