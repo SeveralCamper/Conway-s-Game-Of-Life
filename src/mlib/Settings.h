@@ -5,6 +5,13 @@
 
 enum class DirectionZoneButtons { HORIZONTAL = 0, VERTICAL = 1 };
 
+static const int SCREEN_WIDTH = 1374;
+static const int SCREEN_HEIGHT = 795;
+static const std::string NAME_WINDOW = "Life";
+
+static const int ARR_WIDTH = 63;
+static const int ARR_HEIGHT = 43;
+
 static const int DELAY_MILLIS = 300;
 
 static const sf::Color INDIGO_COLOR = sf::Color(75, 0, 130);

@@ -7,14 +7,13 @@
 #include <cstdlib>
 #include <iostream>
 
+#include "Settings.h"
+
 enum class CellStatus { BORN = 0, LIVE = 1, DIE = 2 };
 class LifeAlgorithm {
 public:
-    int static constexpr Widht = 63;  // ширина массива/поля
-    int static constexpr Height = 43; // высота массива/поля
-
-    CellStatus fieldArray[Widht][Height];
-    CellStatus tempArray[Widht][Height];
+    CellStatus fieldArray[ARR_WIDTH][ARR_HEIGHT];
+    CellStatus tempArray[ARR_WIDTH][ARR_HEIGHT];
 
     void CreateUniverse();
 

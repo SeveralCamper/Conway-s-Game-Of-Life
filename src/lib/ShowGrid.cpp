@@ -3,8 +3,8 @@
 
 void ShowGrid(sf::RenderWindow& window)
 {
-    for (int i = 0; i < 63; i++)
-        for (int j = 0; j < 43; j++) {
+    for (int i = 0; i < ARR_WIDTH; i++)
+        for (int j = 0; j < ARR_HEIGHT; j++) {
             sf::RectangleShape rectangle(sf::Vector2f(10.f, 10.f));
             rectangle.setFillColor(sf::Color(0, 0, 0));
             rectangle.setOutlineThickness(.5f);

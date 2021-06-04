@@ -75,7 +75,8 @@ void Screen(int width, int height, std::string name)
 
     menuZone.AddButton(btnCustomMode);
     menuZone.AddButton(btnRandomMode);
-    statusZone.AddButton(btnClose);
+    menuZone.AddButton(btnClose);
+
     statusZone.AddButton(btnClose);
 
     sf::Clock clock;

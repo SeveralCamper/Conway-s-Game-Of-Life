@@ -1,9 +1,10 @@
 #include "ShowPixel.h"
 
-void ShowPixel(sf::RenderWindow& window, CellStatus fieldArray[63][43])
+void ShowPixel(
+        sf::RenderWindow& window, CellStatus fieldArray[ARR_WIDTH][ARR_HEIGHT])
 {
-    for (int i = 0; i < 63; i++)
-        for (int j = 0; j < 43; j++) {
+    for (int i = 0; i < ARR_WIDTH; i++)
+        for (int j = 0; j < ARR_HEIGHT; j++) {
             if (fieldArray[i][j] != CellStatus::DIE) {
                 sf::RectangleShape rectangle(sf::Vector2f(10.f, 10.f));
                 rectangle.setFillColor(sf::Color(255, 136, 0));
