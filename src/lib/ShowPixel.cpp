@@ -1,6 +1,7 @@
 #include "ShowPixel.h"
 
-void ShowPixel(sf::RenderWindow& window, CellStatus fieldArray[ARR_WIDTH][ARR_HEIGHT])
+void ShowPixel(
+        sf::RenderWindow& window, CellStatus fieldArray[ARR_WIDTH][ARR_HEIGHT])
 {
     for (int i = 0; i < ARR_WIDTH; i++)
         for (int j = 0; j < ARR_HEIGHT; j++) {

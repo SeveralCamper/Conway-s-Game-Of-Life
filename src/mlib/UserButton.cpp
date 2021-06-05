@@ -33,9 +33,10 @@ void UserButton::SetButtonPosition(sf::Vector2f position)
     this->position = position;
 }
 
- void UserButton::SetName(std::string name){
-     this->name = name;
- }
+void UserButton::SetName(std::string name)
+{
+    this->name = name;
+}
 
 void UserButton::SetFillColor(sf::Color color)
 {

@@ -56,7 +56,7 @@ void UserZone::ShowButtons()
                     tempPositionX,
                     this->position.y + (this->size.y / 2)
                             - collectionButtons[item].GetSize().y / 2));
-        
+
             tempPositionX += buttonSize.x + offset;
             break;
 

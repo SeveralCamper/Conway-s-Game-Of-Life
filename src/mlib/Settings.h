@@ -12,7 +12,6 @@ static const std::string NAME_WINDOW = "Life";
 static const int ARR_WIDTH = 63;
 static const int ARR_HEIGHT = 39;
 
-
 static const int DELAY_MILLIS = 500;
 
 static const sf::Color INDIGO_COLOR = sf::Color(75, 0, 130);

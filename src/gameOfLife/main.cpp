@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
-#include <Settings.h>
 #include <Screen.h>
+#include <Settings.h>
 #include <ShowGrid.h>
 #include <ShowPixel.h>
 #include <UserButton.h>
