@@ -7,7 +7,6 @@
 
 #include "Settings.h"
 
-void ShowPixel(
-        sf::RenderWindow& window, CellStatus fieldArray[ARR_WIDTH][ARR_HEIGHT]);
+void ShowPixel(sf::RenderWindow& window, CellStatus fieldArray[ARR_WIDTH][ARR_HEIGHT]);
 
 #endif

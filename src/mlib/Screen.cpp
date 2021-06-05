@@ -12,10 +12,16 @@ void CloseWindow(sf::RenderWindow& window)
 void RandomGrid(sf::RenderWindow& window)
 {
     LAExmpl.RandFillUniverse();
+    LAExmpl.SetStep(0);
 }
 
 void CustomModeGrid(sf::RenderWindow& window)
 {
+}
+
+void PauseStart(sf::RenderWindow& window)
+{
+    LAExmpl.pause = !LAExmpl.pause;
 }
 
 void Screen(int width, int height, std::string name)
@@ -24,6 +30,7 @@ void Screen(int width, int height, std::string name)
 
     sf::RenderWindow window(sf::VideoMode(width, height), name);
     window.setVerticalSyncEnabled(true);
+    window.setFramerateLimit(5);
 
     /* Зоны */
     /* Зона меню */
@@ -54,33 +61,46 @@ void Screen(int width, int height, std::string name)
 
     UserZone statusZone(statusZonePosition, statusZoneSize, &window);
     statusZone.SetDirection(DirectionZoneButtons::HORIZONTAL);
-    statusZone.SetFillColor(INDIGO_COLOR);
+    statusZone.SetFillColor(BLACK_COLOR);
     /* --- */
 
     /* кнопки */
     UserButton btnRandomMode("RANDOM MODE", &window);
-    btnRandomMode.SetFillColor(WHITE_COLOR);
-    btnRandomMode.SetSize(sf::Vector2f(80, 60));
+    btnRandomMode.SetFillColor(BLACK_COLOR);
+    btnRandomMode.SetSize(sf::Vector2f(200, 60));
     btnRandomMode.ClickButton = RandomGrid;
 
     UserButton btnCustomMode("CUSTOM MODE", &window);
-    btnCustomMode.SetFillColor(WHITE_COLOR);
+    btnCustomMode.SetFillColor(BLACK_COLOR);
+    btnCustomMode.SetSize(sf::Vector2f(200, 60));
     btnCustomMode.ClickButton = CustomModeGrid;
 
     UserButton btnClose("CLOSE", &window);
-    btnClose.SetSize(sf::Vector2f(200, 60));
-    btnClose.SetFillColor(WHITE_COLOR);
+    btnClose.SetSize(sf::Vector2f(100, 60));
+    btnClose.SetFillColor(BLACK_COLOR);
     btnClose.ClickButton = CloseWindow;
+
+    UserButton btnPause("PAUSE", &window);
+    btnPause.SetSize(sf::Vector2f(80, 60));
+    btnPause.SetFillColor(BLACK_COLOR);
+    btnPause.ClickButton = PauseStart;
     /* --- */
 
     menuZone.AddButton(btnCustomMode);
     menuZone.AddButton(btnRandomMode);
     menuZone.AddButton(btnClose);
 
-    statusZone.AddButton(btnClose);
+    statusZone.AddButton(btnPause);
 
     sf::Clock clock;
-    statusZone.ShowButtons();
+
+    UserButton* casheBtnPause;
+
+    for (int item = 0; item < (int)statusZone.collectionButtons.size();
+         item++) {
+        if (statusZone.collectionButtons[item].GetButtonName() == "PAUSE")
+            casheBtnPause = &statusZone.collectionButtons[item];
+    }
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {
@@ -112,11 +132,32 @@ void Screen(int width, int height, std::string name)
         ShowGrid(window);
         ShowPixel(window, LAExmpl.fieldArray);
 
-        if (time1.asMilliseconds() > DELAY_MILLIS) {
+        if (LAExmpl.pause)
+            casheBtnPause->SetName("START");
+        else
+            casheBtnPause->SetName("PAUSE");
+
+        if (time1.asMilliseconds() > (LAExmpl.pause ? 99999 : DELAY_MILLIS)) {
             LAExmpl.Step();
 
             clock.restart();
         }
+
+        sf::Font font;
+        font.loadFromFile("fonts/" + DEFAULT_FONT);
+        sf::String message = "Step = ";
+        message += std::to_string(LAExmpl.GetStep());
+
+        sf::Text textStep(message, font, DEFAULT_FONT_SIZE);
+
+        textStep.setPosition(sf::Vector2f(
+                window.getSize().x - 250,
+                window.getSize().y - (statusZone.GetSize().y / 2)
+                        - (textStep.getGlobalBounds().height / 2)));
+
+        textStep.setFillColor(TANGERINE_COLOR);
+
+        window.draw(textStep);
 
         // Отрисовка окна
         window.display();

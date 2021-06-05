@@ -5,18 +5,23 @@ sf::Vector2f UserZone::GetPosition()
     return position;
 }
 
+sf::Vector2f UserZone::GetSize()
+{
+    return size;
+}
+
 DirectionZoneButtons UserZone::GetDirection()
 {
     return direction;
 }
 
 // Позиция зоны
-void UserZone::SetZonePosition(sf::Vector2f position)
+void UserZone::SetPosition(sf::Vector2f position)
 {
     this->position = position;
 }
 
-void UserZone::SetZoneSize(sf::Vector2f size)
+void UserZone::SetSize(sf::Vector2f size)
 {
     this->size = size;
 }
@@ -51,7 +56,7 @@ void UserZone::ShowButtons()
                     tempPositionX,
                     this->position.y + (this->size.y / 2)
                             - collectionButtons[item].GetSize().y / 2));
-
+        
             tempPositionX += buttonSize.x + offset;
             break;
 

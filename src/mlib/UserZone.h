@@ -37,13 +37,14 @@ public:
     }
 
     sf::Vector2f GetPosition();
+    sf::Vector2f GetSize();
 
     DirectionZoneButtons GetDirection();
 
     // Позиция зоны
-    void SetZonePosition(sf::Vector2f position);
+    void SetPosition(sf::Vector2f position);
 
-    void SetZoneSize(sf::Vector2f size);
+    void SetSize(sf::Vector2f size);
 
     void AddButton(UserButton userButton);
 

@@ -38,12 +38,16 @@ private:
     void TextAlignCenter(sf::Text* textButton);
 
 public:
+    UserButton()
+    {
+    }
+
     UserButton(std::string name, sf::RenderWindow* window)
     {
         this->name = name;
 
         SetFont(DEFAULT_FONT);
-        this->color = WHITE_COLOR;
+        this->color = BLACK_COLOR;
 
         this->window = window;
     }
@@ -61,6 +65,8 @@ public:
     std::string GetButtonName();
 
     void SetSize(sf::Vector2f size);
+
+    void SetName(std::string name);
 
     // Установка шрифта
     void SetFont(std::string nameFont);

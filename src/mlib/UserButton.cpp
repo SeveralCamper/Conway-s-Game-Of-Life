@@ -33,6 +33,10 @@ void UserButton::SetButtonPosition(sf::Vector2f position)
     this->position = position;
 }
 
+ void UserButton::SetName(std::string name){
+     this->name = name;
+ }
+
 void UserButton::SetFillColor(sf::Color color)
 {
     this->color = color;
@@ -85,7 +89,7 @@ void UserButton::DrawButton()
     sf::Text textButton(this->name, font, this->fontSize);
 
     textButton.setFillColor(TANGERINE_COLOR);
-    textButton.setOutlineColor(TANGERINE_COLOR);
+    textButton.setOutlineColor(INDIGO_COLOR);
     textButton.setStyle(sf::Text::Bold | sf::Text::Italic);
 
     FitText(&textButton);

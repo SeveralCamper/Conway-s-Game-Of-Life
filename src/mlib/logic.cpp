@@ -19,12 +19,21 @@ void LifeAlgorithm::RandFillUniverse()
     }
 }
 
-int a = 0;
+void LifeAlgorithm::SetStep(int step)
+{
+    this->step = step;
+}
+
+int LifeAlgorithm::GetStep()
+{
+    return step;
+}
 
 void LifeAlgorithm::Step()
 {
-    a++;
-    std::cout << a << std::endl;
+    step++;
+    std::cout << step << std::endl;
+
     for (int i = 1; i < ARR_WIDTH - 1; i++) {
         for (int j = 1; j < ARR_HEIGHT - 1;
              j++) { // первый проход: вычисляем будущее состоянее
