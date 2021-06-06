@@ -137,7 +137,7 @@ void Screen(int width, int height, std::string name)
         else
             casheBtnPause->SetName("PAUSE");
 
-        if (time1.asMilliseconds() > (LAExmpl.pause ? 99999 : DELAY_MILLIS)) {
+        if (time1.asMilliseconds() > (LAExmpl.pause ? 9999 : DELAY_MILLIS)) {
             LAExmpl.Step();
 
             clock.restart();
