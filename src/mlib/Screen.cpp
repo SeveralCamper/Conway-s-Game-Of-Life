@@ -24,6 +24,16 @@ void PauseStart(sf::RenderWindow& window)
     LAExmpl.pause = !LAExmpl.pause;
 }
 
+sf::Vector2i test(UserZone& zone)
+{
+    sf::Vector2i arrIndex;
+
+    arrIndex.x = (zone.GetSize().x + zone.GetPosition().x) / SIZE_CELLS;
+    arrIndex.y = (zone.GetSize().y + zone.GetPosition().y) / SIZE_CELLS;
+
+    return arrIndex;
+}
+
 void Screen(int width, int height, std::string name)
 {
     LAExmpl.CreateUniverse();
@@ -120,6 +130,11 @@ void Screen(int width, int height, std::string name)
                  window.setSize(sf::Vector2u(event.size.height,
              event.size.width));
              } */
+        }
+
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            std::cout << test(gameZone).x << " - " << test(gameZone).y
+                      << std::endl;
         }
 
         // Установка цвета фона

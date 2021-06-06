@@ -6,10 +6,10 @@ void ShowGrid(sf::RenderWindow& window)
     for (int i = 0; i < ARR_WIDTH; i++)
         for (int j = 0; j < ARR_HEIGHT; j++) {
             sf::RectangleShape rectangle(sf::Vector2f(10.f, 10.f));
-            rectangle.setFillColor(sf::Color(0, 0, 0));
+            rectangle.setFillColor(BLACK_COLOR);
             rectangle.setOutlineThickness(.5f);
-            rectangle.setOutlineColor(sf::Color(75, 0, 130));
-            rectangle.setPosition(360 + 16 * i, 11 + 16 * j);
+            rectangle.setOutlineColor(INDIGO_COLOR);
+            rectangle.setPosition(360 + SIZE_CELLS * i, 11 + SIZE_CELLS * j);
 
             window.draw(rectangle);
         }

@@ -32,8 +32,6 @@ int LifeAlgorithm::GetStep()
 void LifeAlgorithm::Step()
 {
     step++;
-    std::cout << step << std::endl;
-
     for (int i = 1; i < ARR_WIDTH - 1; i++) {
         for (int j = 1; j < ARR_HEIGHT - 1;
              j++) { // первый проход: вычисляем будущее состоянее
