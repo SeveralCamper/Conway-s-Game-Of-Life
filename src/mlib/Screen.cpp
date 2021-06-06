@@ -104,7 +104,7 @@ void Screen(int width, int height, std::string name)
             casheBtnPause = &statusZone.collectionButtons[item];
     }
 
-   TestInput();
+    TestInput();
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {

@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 
-
 void TestInput()
 {
     std::string line;
