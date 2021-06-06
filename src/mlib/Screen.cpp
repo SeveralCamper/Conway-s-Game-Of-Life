@@ -28,8 +28,11 @@ sf::Vector2i test(UserZone& zone)
 {
     sf::Vector2i arrIndex;
 
-    arrIndex.x = (zone.GetSize().x + zone.GetPosition().x) / SIZE_CELLS;
-    arrIndex.y = (zone.GetSize().y + zone.GetPosition().y) / SIZE_CELLS;
+    arrIndex.x = (sf::Mouse::getPosition().x - zone.GetPosition().x - 10)
+            / SIZE_CELLS;
+    arrIndex.y = ((sf::Mouse::getPosition().y - zone.GetPosition().y - 5)
+                  / SIZE_CELLS)
+            - 4;
 
     return arrIndex;
 }
