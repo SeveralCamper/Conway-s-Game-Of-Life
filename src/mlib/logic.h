@@ -33,6 +33,8 @@ public:
 
     void Step();
 
+    void SetArray(int x, int y);
+
     void initLife();
 
     void RunLife();

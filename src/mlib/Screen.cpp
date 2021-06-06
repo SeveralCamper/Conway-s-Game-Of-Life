@@ -17,6 +17,7 @@ void RandomGrid(sf::RenderWindow& window)
 
 void CustomModeGrid(sf::RenderWindow& window)
 {
+
 }
 
 void PauseStart(sf::RenderWindow& window)
@@ -24,7 +25,8 @@ void PauseStart(sf::RenderWindow& window)
     LAExmpl.pause = !LAExmpl.pause;
 }
 
-sf::Vector2i test(UserZone& zone)
+// Получить индекс массива ячейки на которой был совершен клик
+sf::Vector2i GetIndexArray(UserZone& zone)
 {
     sf::Vector2i arrIndex;
 
@@ -136,8 +138,17 @@ void Screen(int width, int height, std::string name)
         }
 
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            std::cout << test(gameZone).x << " - " << test(gameZone).y
-                      << std::endl;
+            if (gameZone.GetPosition().x < sf::Mouse::getPosition().x
+                && gameZone.GetPosition().x + gameZone.GetSize().x
+                        > sf::Mouse::getPosition().x
+                && gameZone.GetPosition().y < sf::Mouse::getPosition().y
+                && gameZone.GetPosition().y + gameZone.GetSize().y
+                        > sf::Mouse::getPosition().y) {
+                            
+                            int x = GetIndexArray(gameZone).x;
+                            int y = GetIndexArray(gameZone).y;
+                            LAExmpl.SetArray(x, y);
+                        }
         }
 
         // Установка цвета фона
@@ -155,7 +166,7 @@ void Screen(int width, int height, std::string name)
         else
             casheBtnPause->SetName("PAUSE");
 
-        if (time1.asMilliseconds() > (LAExmpl.pause ? 9999 : DELAY_MILLIS)) {
+        if (time1.asSeconds() > (LAExmpl.pause ? 9999 : DELAY_SECONDS)) {
             LAExmpl.Step();
 
             clock.restart();
