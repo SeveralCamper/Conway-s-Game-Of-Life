@@ -6,5 +6,6 @@
 #include <vector>
 
 void TestInput();
+void GetShapesNamesInArr();
 
 #endif

@@ -14,6 +14,9 @@ static const int ARR_HEIGHT = 39;
 
 static const int DELAY_MILLIS = 500;
 
+static const int MAIN_SCREEN_POSITION = 150;
+static const int MODEL_SCREEN_POSITION = 150;
+
 static const sf::Color INDIGO_COLOR = sf::Color(75, 0, 130);
 static const sf::Color WHITE_COLOR = sf::Color(255, 255, 255);
 static const sf::Color TANGERINE_COLOR = sf::Color(255, 136, 0);

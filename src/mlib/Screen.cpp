@@ -26,11 +26,30 @@ void PauseStart(sf::RenderWindow& window)
     LAExmpl.pause = !LAExmpl.pause;
 }
 
+void ASDFGSDA(sf::RenderWindow& window)
+{
+
+    sf::RenderWindow modelWindow(sf::VideoMode(500, 795), "Models list");
+    modelWindow.setPosition(sf::Vector2i(MODEL_SCREEN_POSITION, MODEL_SCREEN_POSITION));
+    while (modelWindow.isOpen())
+    {
+        // проверить все события окна, которые были вызваны с последней итерации цикла
+        sf::Event event;
+        while (modelWindow.pollEvent(event))
+        {
+            // "запрос закрытия" событие: мы закрываем окно
+            if (event.type == sf::Event::Closed)
+                modelWindow.close();
+        }
+    }
+}
+
 void Screen(int width, int height, std::string name)
 {
     LAExmpl.CreateUniverse();
 
     sf::RenderWindow window(sf::VideoMode(width, height), name);
+    window.setPosition(sf::Vector2i(MAIN_SCREEN_POSITION,MAIN_SCREEN_POSITION));
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(5);
 
@@ -77,6 +96,11 @@ void Screen(int width, int height, std::string name)
     btnCustomMode.SetSize(sf::Vector2f(200, 60));
     btnCustomMode.ClickButton = CustomModeGrid;
 
+    UserButton btnModelsMode("MODELS", &window);
+    btnModelsMode.SetSize(sf::Vector2f(200, 60));
+    btnModelsMode.SetFillColor(BLACK_COLOR);
+    btnModelsMode.ClickButton = ASDFGSDA;
+
     UserButton btnClose("CLOSE", &window);
     btnClose.SetSize(sf::Vector2f(100, 60));
     btnClose.SetFillColor(BLACK_COLOR);
@@ -90,6 +114,7 @@ void Screen(int width, int height, std::string name)
 
     menuZone.AddButton(btnCustomMode);
     menuZone.AddButton(btnRandomMode);
+    menuZone.AddButton(btnModelsMode);
     menuZone.AddButton(btnClose);
 
     statusZone.AddButton(btnPause);
@@ -105,6 +130,8 @@ void Screen(int width, int height, std::string name)
     }
 
     TestInput();
+    GetShapesNamesInArr();
+
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {
