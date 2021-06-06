@@ -1,5 +1,7 @@
 #include "Screen.h"
 #include "Settings.h"
+#include "models.h"
+
 #include <SFML/Graphics.hpp>
 
 LifeAlgorithm LAExmpl;
@@ -101,6 +103,8 @@ void Screen(int width, int height, std::string name)
         if (statusZone.collectionButtons[item].GetButtonName() == "PAUSE")
             casheBtnPause = &statusZone.collectionButtons[item];
     }
+
+   TestInput();
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {
