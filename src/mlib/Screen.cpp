@@ -1,10 +1,13 @@
 #include "Screen.h"
 #include "Settings.h"
 #include "models.h"
+#include "models.cpp"
 
 #include <SFML/Graphics.hpp>
 
 LifeAlgorithm LAExmpl;
+
+sf::RenderWindow modelWindow(sf::VideoMode(500, 795), "Models list");
 
 void CloseWindow(sf::RenderWindow& window)
 {
@@ -28,7 +31,6 @@ void PauseStart(sf::RenderWindow& window)
 
 void ASDFGSDA(sf::RenderWindow& window)
 {
-    sf::RenderWindow modelWindow(sf::VideoMode(500, 795), "Models list");
     modelWindow.setPosition(
             sf::Vector2i(MODEL_SCREEN_POSITION, MODEL_SCREEN_POSITION));
     while (modelWindow.isOpen()) {
@@ -42,6 +44,19 @@ void ASDFGSDA(sf::RenderWindow& window)
         }
 
         GetShapesNamesInArr();
+    }
+}
+
+void GetModelsArr(
+        std::vector<std::string>& modelsName, sf::RenderWindow& modelWindow)
+{
+    int vector_size = modelsName.size();
+    for (int i = 0; i < vector_size; i += 15) {
+        std::string NAME = modelsName[i];
+        UserButton btnModelMode1("NAME", &modelWindow);
+        btnModelMode1.SetFillColor(BLACK_COLOR);
+        btnModelMode1.SetSize(sf::Vector2f(200, 60));
+        btnModelMode1.ClickButton = CloseWindow;
     }
 }
 
@@ -135,17 +150,8 @@ void Screen(int width, int height, std::string name)
     /* TestInput(); */
     /* --- */
     /* ModelsOutput */
-    void GetModelsArr()
-    {
-        int vector_size = modelsName.size();
-        for (int i = 0; i < vector_size; i += 15) {
-            std::string NAME = modelsName[i];
-            UserButton btnModelMode1("NAME", &modelWindow);
-            btnModelMode1.SetFillColor(BLACK_COLOR);
-            btnModelMode1.SetSize(sf::Vector2f(200, 60));
-            btnModelMode1.ClickButton = CloseWindow;
-        }
-    }
+
+    GetModelsArr(modelsName, modelWindow);
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {

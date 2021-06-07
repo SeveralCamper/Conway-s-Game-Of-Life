@@ -1,9 +1,9 @@
 #include "models.h"
 
-std::string line;
-std::vector<std::string> modelsName;
 std::ifstream myfile("input/models.txt");
+std::string line;
 std::string search = "flasher";
+std::vector<std::string> modelsName;
 
 int arr[13][13];
 
