@@ -26,15 +26,15 @@ void PauseStart(sf::RenderWindow& window)
 }
 
 // Получить индекс массива ячейки на которой был совершен клик
-sf::Vector2i GetIndexArray(UserZone& zone)
+sf::Vector2i GetIndexArray(UserZone& zone, sf::RenderWindow& window)
 {
     sf::Vector2i arrIndex;
 
-    arrIndex.x = (sf::Mouse::getPosition().x - zone.GetPosition().x - 10)
+    arrIndex.x = (sf::Mouse::getPosition(window).x - zone.GetPosition().x - 10)
             / SIZE_CELLS;
-    arrIndex.y = ((sf::Mouse::getPosition().y - zone.GetPosition().y - 5)
+    arrIndex.y = ((sf::Mouse::getPosition(window).y - zone.GetPosition().y - 5)
                   / SIZE_CELLS)
-            - 4;
+            ;
 
     return arrIndex;
 }
@@ -56,6 +56,8 @@ void Screen(int width, int height, std::string name)
     UserZone menuZone(menuZonePosition, menuZoneSize, &window);
     menuZone.SetDirection(DirectionZoneButtons::VERTICAL);
     menuZone.SetFillColor(BLACK_COLOR);
+
+
 
     /* Зона Игрового поля */
     sf::Vector2f gameZonePosition
@@ -137,16 +139,19 @@ void Screen(int width, int height, std::string name)
              } */
         }
 
+   // std::cout << "Mouse" << sf::Mouse::getPosition(window).x  << " - " << sf::Mouse::getPosition(window).y<< std::endl;
+    //std::cout << "Screenn" <<  menuZone.GetPosition().x << " - " << menuZone.GetPosition().y << std::endl;
+
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            if (gameZone.GetPosition().x < sf::Mouse::getPosition().x
+            if (gameZone.GetPosition().x < sf::Mouse::getPosition(window).x
                 && gameZone.GetPosition().x + gameZone.GetSize().x
-                        > sf::Mouse::getPosition().x
-                && gameZone.GetPosition().y < sf::Mouse::getPosition().y
+                        > sf::Mouse::getPosition(window).x
+                && gameZone.GetPosition().y < sf::Mouse::getPosition(window).y
                 && gameZone.GetPosition().y + gameZone.GetSize().y
-                        > sf::Mouse::getPosition().y) {
+                        > sf::Mouse::getPosition(window).y) {
                             
-                            int x = GetIndexArray(gameZone).x;
-                            int y = GetIndexArray(gameZone).y;
+                            int x = GetIndexArray(gameZone, window).x;
+                            int y = GetIndexArray(gameZone, window).y;
                             LAExmpl.SetArray(x, y);
                         }
         }
