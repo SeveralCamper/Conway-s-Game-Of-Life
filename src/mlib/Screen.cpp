@@ -128,43 +128,43 @@ void CreateUI()
     /* --- */
     /* Кнопки */
     UserButton btnRandomMode("RANDOM MODE", &window);
-    btnRandomMode.SetFillColor(GRAY_COLOR);
+    btnRandomMode.SetFillColor(BLACK_COLOR);
     btnRandomMode.SetSize(sf::Vector2f(200, 60));
     btnRandomMode.ClickButton = RandomGrid;
 
     UserButton btnCustomMode("CUSTOM MODE", &window);
-    btnCustomMode.SetFillColor(GRAY_COLOR);
+    btnCustomMode.SetFillColor(BLACK_COLOR);
     btnCustomMode.SetSize(sf::Vector2f(200, 60));
     btnCustomMode.ClickButton = CustomModeGrid;
 
     UserButton btnClose("CLOSE", &window);
     btnClose.SetSize(sf::Vector2f(100, 60));
-    btnClose.SetFillColor(GRAY_COLOR);
+    btnClose.SetFillColor(BLACK_COLOR);
     btnClose.ClickButton = CloseWindow;
 
     UserButton btnPause("PAUSE", &window);
     btnPause.SetSize(sf::Vector2f(80, 60));
-    btnPause.SetFillColor(GRAY_COLOR);
+    btnPause.SetFillColor(BLACK_COLOR);
     btnPause.ClickButton = PauseStart;
 
-    UserButton btnSpeed_1(">> 0.25", &window);
+    UserButton btnSpeed_1("X-2", &window);
     btnSpeed_1.SetSize(sf::Vector2f(80, 60));
-    btnSpeed_1.SetFillColor(GRAY_COLOR);
+    btnSpeed_1.SetFillColor(BLACK_COLOR);
     btnSpeed_1.ClickButton = Speed_1;
 
-    UserButton btnSpeed_2(">> 0.5", &window);
+    UserButton btnSpeed_2("X-1", &window);
     btnSpeed_2.SetSize(sf::Vector2f(80, 60));
-    btnSpeed_2.SetFillColor(GRAY_COLOR);
+    btnSpeed_2.SetFillColor(BLACK_COLOR);
     btnSpeed_2.ClickButton = Speed_2;
 
-    UserButton btnSpeed_3(">> 1", &window);
+    UserButton btnSpeed_3("X-0.5", &window);
     btnSpeed_3.SetSize(sf::Vector2f(80, 60));
-    btnSpeed_3.SetFillColor(GRAY_COLOR);
+    btnSpeed_3.SetFillColor(BLACK_COLOR);
     btnSpeed_3.ClickButton = Speed_3;
 
-    UserButton btnSpeed_4(">> 2", &window);
+    UserButton btnSpeed_4("X-0.25", &window);
     btnSpeed_4.SetSize(sf::Vector2f(80, 60));
-    btnSpeed_4.SetFillColor(GRAY_COLOR);
+    btnSpeed_4.SetFillColor(BLACK_COLOR);
     btnSpeed_4.ClickButton = Speed_4;
 
     /* Разделение кнопок по зонам экрана */
