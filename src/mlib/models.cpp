@@ -56,7 +56,7 @@ void TestInput()
     }
 }
 
-void GetShapesNames()
+std::vector<std::string> GetShapesNames()
 {
     std::string line;
 
@@ -74,4 +74,6 @@ void GetShapesNames()
             count++;
         }
     }
+
+    return collectionModelsName;
 }

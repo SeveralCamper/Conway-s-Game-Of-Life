@@ -68,6 +68,8 @@ public:
 
     void SetName(std::string name);
 
+    void SetWindow(sf::RenderWindow* window);
+
     // Установка шрифта
     void SetFont(std::string nameFont);
 

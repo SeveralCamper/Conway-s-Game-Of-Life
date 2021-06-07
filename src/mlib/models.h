@@ -8,7 +8,7 @@
 #include "Settings.h"
 
 void TestInput();
-void GetShapesNames();
+std::vector<std::string> GetShapesNames();
 void GetModelsArr();
 
 #endif

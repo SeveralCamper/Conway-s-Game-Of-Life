@@ -11,6 +11,8 @@ UserZone menuZone;
 UserZone gameZone;
 UserZone statusZone;
 
+std::vector<UserButton> collectionModelsButton;
+
 LifeAlgorithm LAExmpl;
 float speed = DELAY_SECONDS;
 
@@ -101,19 +103,41 @@ void ModalWindow()
             if (event.type == sf::Event::Closed)
                 modal_window.close();
         }
-        //modal_window.setActive();
+
+        std::vector<std::string> test = GetShapesNames();
+
+        for (int i = 0; i < (int)test.size(); i++) {
+            UserButton btnModel(test[i], &window);
+            btnModel.SetFillColor(BLACK_COLOR);
+            btnModel.SetSize(sf::Vector2f(200, 60));
+            btnModel.ClickButton = RandomGrid;
+
+            collectionModelsButton.push_back(btnModel);
+        }
+
+        for (int i = 0; i < (int)collectionModelsButton.size(); i++) {
+            collectionModelsButton[i].SetWindow(&modal_window);
+            collectionModelsButton[i].DrawButton();
+        }
+
         modal_window.display();
     }
 }
 
-sf::Vector2f CreateUImodalWindow()
+std::vector<UserButton> CreateUImodalWindow()
 {
+    std::vector<std::string> test = GetShapesNames();
 
+    for (int i = 0; i < (int)test.size(); i++) {
+        UserButton btnModel(test[i], &window);
+        btnModel.SetFillColor(BLACK_COLOR);
+        btnModel.SetSize(sf::Vector2f(200, 60));
+        btnModel.ClickButton = RandomGrid;
 
-    UserButton btnRandomMode("RANDOM MODE", &window);
-    btnRandomMode.SetFillColor(BLACK_COLOR);
-    btnRandomMode.SetSize(sf::Vector2f(200, 60));
-    btnRandomMode.ClickButton = RandomGrid;
+        collectionModelsButton.push_back(btnModel);
+    }
+
+    return collectionModelsButton;
 }
 
 void CreateUImainWindow()
