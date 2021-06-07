@@ -181,6 +181,11 @@ void CreateUI()
 
 void Screen()
 {
+    sf::Music music;
+    music.openFromFile("audio/C418 - Subwoofer Lullaby.ogg");
+    music.play();
+    music.setLoop(true);
+ 
     LAExmpl.pause = true;
     LAExmpl.CreateUniverse();
 

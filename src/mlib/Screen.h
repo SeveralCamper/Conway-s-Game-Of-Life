@@ -2,6 +2,7 @@
 #define SREEN_H_
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <iostream>
 
 #include "Screen.h"
