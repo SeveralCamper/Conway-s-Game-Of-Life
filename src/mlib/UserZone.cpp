@@ -36,6 +36,11 @@ void UserZone::SetFillColor(sf::Color color)
     this->color = color;
 }
 
+void UserZone::SetWindow(sf::RenderWindow* window)
+{
+    this->window = window;
+}
+
 void UserZone::SetDirection(DirectionZoneButtons direction)
 {
     this->direction = direction;

@@ -4,6 +4,36 @@
 
 LifeAlgorithm LAExmpl;
 
+// Получить индекс массива ячейки на которой был совершен клик
+sf::Vector2i GetIndexArray(UserZone& zone, sf::RenderWindow& window)
+{
+    sf::Vector2i arrIndex;
+
+    arrIndex.x = (sf::Mouse::getPosition(window).x - zone.GetPosition().x - 10)
+            / SIZE_CELLS;
+    arrIndex.y
+            = ((sf::Mouse::getPosition(window).y - zone.GetPosition().y - 5)
+               / SIZE_CELLS);
+    return arrIndex;
+}
+
+void Custom(UserZone& zone, sf::RenderWindow& window)
+{
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        std::cout << zone.GetPosition().x + zone.GetSize().x << std::endl;
+        if (zone.GetPosition().x < sf::Mouse::getPosition(window).x
+            && zone.GetPosition().x + zone.GetSize().x
+                    > sf::Mouse::getPosition(window).x
+            && zone.GetPosition().y < sf::Mouse::getPosition(window).y
+            && zone.GetPosition().y + zone.GetSize().y
+                    > sf::Mouse::getPosition(window).y) {
+            int x = GetIndexArray(zone, window).x;
+            int y = GetIndexArray(zone, window).y;
+            LAExmpl.SetArray(x, y);
+        }
+    }
+}
+
 void CloseWindow(sf::RenderWindow& window)
 {
     window.close();
@@ -13,11 +43,14 @@ void RandomGrid(sf::RenderWindow& window)
 {
     LAExmpl.RandFillUniverse();
     LAExmpl.SetStep(0);
+    LAExmpl.pause = false;
 }
 
 void CustomModeGrid(sf::RenderWindow& window)
 {
-
+    LAExmpl.CreateUniverse();
+    LAExmpl.SetStep(0);
+    LAExmpl.pause = true;
 }
 
 void PauseStart(sf::RenderWindow& window)
@@ -25,22 +58,9 @@ void PauseStart(sf::RenderWindow& window)
     LAExmpl.pause = !LAExmpl.pause;
 }
 
-// Получить индекс массива ячейки на которой был совершен клик
-sf::Vector2i GetIndexArray(UserZone& zone, sf::RenderWindow& window)
-{
-    sf::Vector2i arrIndex;
-
-    arrIndex.x = (sf::Mouse::getPosition(window).x - zone.GetPosition().x - 10)
-            / SIZE_CELLS;
-    arrIndex.y = ((sf::Mouse::getPosition(window).y - zone.GetPosition().y - 5)
-                  / SIZE_CELLS)
-            ;
-
-    return arrIndex;
-}
-
 void Screen(int width, int height, std::string name)
 {
+    LAExmpl.pause = true;
     LAExmpl.CreateUniverse();
 
     sf::RenderWindow window(sf::VideoMode(width, height), name);
@@ -56,8 +76,6 @@ void Screen(int width, int height, std::string name)
     UserZone menuZone(menuZonePosition, menuZoneSize, &window);
     menuZone.SetDirection(DirectionZoneButtons::VERTICAL);
     menuZone.SetFillColor(BLACK_COLOR);
-
-
 
     /* Зона Игрового поля */
     sf::Vector2f gameZonePosition
@@ -131,29 +149,6 @@ void Screen(int width, int height, std::string name)
             // если произошло событие Закрытие,закрываем наше окно
             if (event.type == sf::Event::Closed)
                 window.close();
-
-            /*  if (event.type == sf::Event::Resized) {
-
-                 window.setSize(sf::Vector2u(event.size.height,
-             event.size.width));
-             } */
-        }
-
-   // std::cout << "Mouse" << sf::Mouse::getPosition(window).x  << " - " << sf::Mouse::getPosition(window).y<< std::endl;
-    //std::cout << "Screenn" <<  menuZone.GetPosition().x << " - " << menuZone.GetPosition().y << std::endl;
-
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            if (gameZone.GetPosition().x < sf::Mouse::getPosition(window).x
-                && gameZone.GetPosition().x + gameZone.GetSize().x
-                        > sf::Mouse::getPosition(window).x
-                && gameZone.GetPosition().y < sf::Mouse::getPosition(window).y
-                && gameZone.GetPosition().y + gameZone.GetSize().y
-                        > sf::Mouse::getPosition(window).y) {
-                            
-                            int x = GetIndexArray(gameZone, window).x;
-                            int y = GetIndexArray(gameZone, window).y;
-                            LAExmpl.SetArray(x, y);
-                        }
         }
 
         // Установка цвета фона
@@ -166,9 +161,10 @@ void Screen(int width, int height, std::string name)
         ShowGrid(window);
         ShowPixel(window, LAExmpl.fieldArray);
 
-        if (LAExmpl.pause)
+        if (LAExmpl.pause) {
             casheBtnPause->SetName("START");
-        else
+              Custom(gameZone, window);
+        } else
             casheBtnPause->SetName("PAUSE");
 
         if (time1.asSeconds() > (LAExmpl.pause ? 9999 : DELAY_SECONDS)) {

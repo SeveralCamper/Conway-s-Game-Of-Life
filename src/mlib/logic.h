@@ -17,6 +17,7 @@ private:
 
 public:
     bool pause = false;
+    bool custom = false;
 
     void SetStep(int step);
 

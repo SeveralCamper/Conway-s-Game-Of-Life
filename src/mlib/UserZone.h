@@ -44,6 +44,8 @@ public:
     // Позиция зоны
     void SetPosition(sf::Vector2f position);
 
+    void SetWindow(sf::RenderWindow* window);
+
     void SetSize(sf::Vector2f size);
 
     void AddButton(UserButton userButton);
