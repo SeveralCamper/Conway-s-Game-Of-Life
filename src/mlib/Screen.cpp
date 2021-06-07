@@ -28,19 +28,20 @@ void PauseStart(sf::RenderWindow& window)
 
 void ASDFGSDA(sf::RenderWindow& window)
 {
-
     sf::RenderWindow modelWindow(sf::VideoMode(500, 795), "Models list");
-    modelWindow.setPosition(sf::Vector2i(MODEL_SCREEN_POSITION, MODEL_SCREEN_POSITION));
-    while (modelWindow.isOpen())
-    {
-        // проверить все события окна, которые были вызваны с последней итерации цикла
+    modelWindow.setPosition(
+            sf::Vector2i(MODEL_SCREEN_POSITION, MODEL_SCREEN_POSITION));
+    while (modelWindow.isOpen()) {
+        // проверить все события окна, которые были вызваны с последней итерации
+        // цикла
         sf::Event event;
-        while (modelWindow.pollEvent(event))
-        {
+        while (modelWindow.pollEvent(event)) {
             // "запрос закрытия" событие: мы закрываем окно
             if (event.type == sf::Event::Closed)
                 modelWindow.close();
         }
+
+        GetShapesNamesInArr();
     }
 }
 
@@ -49,7 +50,8 @@ void Screen(int width, int height, std::string name)
     LAExmpl.CreateUniverse();
 
     sf::RenderWindow window(sf::VideoMode(width, height), name);
-    window.setPosition(sf::Vector2i(MAIN_SCREEN_POSITION,MAIN_SCREEN_POSITION));
+    window.setPosition(
+            sf::Vector2i(MAIN_SCREEN_POSITION, MAIN_SCREEN_POSITION));
     window.setVerticalSyncEnabled(true);
     window.setFramerateLimit(5);
 
@@ -129,9 +131,21 @@ void Screen(int width, int height, std::string name)
             casheBtnPause = &statusZone.collectionButtons[item];
     }
 
-    TestInput();
     GetShapesNamesInArr();
-
+    /* TestInput(); */
+    /* --- */
+    /* ModelsOutput */
+    void GetModelsArr()
+    {
+        int vector_size = modelsName.size();
+        for (int i = 0; i < vector_size; i += 15) {
+            std::string NAME = modelsName[i];
+            UserButton btnModelMode1("NAME", &modelWindow);
+            btnModelMode1.SetFillColor(BLACK_COLOR);
+            btnModelMode1.SetSize(sf::Vector2f(200, 60));
+            btnModelMode1.ClickButton = CloseWindow;
+        }
+    }
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {

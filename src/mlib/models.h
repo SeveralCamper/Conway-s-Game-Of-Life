@@ -7,5 +7,6 @@
 
 void TestInput();
 void GetShapesNamesInArr();
+void GetModelsArr();
 
 #endif

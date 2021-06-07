@@ -55,8 +55,7 @@ void TestInput()
 
 void GetShapesNamesInArr()
 {
-      std::string line;
-    std::vector<std::string> modelsName;
+    std::string line;
 
     std::ifstream myfile;
     myfile.open("input/models.txt");
@@ -65,12 +64,5 @@ void GetShapesNamesInArr()
             modelsName.push_back(line);
         }
     }
-
-    int vector_size = modelsName.size();
-
     modelsName.push_back(line);
-
-    for (int i = 0; i < vector_size; i = i + 15) {
-        std::cout << modelsName[i] << std::endl;
-    }
 }
