@@ -5,8 +5,10 @@
 #include <iostream>
 #include <vector>
 
+#include "Settings.h"
+
 void TestInput();
-void GetShapesNamesInArr();
+void GetShapesNames();
 void GetModelsArr();
 
 #endif

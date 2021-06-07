@@ -29,10 +29,18 @@ int LifeAlgorithm::GetStep()
     return step;
 }
 
+void LifeAlgorithm::SetArray(int x, int y)
+{
+    if (fieldArray[x][y] == CellStatus::DIE) {
+        fieldArray[x][y] = CellStatus::BORN;
+    } else if (fieldArray[x][y] != CellStatus::DIE) {
+        fieldArray[x][y] = CellStatus::DIE;
+    }
+}
+
 void LifeAlgorithm::Step()
 {
     step++;
-
     for (int i = 1; i < ARR_WIDTH - 1; i++) {
         for (int j = 1; j < ARR_HEIGHT - 1;
              j++) { // первый проход: вычисляем будущее состоянее

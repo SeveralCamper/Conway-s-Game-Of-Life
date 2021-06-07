@@ -1,82 +1,132 @@
 #include "Screen.h"
 #include "Settings.h"
 #include "models.h"
-#include "models.cpp"
-
 #include <SFML/Graphics.hpp>
 
+sf::RenderWindow
+        window(sf::VideoMode(MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT),
+               NAME_MAIN_WINDOW);
+
+UserZone menuZone;
+UserZone gameZone;
+UserZone statusZone;
+
 LifeAlgorithm LAExmpl;
+float speed = DELAY_SECONDS;
 
-sf::RenderWindow modelWindow(sf::VideoMode(500, 795), "Models list");
+// Получить индекс массива ячейки на которой был совершен клик
+sf::Vector2i GetIndexArray(UserZone& zone)
+{
+    // Индекс ячейки массива
+    sf::Vector2i arrIndex;
 
-void CloseWindow(sf::RenderWindow& window)
+    arrIndex.x = (sf::Mouse::getPosition(window).x - zone.GetPosition().x - 10)
+            / SIZE_CELLS;
+    arrIndex.y
+            = ((sf::Mouse::getPosition(window).y - zone.GetPosition().y - 5)
+               / SIZE_CELLS);
+    return arrIndex;
+}
+
+void Custom(UserZone& zone)
+{
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+        std::cout << zone.GetPosition().x + zone.GetSize().x << std::endl;
+        if (zone.GetPosition().x < sf::Mouse::getPosition(window).x
+            && zone.GetPosition().x + zone.GetSize().x
+                    > sf::Mouse::getPosition(window).x
+            && zone.GetPosition().y < sf::Mouse::getPosition(window).y
+            && zone.GetPosition().y + zone.GetSize().y
+                    > sf::Mouse::getPosition(window).y) {
+            int x = GetIndexArray(zone).x;
+            int y = GetIndexArray(zone).y;
+            LAExmpl.SetArray(x, y);
+        }
+    }
+}
+
+void CloseWindow()
 {
     window.close();
 }
 
-void RandomGrid(sf::RenderWindow& window)
+void RandomGrid()
 {
     LAExmpl.RandFillUniverse();
     LAExmpl.SetStep(0);
+    LAExmpl.pause = false;
 }
 
-void CustomModeGrid(sf::RenderWindow& window)
+void CustomModeGrid()
 {
+    LAExmpl.CreateUniverse();
+    LAExmpl.SetStep(0);
+    LAExmpl.pause = true;
 }
 
-void PauseStart(sf::RenderWindow& window)
+void PauseStart()
 {
     LAExmpl.pause = !LAExmpl.pause;
 }
 
-void ASDFGSDA(sf::RenderWindow& window)
+void Speed_1()
 {
-    modelWindow.setPosition(
-            sf::Vector2i(MODEL_SCREEN_POSITION, MODEL_SCREEN_POSITION));
-    while (modelWindow.isOpen()) {
-        // проверить все события окна, которые были вызваны с последней итерации
-        // цикла
+    speed = .25f;
+}
+
+void Speed_2()
+{
+    speed = .5f;
+}
+
+void Speed_3()
+{
+    speed = 1.f;
+}
+
+void Speed_4()
+{
+    speed = 2.f;
+}
+
+void ModalWindow()
+{
+    sf::RenderWindow modal_window(
+            sf::VideoMode(MODAL_WINDOW_WIDTH, MODAL_WINDOW_HEIGHT),
+            NAME_MODAL_WINDOW);
+
+    while (modal_window.isOpen()) {
         sf::Event event;
-        while (modelWindow.pollEvent(event)) {
-            // "запрос закрытия" событие: мы закрываем окно
+        while (modal_window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
-                modelWindow.close();
+                modal_window.close();
         }
-
-        GetShapesNamesInArr();
+        //modal_window.setActive();
+        modal_window.display();
     }
 }
 
-void GetModelsArr(
-        std::vector<std::string>& modelsName, sf::RenderWindow& modelWindow)
+sf::Vector2f CreateUImodalWindow()
 {
-    int vector_size = modelsName.size();
-    for (int i = 0; i < vector_size; i += 15) {
-        std::string NAME = modelsName[i];
-        UserButton btnModelMode1("NAME", &modelWindow);
-        btnModelMode1.SetFillColor(BLACK_COLOR);
-        btnModelMode1.SetSize(sf::Vector2f(200, 60));
-        btnModelMode1.ClickButton = CloseWindow;
-    }
+
+
+    UserButton btnRandomMode("RANDOM MODE", &window);
+    btnRandomMode.SetFillColor(BLACK_COLOR);
+    btnRandomMode.SetSize(sf::Vector2f(200, 60));
+    btnRandomMode.ClickButton = RandomGrid;
 }
 
-void Screen(int width, int height, std::string name)
+void CreateUImainWindow()
 {
-    LAExmpl.CreateUniverse();
-
-    sf::RenderWindow window(sf::VideoMode(width, height), name);
-    window.setPosition(
-            sf::Vector2i(MAIN_SCREEN_POSITION, MAIN_SCREEN_POSITION));
-    window.setVerticalSyncEnabled(true);
-    window.setFramerateLimit(5);
-
     /* Зоны */
     /* Зона меню */
     sf::Vector2f menuZonePosition = sf::Vector2f(5, 5);
     sf::Vector2f menuZoneSize
             = sf::Vector2f(window.getSize().x * 0.25f, window.getSize().y - 10);
 
-    UserZone menuZone(menuZonePosition, menuZoneSize, &window);
+    menuZone.SetWindow(&window);
+    menuZone.SetPosition(menuZonePosition);
+    menuZone.SetSize(menuZoneSize);
     menuZone.SetDirection(DirectionZoneButtons::VERTICAL);
     menuZone.SetFillColor(BLACK_COLOR);
 
@@ -86,7 +136,9 @@ void Screen(int width, int height, std::string name)
     sf::Vector2f gameZoneSize = sf::Vector2f(
             (window.getSize().x * 0.75f) - 15, (window.getSize().y * 0.8f) - 5);
 
-    UserZone gameZone(gameZonePosition, gameZoneSize, &window);
+    gameZone.SetWindow(&window);
+    gameZone.SetPosition(gameZonePosition);
+    gameZone.SetSize(gameZoneSize);
     gameZone.SetFillColor(BLACK_COLOR);
 
     /* Зона статусной строки  */
@@ -97,12 +149,13 @@ void Screen(int width, int height, std::string name)
             (window.getSize().x * 0.75f) - 15,
             (window.getSize().y * 0.2f) - 15);
 
-    UserZone statusZone(statusZonePosition, statusZoneSize, &window);
+    statusZone.SetWindow(&window);
+    statusZone.SetPosition(statusZonePosition);
+    statusZone.SetSize(statusZoneSize);
     statusZone.SetDirection(DirectionZoneButtons::HORIZONTAL);
     statusZone.SetFillColor(BLACK_COLOR);
     /* --- */
-
-    /* кнопки */
+    /* Кнопки */
     UserButton btnRandomMode("RANDOM MODE", &window);
     btnRandomMode.SetFillColor(BLACK_COLOR);
     btnRandomMode.SetSize(sf::Vector2f(200, 60));
@@ -113,10 +166,10 @@ void Screen(int width, int height, std::string name)
     btnCustomMode.SetSize(sf::Vector2f(200, 60));
     btnCustomMode.ClickButton = CustomModeGrid;
 
-    UserButton btnModelsMode("MODELS", &window);
-    btnModelsMode.SetSize(sf::Vector2f(200, 60));
-    btnModelsMode.SetFillColor(BLACK_COLOR);
-    btnModelsMode.ClickButton = ASDFGSDA;
+    UserButton btnModels("MODELS", &window);
+    btnModels.SetSize(sf::Vector2f(200, 60));
+    btnModels.SetFillColor(BLACK_COLOR);
+    btnModels.ClickButton = ModalWindow;
 
     UserButton btnClose("CLOSE", &window);
     btnClose.SetSize(sf::Vector2f(100, 60));
@@ -127,14 +180,51 @@ void Screen(int width, int height, std::string name)
     btnPause.SetSize(sf::Vector2f(80, 60));
     btnPause.SetFillColor(BLACK_COLOR);
     btnPause.ClickButton = PauseStart;
-    /* --- */
 
+    UserButton btnSpeed_1("X-2", &window);
+    btnSpeed_1.SetSize(sf::Vector2f(80, 60));
+    btnSpeed_1.SetFillColor(BLACK_COLOR);
+    btnSpeed_1.ClickButton = Speed_1;
+
+    UserButton btnSpeed_2("X-1", &window);
+    btnSpeed_2.SetSize(sf::Vector2f(80, 60));
+    btnSpeed_2.SetFillColor(BLACK_COLOR);
+    btnSpeed_2.ClickButton = Speed_2;
+
+    UserButton btnSpeed_3("X-0.5", &window);
+    btnSpeed_3.SetSize(sf::Vector2f(80, 60));
+    btnSpeed_3.SetFillColor(BLACK_COLOR);
+    btnSpeed_3.ClickButton = Speed_3;
+
+    UserButton btnSpeed_4("X-0.25", &window);
+    btnSpeed_4.SetSize(sf::Vector2f(80, 60));
+    btnSpeed_4.SetFillColor(BLACK_COLOR);
+    btnSpeed_4.ClickButton = Speed_4;
+
+    /* Разделение кнопок по зонам экрана */
     menuZone.AddButton(btnCustomMode);
     menuZone.AddButton(btnRandomMode);
-    menuZone.AddButton(btnModelsMode);
+    menuZone.AddButton(btnModels);
     menuZone.AddButton(btnClose);
 
     statusZone.AddButton(btnPause);
+    statusZone.AddButton(btnSpeed_1);
+    statusZone.AddButton(btnSpeed_2);
+    statusZone.AddButton(btnSpeed_3);
+    statusZone.AddButton(btnSpeed_4);
+}
+
+void MainWindow()
+{
+    GetShapesNames();
+
+    LAExmpl.pause = true;
+    LAExmpl.CreateUniverse();
+
+    window.setVerticalSyncEnabled(true);
+    window.setFramerateLimit(5);
+
+    CreateUImainWindow();
 
     sf::Clock clock;
 
@@ -145,13 +235,6 @@ void Screen(int width, int height, std::string name)
         if (statusZone.collectionButtons[item].GetButtonName() == "PAUSE")
             casheBtnPause = &statusZone.collectionButtons[item];
     }
-
-    GetShapesNamesInArr();
-    /* TestInput(); */
-    /* --- */
-    /* ModelsOutput */
-
-    GetModelsArr(modelsName, modelWindow);
 
     // программа работает сколь угодно долго,пока открыто наше окно
     while (window.isOpen()) {
@@ -165,12 +248,6 @@ void Screen(int width, int height, std::string name)
             // если произошло событие Закрытие,закрываем наше окно
             if (event.type == sf::Event::Closed)
                 window.close();
-
-            /*  if (event.type == sf::Event::Resized) {
-
-                 window.setSize(sf::Vector2u(event.size.height,
-             event.size.width));
-             } */
         }
 
         // Установка цвета фона
@@ -183,12 +260,13 @@ void Screen(int width, int height, std::string name)
         ShowGrid(window);
         ShowPixel(window, LAExmpl.fieldArray);
 
-        if (LAExmpl.pause)
+        if (LAExmpl.pause) {
             casheBtnPause->SetName("START");
-        else
+            Custom(gameZone);
+        } else
             casheBtnPause->SetName("PAUSE");
 
-        if (time1.asMilliseconds() > (LAExmpl.pause ? 9999 : DELAY_MILLIS)) {
+        if (time1.asSeconds() > (LAExmpl.pause ? 9999 : speed)) {
             LAExmpl.Step();
 
             clock.restart();
@@ -196,7 +274,7 @@ void Screen(int width, int height, std::string name)
 
         sf::Font font;
         font.loadFromFile("fonts/" + DEFAULT_FONT);
-        sf::String message = "Step = ";
+        sf::String message = "step = ";
         message += std::to_string(LAExmpl.GetStep());
 
         sf::Text textStep(message, font, DEFAULT_FONT_SIZE);

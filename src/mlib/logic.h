@@ -17,6 +17,7 @@ private:
 
 public:
     bool pause = false;
+    bool custom = false;
 
     void SetStep(int step);
 
@@ -32,6 +33,8 @@ public:
     void CustomCreateUniverse(int x, int y);
 
     void Step();
+
+    void SetArray(int x, int y);
 
     void initLife();
 

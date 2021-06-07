@@ -10,9 +10,11 @@
 #include "UserButton.h"
 #include "UserZone.h"
 #include "logic.h"
+#include "models.h"
+
 
 void CloseWindow(sf::RenderWindow& window);
 
-void Screen(int width, int height, std::string name);
+void MainWindow();
 
 #endif

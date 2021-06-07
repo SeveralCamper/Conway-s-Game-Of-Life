@@ -1,32 +1,35 @@
 #include "models.h"
 
-std::ifstream myfile("input/models.txt");
+std::ifstream myfile(PATH_TO_MODELS);
 std::string line;
 std::string search = "flasher";
-std::vector<std::string> modelsName;
+std::vector<std::string> collectionModelsName;
 
 int arr[13][13];
 
-int count = 0;
-
-void TestInput()
+void FindModelIndex(std::string nameModel)
 {
-    std::fstream myfile("input/models.txt");
+    int count = 0;
+
+    std::fstream myfile(PATH_TO_MODELS);
     if (myfile) {
         while (getline(myfile, line)) {
             count++;
 
-            if (line.find("flasher") != std::string::npos) {
+            if (line.find(nameModel) != std::string::npos) {
                 break;
             }
         }
 
     } else
         std::cout << "Error!" << std::endl;
+}
 
-    std::cout << "----" << count << std::endl;
+void TestInput()
+{
+    int count = 0;
 
-    std::fstream myfile1("input/models.txt");
+    std::fstream myfile1(PATH_TO_MODELS);
     if (myfile1) {
         int flag = 0;
 
@@ -53,16 +56,22 @@ void TestInput()
     }
 }
 
-void GetShapesNamesInArr()
+void GetShapesNames()
 {
     std::string line;
 
     std::ifstream myfile;
-    myfile.open("input/models.txt");
+    myfile.open(PATH_TO_MODELS);
+
+    int count = 0;
+
     if (myfile.is_open()) {
         while (std::getline(myfile, line)) {
-            modelsName.push_back(line);
+            if (count % 15 == 0) {
+                collectionModelsName.push_back(line);
+            }
+
+            count++;
         }
     }
-    modelsName.push_back(line);
 }
