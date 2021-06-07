@@ -82,7 +82,7 @@ public:
     // Клик мышью в зоне кнопки
     void IsClickButton(sf::Vector2i mousePosition);
 
-    void (*ClickButton)(sf::RenderWindow&);
+    void (*ClickButton)();
 };
 
 #endif

@@ -23,6 +23,10 @@ private:
 public:
     std::vector<UserButton> collectionButtons;
 
+    UserZone()
+    {
+    }
+
     UserZone(sf::Vector2f position, sf::Vector2f size, sf::RenderWindow* window)
     {
         this->position = position;

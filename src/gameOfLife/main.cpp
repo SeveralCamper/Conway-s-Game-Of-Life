@@ -10,7 +10,7 @@
 int main()
 {
     // Отрисовка окна программы
-    Screen(SCREEN_WIDTH, SCREEN_HEIGHT, NAME_WINDOW);
+    Screen();
 
     return 0;
 }
