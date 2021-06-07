@@ -185,7 +185,7 @@ void Screen()
     music.openFromFile("audio/C418 - Subwoofer Lullaby.ogg");
     music.play();
     music.setLoop(true);
- 
+
     LAExmpl.pause = true;
     LAExmpl.CreateUniverse();
 
