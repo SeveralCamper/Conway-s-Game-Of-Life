@@ -1,16 +1,16 @@
 #include "ShowGrid.h"
+#include <SFML/Graphics.hpp>
 
-void ShowGrid(RenderWindow& window)
+void ShowGrid(sf::RenderWindow& window)
 {
-    window.clear(Color(0, 0, 0));
-
-    for (int i = 0; i < 65; i++)
-        for (int j = 0; j < 40; j++) {
-            RectangleShape rectangle(Vector2f(10.f, 10.f));
-            rectangle.setFillColor(Color(0, 0, 0));
+    for (int i = 0; i < ARR_WIDTH; i++)
+        for (int j = 0; j < ARR_HEIGHT; j++) {
+            sf::RectangleShape rectangle(sf::Vector2f(10.f, 10.f));
+            rectangle.setFillColor(BLACK_COLOR);
             rectangle.setOutlineThickness(.5f);
-            rectangle.setOutlineColor(Color(75, 0, 130));
-            rectangle.move(16 * i, 16 * j);
+            rectangle.setOutlineColor(INDIGO_COLOR);
+            rectangle.setPosition(360 + SIZE_CELLS * i, 11 + SIZE_CELLS * j);
+
             window.draw(rectangle);
         }
 }

@@ -1,26 +1,25 @@
 #include "ShowPixel.h"
 
-void ShowPixel(RenderWindow& window, CellStatus fieldArray[65][40])
+void ShowPixel(
+        sf::RenderWindow& window, CellStatus fieldArray[ARR_WIDTH][ARR_HEIGHT])
 {
-    // window.clear(Color(0, 0, 0));
-
-    for (int i = 0; i < 65; i++)
-        for (int j = 0; j < 40; j++) {
+    for (int i = 0; i < ARR_WIDTH; i++)
+        for (int j = 0; j < ARR_HEIGHT; j++) {
             if (fieldArray[i][j] != CellStatus::DIE) {
-                RectangleShape rectangle(Vector2f(10.f, 10.f));
-                rectangle.setFillColor(Color(255, 136, 0));
+                sf::RectangleShape rectangle(sf::Vector2f(10.f, 10.f));
+                rectangle.setFillColor(TANGERINE_COLOR);
                 rectangle.setOutlineThickness(.5f);
-                rectangle.setOutlineColor(Color(255, 165, 0));
-                rectangle.move(16 * i, 16 * j);
+                rectangle.setOutlineColor(ORANGE_COLOR);
+                rectangle.move(360 + SIZE_CELLS * i, 11 + SIZE_CELLS * j);
                 window.draw(rectangle);
             }
 
             if (fieldArray[i][j] == CellStatus::BORN) {
-                RectangleShape rectangle(Vector2f(10.f, 10.f));
-                rectangle.setFillColor(Color(50, 205, 50));
+                sf::RectangleShape rectangle(sf::Vector2f(10.f, 10.f));
+                rectangle.setFillColor(LIME_GREEN_COLOR);
                 rectangle.setOutlineThickness(.5f);
-                rectangle.setOutlineColor(Color(0, 255, 0));
-                rectangle.move(16 * i, 16 * j);
+                rectangle.setOutlineColor(LIME_COLOR);
+                rectangle.move(360 + SIZE_CELLS * i, 11 + SIZE_CELLS * j);
                 window.draw(rectangle);
             }
         }

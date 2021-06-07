@@ -1,18 +1,16 @@
-
-#include "DrawScrean.h"
-#include "ShowGrid.h"
-#include "ShowPixel.h"
-#include "logic.h"
 #include <SFML/Graphics.hpp>
+#include <Screen.h>
+#include <Settings.h>
+#include <ShowGrid.h>
+#include <ShowPixel.h>
+#include <UserButton.h>
 #include <iostream>
-
-using namespace sf;
+#include <logic.h>
 
 int main()
 {
-    LifeAlgorithm LAExmpl;
-    LAExmpl.initLife();
+    // Отрисовка окна программы
+    Screen();
 
-    DrawScrean(LAExmpl);
     return 0;
 }

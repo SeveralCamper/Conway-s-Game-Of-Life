@@ -2,8 +2,8 @@
 
 void LifeAlgorithm::CreateUniverse()
 {
-    for (int i = 0; i < Widht; i++) {
-        for (int j = 0; j < Height; j++) {
+    for (int i = 0; i < ARR_WIDTH; i++) {
+        for (int j = 0; j < ARR_HEIGHT; j++) {
             fieldArray[i][j] = CellStatus::DIE;
         }
     }
@@ -12,18 +12,37 @@ void LifeAlgorithm::CreateUniverse()
 void LifeAlgorithm::RandFillUniverse()
 {
     srand(time(NULL));
-
-    for (int i = 1; i < Widht - 1; i++) {
-        for (int j = 1; j < Height - 1; j++) {
+    for (int i = 1; i < ARR_WIDTH - 1; i++) {
+        for (int j = 1; j < ARR_HEIGHT - 1; j++) {
             fieldArray[i][j] = CellStatus(rand() % 3);
         }
     }
 }
 
+void LifeAlgorithm::SetStep(int step)
+{
+    this->step = step;
+}
+
+int LifeAlgorithm::GetStep()
+{
+    return step;
+}
+
+void LifeAlgorithm::SetArray(int x, int y)
+{
+    if (fieldArray[x][y] == CellStatus::DIE) {
+        fieldArray[x][y] = CellStatus::BORN;
+    } else if (fieldArray[x][y] != CellStatus::DIE) {
+        fieldArray[x][y] = CellStatus::DIE;
+    }
+}
+
 void LifeAlgorithm::Step()
 {
-    for (int i = 1; i < Widht - 1; i++) {
-        for (int j = 1; j < Height - 1;
+    step++;
+    for (int i = 1; i < ARR_WIDTH - 1; i++) {
+        for (int j = 1; j < ARR_HEIGHT - 1;
              j++) { // первый проход: вычисляем будущее состоянее
 
             int numNeigbours = 0;
@@ -74,19 +93,8 @@ void LifeAlgorithm::Step()
             }
         }
     }
-    for (int i = 1; i < Widht - 1; i++)
-        for (int j = 1; j < Height - 1; j++)
+    for (int i = 1; i < ARR_WIDTH - 1; i++)
+        for (int j = 1; j < ARR_HEIGHT - 1; j++)
             // второй проход: копируем вычисленное состояние в текущее
             fieldArray[i][j] = tempArray[i][j];
-}
-
-void LifeAlgorithm::initLife()
-{
-    LifeAlgorithm::CreateUniverse();
-    LifeAlgorithm::RandFillUniverse();
-}
-
-void LifeAlgorithm::RunLife()
-{
-    LifeAlgorithm::Step();
 }
