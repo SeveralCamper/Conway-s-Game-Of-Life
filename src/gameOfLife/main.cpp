@@ -1,3 +1,4 @@
+#include <Logic.h>
 #include <SFML/Graphics.hpp>
 #include <Screen.h>
 #include <Settings.h>
@@ -5,7 +6,6 @@
 #include <ShowPixel.h>
 #include <UserButton.h>
 #include <iostream>
-#include <logic.h>
 
 int main()
 {

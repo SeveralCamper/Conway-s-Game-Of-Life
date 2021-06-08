@@ -6,7 +6,7 @@
 
 #include "Settings.h"
 
-#include "logic.h"
+#include "Logic.h"
 
 class UserButton {
 private:

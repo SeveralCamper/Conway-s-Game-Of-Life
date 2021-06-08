@@ -1,9 +1,9 @@
 #ifndef SHOW_PIXEL_H_
 #define SHOW_PIXEL_H_
 
+#include <Logic.h>
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <logic.h>
 
 #include "Settings.h"
 

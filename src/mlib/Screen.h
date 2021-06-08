@@ -5,13 +5,13 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "Logic.h"
 #include "Screen.h"
 #include "Settings.h"
 #include "ShowGrid.h"
 #include "ShowPixel.h"
 #include "UserButton.h"
 #include "UserZone.h"
-#include "logic.h"
 #include <iostream>
 
 void CloseWindow(sf::RenderWindow& window);
