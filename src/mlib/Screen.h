@@ -11,6 +11,8 @@
 #include "UserButton.h"
 #include "UserZone.h"
 #include "logic.h"
+#include "Settings.h"
+#include <iostream>
 
 void CloseWindow(sf::RenderWindow& window);
 

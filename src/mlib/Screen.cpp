@@ -1,16 +1,18 @@
 #include "Screen.h"
-#include "Settings.h"
-#include <SFML/Graphics.hpp>
-
-sf::RenderWindow
-        window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), NAME_WINDOW);
+#include <iostream>
 
 UserZone menuZone;
 UserZone gameZone;
 UserZone statusZone;
 
 LifeAlgorithm LAExmpl;
+
 float speed = DELAY_SECONDS;
+
+int side = 24;
+
+sf::RenderWindow
+        window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), NAME_WINDOW);
 
 // Получить индекс массива ячейки на которой был совершен клик
 sf::Vector2i GetIndexArray(UserZone& zone)
@@ -29,12 +31,11 @@ sf::Vector2i GetIndexArray(UserZone& zone)
 void Custom(UserZone& zone)
 {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        std::cout << zone.GetPosition().x + zone.GetSize().x << std::endl;
-        if (zone.GetPosition().x < sf::Mouse::getPosition(window).x
-            && zone.GetPosition().x + zone.GetSize().x
+        if (zone.GetPosition().x < sf::Mouse::getPosition(window).x - side
+            && zone.GetPosition().x + zone.GetSize().x - side
                     > sf::Mouse::getPosition(window).x
-            && zone.GetPosition().y < sf::Mouse::getPosition(window).y
-            && zone.GetPosition().y + zone.GetSize().y
+            && zone.GetPosition().y < sf::Mouse::getPosition(window).y - side
+            && zone.GetPosition().y + zone.GetSize().y - side
                     > sf::Mouse::getPosition(window).y) {
             int x = GetIndexArray(zone).x;
             int y = GetIndexArray(zone).y;
@@ -248,7 +249,7 @@ void Screen()
 
         sf::Font font;
         font.loadFromFile("fonts/" + DEFAULT_FONT);
-        sf::String message = "step = ";
+        sf::String message = "generation = ";
         message += std::to_string(LAExmpl.GetStep());
 
         sf::Text textStep(message, font, DEFAULT_FONT_SIZE);
