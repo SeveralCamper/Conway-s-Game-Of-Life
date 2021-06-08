@@ -6,12 +6,12 @@
 #include <iostream>
 
 #include "Screen.h"
+#include "Settings.h"
 #include "ShowGrid.h"
 #include "ShowPixel.h"
 #include "UserButton.h"
 #include "UserZone.h"
 #include "logic.h"
-#include "Settings.h"
 #include <iostream>
 
 void CloseWindow(sf::RenderWindow& window);
