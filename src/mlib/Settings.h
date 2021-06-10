@@ -14,6 +14,8 @@ static const int SIZE_CELLS = 16;
 static const int ARR_WIDTH = 63;
 static const int ARR_HEIGHT = 39;
 
+static const int SIDE = 24;
+
 static const float DELAY_SECONDS = 1.f;
 
 static const sf::Color INDIGO_COLOR = sf::Color(75, 0, 130);

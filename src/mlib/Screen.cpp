@@ -9,8 +9,6 @@ LifeAlgorithm LAExmpl;
 
 float speed = DELAY_SECONDS;
 
-int side = 24;
-
 sf::RenderWindow
         window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), NAME_WINDOW);
 
@@ -31,11 +29,11 @@ sf::Vector2i GetIndexArray(UserZone& zone)
 void Custom(UserZone& zone)
 {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        if (zone.GetPosition().x < sf::Mouse::getPosition(window).x - side
-            && zone.GetPosition().x + zone.GetSize().x - side
+        if (zone.GetPosition().x < sf::Mouse::getPosition(window).x - SIDE
+            && zone.GetPosition().x + zone.GetSize().x - SIDE
                     > sf::Mouse::getPosition(window).x
-            && zone.GetPosition().y < sf::Mouse::getPosition(window).y - side
-            && zone.GetPosition().y + zone.GetSize().y - side
+            && zone.GetPosition().y < sf::Mouse::getPosition(window).y - SIDE
+            && zone.GetPosition().y + zone.GetSize().y - SIDE
                     > sf::Mouse::getPosition(window).y) {
             int x = GetIndexArray(zone).x;
             int y = GetIndexArray(zone).y;
@@ -198,12 +196,6 @@ void Screen()
     sf::Clock clock;
 
     UserButton* casheBtnPause;
-
-    for (int item = 0; item < (int)statusZone.collectionButtons.size();
-         item++) {
-        if (statusZone.collectionButtons[item].GetButtonName() == "PAUSE")
-            casheBtnPause = &statusZone.collectionButtons[item];
-    }
 
     for (int item = 0; item < (int)statusZone.collectionButtons.size();
          item++) {
