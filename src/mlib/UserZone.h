@@ -37,7 +37,6 @@ public:
 
     ~UserZone()
     {
-        //
     }
 
     sf::Vector2f GetPosition();

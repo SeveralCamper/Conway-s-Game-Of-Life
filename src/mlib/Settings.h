@@ -7,7 +7,7 @@ enum class DirectionZoneButtons { HORIZONTAL = 0, VERTICAL = 1 };
 
 static const int SCREEN_WIDTH = 1374;
 static const int SCREEN_HEIGHT = 795;
-static const std::string NAME_WINDOW = "Life";
+static const std::string NAME_WINDOW = "Conway's Game Of Life";
 
 static const int SIZE_CELLS = 16;
 

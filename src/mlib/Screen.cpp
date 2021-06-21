@@ -1,5 +1,4 @@
 #include "Screen.h"
-#include <iostream>
 
 UserZone menuZone;
 UserZone gameZone;
