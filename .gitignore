@@ -3,5 +3,6 @@ main
 GameOfLife
 TestGameOfLife
 logic
+.vscode
 *.[oda]
 
