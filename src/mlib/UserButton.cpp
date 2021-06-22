@@ -12,7 +12,7 @@ sf::Vector2f UserButton::GetPosition()
 
 void UserButton::SetWindow(sf::RenderWindow* window)
 {
-      this->window = window;
+    this->window = window;
 }
 
 void UserButton::SetSize(sf::Vector2f size)

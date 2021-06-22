@@ -12,7 +12,6 @@
 #include "logic.h"
 #include "models.h"
 
-
 void CloseWindow(sf::RenderWindow& window);
 
 void MainWindow();

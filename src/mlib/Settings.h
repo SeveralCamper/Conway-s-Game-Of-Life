@@ -10,7 +10,6 @@ static const int MAIN_WINDOW_HEIGHT = 795;
 static const int MODAL_WINDOW_WIDTH = 600;
 static const int MODAL_WINDOW_HEIGHT = 600;
 
-
 static const std::string NAME_MAIN_WINDOW = "Life";
 static const std::string NAME_MODAL_WINDOW = "List models";
 
