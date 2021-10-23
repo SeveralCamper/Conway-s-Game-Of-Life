@@ -35,6 +35,7 @@ void LifeAlgorithm::LoadModels() {
         }
     }
     FPExmpl.openFile();
+    FPExmpl.closeFile();
 }
 
 void LifeAlgorithm::SetStep(int step)

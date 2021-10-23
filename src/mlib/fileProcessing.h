@@ -12,6 +12,7 @@ private:
 public:
     void openFile();
     void closeFile();
+    
 };
 
 #endif //  FILE_PROCESSING_H_
