@@ -18,4 +18,4 @@ void CloseWindow(sf::RenderWindow& window);
 
 void Screen();
 
-#endif
+#endif //  SREEN_H_

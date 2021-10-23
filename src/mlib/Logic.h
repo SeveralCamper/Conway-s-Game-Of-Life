@@ -43,4 +43,4 @@ public:
     void RunLife();
 };
 
-#endif
+#endif //  LOGIC_H_
