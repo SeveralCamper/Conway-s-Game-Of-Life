@@ -37,6 +37,7 @@ void LifeAlgorithm::LoadModels() {
     GetDumpFile();
     CloseFile();
 
+    GetShape(2);
     ShowCollectionShapesName(GetShapesNames());
 }
 

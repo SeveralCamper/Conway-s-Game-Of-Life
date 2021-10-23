@@ -1,7 +1,5 @@
-#include <fileProcessing.h>
 #include <Settings.h>
-
-int arr[13][13];
+#include <fileProcessing.h>
 
 std::ifstream myfile;
 std::string line;
@@ -9,35 +7,20 @@ std::string search = "flasher";
 std::vector<std::string> collectionModelsName;
 std::vector<std::string> dumpFile;
 
-void OpenFile() {
+void OpenFile()
+{
     myfile.open(PATH_TO_MODELS);
 
     if (myfile.is_open()) {
         std::cout << "Succsess" << std::endl;
     } else {
-        std::cout << "Error2!" <<  std:: endl;
+        std::cout << "Error2!" << std::endl;
     }
 }
 
-void CloseFile() {
+void CloseFile()
+{
     myfile.close();
-}
-
-void FindModelIndex(std::string nameModel) {
-    int count = 0;
-
-    std::fstream myfile(PATH_TO_MODELS);
-    if (myfile) {
-        while (getline(myfile, line)) {
-            count++;
-
-            if (line.find(nameModel) != std::string::npos) {
-                break;
-            }
-        }
-
-    } else
-        std::cout << "Error4!" << std::endl;
 }
 
 /*void TestInput()
@@ -71,22 +54,25 @@ void FindModelIndex(std::string nameModel) {
     }
 }*/
 
-void ShowCollectionShapesName(std::vector<std::string> collectionModelsName) {
-    for (int i = 0; i < (int) collectionModelsName.size(); i++) {
+void ShowCollectionShapesName(std::vector<std::string> collectionModelsName)
+{
+    for (int i = 0; i < (int)collectionModelsName.size(); i++) {
         std::cout << collectionModelsName[i] << std::endl;
     }
 }
 
-std::vector<char> GetModel(int index) {
+std::vector<char> GetModel(int index)
+{
     std::vector<char> matrixInLine;
     if (myfile.is_open()) {
         std::cout << "Вывод дампа файла" << std::endl;
     }
-        //matrixInLine.push_back(myfile.get(symbol));
+    // matrixInLine.push_back(myfile.get(symbol));
     return matrixInLine;
 }
 
-std::vector<std::string> GetDumpFile() {
+std::vector<std::string> GetDumpFile()
+{
     std::string line;
     if (myfile.is_open()) {
         while (std::getline(myfile, line)) {
@@ -97,22 +83,39 @@ std::vector<std::string> GetDumpFile() {
     return dumpFile;
 }
 
-void ShowDump() {
-    for (int i = 0; i < (int) dumpFile.size(); i++) {
+void ShowDump()
+{
+    for (int i = 0; i < (int)dumpFile.size(); i++) {
         std::cout << dumpFile[i] << std::endl;
     }
 }
 
-std::vector<std::string> GetShapesNames() {
+char GetShape(int index)
+{
+    char arrayShape[13][13];
+    int ii = 0;
+    for (int i = index * 15 + 1; i < (int)index * 15 + 14; i++) {
+        for (int j = 0; j < (int)dumpFile[i].size(); j++) {
+            arrayShape[ii][j] = (dumpFile[i])[j];
+/* 
+            std::cout << "arrayShape[" << ii << "][" << j << "]= " << (dumpFile[i])[j] << std::endl; */
+        }
+        ii++;
+    }
+
+    return arrayShape[0][0];
+}
+
+std::vector<std::string> GetShapesNames()
+{
     int count = 0;
     std::cout << "GetShapesNames" << std::endl;
     for (int i = 0; i < (int)dumpFile.size(); i++) {
         if (i % 15 == 0) {
-
             collectionModelsName.push_back(dumpFile[i]);
             count++;
         }
     }
-    std::cout << "COunbt "<< count << std::endl;
+    std::cout << "COunbt " << count << std::endl;
     return collectionModelsName;
 }
