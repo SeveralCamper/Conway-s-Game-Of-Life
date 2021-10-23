@@ -1,7 +1,5 @@
 #include "Logic.h"
 
-fileProcessing FPExmpl;
-
 void LifeAlgorithm::CreateUniverse()
 {
     for (int i = 0; i < ARR_WIDTH; i++) {
@@ -33,9 +31,13 @@ void LifeAlgorithm::LoadModels() {
                 afterTWoCount = 0;
             }
         }
+        fieldArray[2][2] = CellStatus::LIVE;
     }
-    FPExmpl.openFile();
-    FPExmpl.closeFile();
+    openFile();
+    getModel(0);
+    closeFile();
+    openFile();
+    printCollectionModelsName(getShapesNames());
 }
 
 void LifeAlgorithm::SetStep(int step)

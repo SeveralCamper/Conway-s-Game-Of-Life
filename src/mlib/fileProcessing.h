@@ -6,13 +6,12 @@
 
 #include "Settings.h"
 
-class fileProcessing {
-private:
 
-public:
-    void openFile();
-    void closeFile();
-    
-};
+void openFile();
+void closeFile();
+std::vector<char> getModel(int index);
+std::vector<std::string> getShapesNames();
+void findModelIndex(std::string nameModel);
+void printCollectionModelsName(std::vector<std::string> collectionModelsName);
 
 #endif //  FILE_PROCESSING_H_
