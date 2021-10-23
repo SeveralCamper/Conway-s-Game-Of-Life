@@ -30,6 +30,8 @@ public:
 
     void RandFillUniverse();
 
+    void LoadModels();
+
     void CustomCreateUniverse(int x, int y);
 
     void Step();

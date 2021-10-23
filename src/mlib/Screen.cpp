@@ -46,6 +46,12 @@ void CloseWindow()
     window.close();
 }
 
+void LoadModel() {
+    LAExmpl.LoadModels();
+    LAExmpl.SetStep(0);
+    LAExmpl.pause = false;
+}
+
 void RandomGrid()
 {
     LAExmpl.RandFillUniverse();
@@ -135,6 +141,11 @@ void CreateUI()
     btnCustomMode.SetSize(sf::Vector2f(200, 60));
     btnCustomMode.ClickButton = CustomModeGrid;
 
+    UserButton btnModelsMode("MODELS MODE", &window);
+    btnModelsMode.SetFillColor(GRAY_COLOR);
+    btnModelsMode.SetSize(sf::Vector2f(200, 60));
+    btnModelsMode.ClickButton = LoadModel;
+
     UserButton btnClose("CLOSE", &window);
     btnClose.SetSize(sf::Vector2f(100, 60));
     btnClose.SetFillColor(GRAY_COLOR);
@@ -168,6 +179,7 @@ void CreateUI()
     /* Разделение кнопок по зонам экрана */
     menuZone.AddButton(btnCustomMode);
     menuZone.AddButton(btnRandomMode);
+    menuZone.AddButton(btnModelsMode);
     menuZone.AddButton(btnClose);
 
     statusZone.AddButton(btnPause);

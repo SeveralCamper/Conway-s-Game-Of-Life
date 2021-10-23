@@ -19,6 +19,20 @@ void LifeAlgorithm::RandFillUniverse()
     }
 }
 
+void LifeAlgorithm::LoadModels() {
+    int afterTWoCount = 0;
+    for (int i = 1; i < ARR_WIDTH - 1; i += 2) {
+        for (int j = 1; j < ARR_HEIGHT - 1; j += 2) {
+            afterTWoCount++;
+            fieldArray[i][j] = CellStatus::LIVE;
+            if (afterTWoCount == 2) {
+                fieldArray[i][j] = CellStatus::BORN;
+                afterTWoCount = 0;
+            }
+        }
+    }
+}
+
 void LifeAlgorithm::SetStep(int step)
 {
     this->step = step;
