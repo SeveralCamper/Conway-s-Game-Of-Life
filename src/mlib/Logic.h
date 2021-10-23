@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "Settings.h"
+#include <fileProcessing.h>
 
 enum class CellStatus { BORN = 0, LIVE = 1, DIE = 2 };
 

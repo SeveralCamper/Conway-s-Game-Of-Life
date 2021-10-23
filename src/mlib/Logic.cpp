@@ -1,5 +1,7 @@
 #include "Logic.h"
 
+fileProcessing FPExmpl;
+
 void LifeAlgorithm::CreateUniverse()
 {
     for (int i = 0; i < ARR_WIDTH; i++) {
@@ -21,6 +23,7 @@ void LifeAlgorithm::RandFillUniverse()
 
 void LifeAlgorithm::LoadModels() {
     int afterTWoCount = 0;
+    std::ifstream file;
     for (int i = 1; i < ARR_WIDTH - 1; i += 2) {
         for (int j = 1; j < ARR_HEIGHT - 1; j += 2) {
             afterTWoCount++;
@@ -31,6 +34,7 @@ void LifeAlgorithm::LoadModels() {
             }
         }
     }
+    FPExmpl.openFile();
 }
 
 void LifeAlgorithm::SetStep(int step)

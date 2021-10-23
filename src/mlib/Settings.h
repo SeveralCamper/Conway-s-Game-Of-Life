@@ -31,4 +31,7 @@ static const std::string DEFAULT_FONT = "arial.ttf";
 
 static const int DEFAULT_FONT_SIZE = 20;
 
+static const std::string PATH_TO_MODELS = "configurations/models.txt";
+
+
 #endif //  SETTINGS_H_

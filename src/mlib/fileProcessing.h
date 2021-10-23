@@ -6,14 +6,12 @@
 
 #include "Settings.h"
 
-
-
 class fileProcessing {
 private:
-    int step = 0;
 
 public:
-
+    void openFile();
+    void closeFile();
 };
 
 #endif //  FILE_PROCESSING_H_
