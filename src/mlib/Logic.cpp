@@ -33,11 +33,11 @@ void LifeAlgorithm::LoadModels() {
         }
         fieldArray[2][2] = CellStatus::LIVE;
     }
-    openFile();
-    getModel(0);
-    closeFile();
-    openFile();
-    printCollectionModelsName(getShapesNames());
+    OpenFile();
+    GetDumpFile();
+    CloseFile();
+
+    ShowCollectionShapesName(GetShapesNames());
 }
 
 void LifeAlgorithm::SetStep(int step)

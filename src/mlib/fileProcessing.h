@@ -6,12 +6,13 @@
 
 #include "Settings.h"
 
-
-void openFile();
-void closeFile();
-std::vector<char> getModel(int index);
-std::vector<std::string> getShapesNames();
-void findModelIndex(std::string nameModel);
-void printCollectionModelsName(std::vector<std::string> collectionModelsName);
+void ShowDump();
+void OpenFile();
+void CloseFile();
+std::vector<char> GetModel(int index);
+std::vector<std::string> GetDumpFile();
+std::vector<std::string> GetShapesNames();
+void FindModelIndex(std::string nameModel);
+void ShowCollectionShapesName(std::vector<std::string> collectionModelsName);
 
 #endif //  FILE_PROCESSING_H_

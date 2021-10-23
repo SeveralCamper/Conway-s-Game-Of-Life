@@ -7,8 +7,9 @@ std::ifstream myfile;
 std::string line;
 std::string search = "flasher";
 std::vector<std::string> collectionModelsName;
+std::vector<std::string> dumpFile;
 
-void openFile() {
+void OpenFile() {
     myfile.open(PATH_TO_MODELS);
 
     if (myfile.is_open()) {
@@ -18,11 +19,11 @@ void openFile() {
     }
 }
 
-void closeFile() {
+void CloseFile() {
     myfile.close();
 }
 
-void findModelIndex(std::string nameModel) {
+void FindModelIndex(std::string nameModel) {
     int count = 0;
 
     std::fstream myfile(PATH_TO_MODELS);
@@ -70,38 +71,48 @@ void findModelIndex(std::string nameModel) {
     }
 }*/
 
-void printCollectionModelsName(std::vector<std::string> collectionModelsName) {
+void ShowCollectionShapesName(std::vector<std::string> collectionModelsName) {
     for (int i = 0; i < (int) collectionModelsName.size(); i++) {
         std::cout << collectionModelsName[i] << std::endl;
     }
 }
 
-std::vector<char> getModel(int index) {
+std::vector<char> GetModel(int index) {
     std::vector<char> matrixInLine;
-    char symbol;
     if (myfile.is_open()) {
-        for (int i = index * 14 + 1; i < index * 14 + 13; i++) {
-            while(myfile.get(symbol)){
-
-            }
-            std::cout << i << "=" << symbol << std::endl;
-        }
+        std::cout << "Вывод дампа файла" << std::endl;
     }
         //matrixInLine.push_back(myfile.get(symbol));
     return matrixInLine;
 }
 
-std::vector<std::string> getShapesNames() {
+std::vector<std::string> GetDumpFile() {
     std::string line;
-    int count = 0;
-
     if (myfile.is_open()) {
         while (std::getline(myfile, line)) {
-            if (count % 15 == 0) {
-                collectionModelsName.push_back(line);
-            }
+            std::cout << line << std::endl;
+            dumpFile.push_back(line);
+        }
+    }
+    return dumpFile;
+}
+
+void ShowDump() {
+    for (int i = 0; i < (int) dumpFile.size(); i++) {
+        std::cout << dumpFile[i] << std::endl;
+    }
+}
+
+std::vector<std::string> GetShapesNames() {
+    int count = 0;
+    std::cout << "GetShapesNames" << std::endl;
+    for (int i = 0; i < (int)dumpFile.size(); i++) {
+        if (i % 15 == 0) {
+
+            collectionModelsName.push_back(dumpFile[i]);
             count++;
         }
     }
+    std::cout << "COunbt "<< count << std::endl;
     return collectionModelsName;
 }
