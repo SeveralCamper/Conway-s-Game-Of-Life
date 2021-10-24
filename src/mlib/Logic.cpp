@@ -26,7 +26,13 @@ void LifeAlgorithm::LoadModels() {
     GetDumpFile();
     CloseFile();
 
+    getCollectionShapesNameSize(GetShapesNames());
     ShowCollectionShapesName(GetShapesNames());
+    getCollectionShapesNameSize(GetShapesNames());
+}
+
+void LifeAlgorithm::getCollectionShapesNameSize(std::vector<std::string> collectionModelsName) {
+    std::cout  << "collectionModelsName SIZE:" << (int)collectionModelsName.size() << std::endl;
 }
 
 void LifeAlgorithm::ShowModel(int modelNum) {

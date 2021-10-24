@@ -1,10 +1,11 @@
 #include <Settings.h>
 #include <fileProcessing.h>
 
+std::vector<std::string> collectionModelsName;
+
 std::ifstream myfile;
 std::string line;
 std::string search = "flasher";
-std::vector<std::string> collectionModelsName;
 std::vector<std::string> dumpFile;
 
 void OpenFile()
@@ -64,14 +65,11 @@ char GetShape(char arrayShape[13][13], int index)
 
 std::vector<std::string> GetShapesNames()
 {
-    int count = 0;
-    std::cout << "GetShapesNames" << std::endl;
     for (int i = 0; i < (int)dumpFile.size(); i++) {
         if (i % 15 == 0) {
             collectionModelsName.push_back(dumpFile[i]);
-            count++;
         }
     }
-    std::cout << "Count " << count << std::endl;
+
     return collectionModelsName;
 }

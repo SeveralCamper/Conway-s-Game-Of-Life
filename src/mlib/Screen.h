@@ -12,6 +12,8 @@
 #include "ShowPixel.h"
 #include "UserButton.h"
 #include "UserZone.h"
+#include <fileProcessing.h>
+
 #include <iostream>
 
 void CloseWindow(sf::RenderWindow& window);

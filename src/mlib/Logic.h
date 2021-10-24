@@ -37,6 +37,8 @@ public:
 
     void CustomCreateUniverse(int x, int y);
 
+    void getCollectionShapesNameSize(std::vector<std::string> collectionModelsName);
+
     void Step();
 
     void SetArray(int x, int y);
