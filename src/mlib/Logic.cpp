@@ -20,15 +20,19 @@ void LifeAlgorithm::RandFillUniverse()
 }
 
 void LifeAlgorithm::LoadModels() {
-    char tmpArrayShape[13][13];
-
     CreateUniverse();
 
     OpenFile();
     GetDumpFile();
     CloseFile();
 
-    GetShape(tmpArrayShape, 3);
+    ShowCollectionShapesName(GetShapesNames());
+}
+
+void LifeAlgorithm::ShowModel(int modelNum) {
+    char tmpArrayShape[13][13];
+
+    GetShape(tmpArrayShape, modelNum);
     for (int i = 0; i < 13; i++) {
         for (int j = 0; j < 13; j++) {
             if (tmpArrayShape[i][j] == '0') {
@@ -42,13 +46,12 @@ void LifeAlgorithm::LoadModels() {
         }
     }
 
-    for (int i = 0; i < 13; i++) {
+    /*for (int i = 0; i < 13; i++) {
         std::cout << std::endl;
         for (int j = 0; j < 13; j++) {
             std::cout << tmpArrayShape[i][j] << " ";
         }
-    }
-    //ShowCollectionShapesName(GetShapesNames());
+    }*/
 }
 
 void LifeAlgorithm::SetStep(int step)

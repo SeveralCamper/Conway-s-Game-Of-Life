@@ -32,6 +32,8 @@ public:
     void RandFillUniverse();
 
     void LoadModels();
+    
+    void ShowModel(int modelNum);
 
     void CustomCreateUniverse(int x, int y);
 

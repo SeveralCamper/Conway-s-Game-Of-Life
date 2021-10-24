@@ -73,6 +73,18 @@ void UserZone::ShowButtons()
 
             tempPositionY += buttonSize.y + offset;
             break;
+
+        case 2:
+            collectionButtons[item].SetButtonPosition(sf::Vector2f
+                    (tempPositionX, tempPositionY));
+
+            tempPositionX += buttonSize.x + offset;
+            if (tempPositionX + offset > 335) {
+                tempPositionX = position.x + offset;
+                tempPositionY += buttonSize.y + offset;
+            }
+            break;
+
         default:
             break;
         }

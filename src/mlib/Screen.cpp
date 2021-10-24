@@ -56,6 +56,13 @@ void LoadModel() {
     LAExmpl.pause = false;
 }
 
+void ShowModels() {
+    modelsFLag = 1;
+    LAExmpl.ShowModel(0);
+    LAExmpl.SetStep(0);
+    LAExmpl.pause = false;
+}
+
 void RandomGrid()
 {
     modelsFLag = 0;
@@ -131,7 +138,7 @@ void CreateUI()
     modelsZone.SetWindow(&window);
     modelsZone.SetPosition(modelsZonePosition);
     modelsZone.SetSize(modelsZoneSize);
-    modelsZone.SetDirection(DirectionZoneButtons::VERTICAL);
+    modelsZone.SetDirection(DirectionZoneButtons::CUBE);
     modelsZone.SetFillColor(BLACK_COLOR);
 
 
@@ -170,12 +177,118 @@ void CreateUI()
     btnClose.SetFillColor(GRAY_COLOR);
     btnClose.ClickButton = CloseWindow;
 
+
+
+
     
     UserButton btnModel1("1", &window);
     btnModel1.SetSize(sf::Vector2f(40, 40));
     btnModel1.SetFillColor(GRAY_COLOR);
-    btnModel1.ClickButton = LoadModel;
+    btnModel1.ClickButton = ShowModels;
+
+    UserButton btnModel2("2", &window);
+    btnModel2.SetSize(sf::Vector2f(40, 40));
+    btnModel2.SetFillColor(GRAY_COLOR);
+    btnModel2.ClickButton = ShowModels;
+
+    UserButton btnModel3("3", &window);
+    btnModel3.SetSize(sf::Vector2f(40, 40));
+    btnModel3.SetFillColor(GRAY_COLOR);
+    btnModel3.ClickButton = ShowModels;
+
+    UserButton btnModel4("4", &window);
+    btnModel4.SetSize(sf::Vector2f(40, 40));
+    btnModel4.SetFillColor(GRAY_COLOR);
+    btnModel4.ClickButton = ShowModels;
+
+    UserButton btnModel5("5", &window);
+    btnModel5.SetSize(sf::Vector2f(40, 40));
+    btnModel5.SetFillColor(GRAY_COLOR);
+    btnModel5.ClickButton = ShowModels;
+
+    UserButton btnModel6("6", &window);
+    btnModel6.SetSize(sf::Vector2f(40, 40));
+    btnModel6.SetFillColor(GRAY_COLOR);
+    btnModel6.ClickButton = ShowModels;
+
+    UserButton btnModel7("7", &window);
+    btnModel7.SetSize(sf::Vector2f(40, 40));
+    btnModel7.SetFillColor(GRAY_COLOR);
+    btnModel7.ClickButton = ShowModels;
+
+    UserButton btnModel8("8", &window);
+    btnModel8.SetSize(sf::Vector2f(40, 40));
+    btnModel8.SetFillColor(GRAY_COLOR);
+    btnModel8.ClickButton = ShowModels;
+
+    UserButton btnModel9("9", &window);
+    btnModel9.SetSize(sf::Vector2f(40, 40));
+    btnModel9.SetFillColor(GRAY_COLOR);
+    btnModel9.ClickButton = ShowModels;
+
+    UserButton btnModel10("10", &window);
+    btnModel10.SetSize(sf::Vector2f(40, 40));
+    btnModel10.SetFillColor(GRAY_COLOR);
+    btnModel10.ClickButton = ShowModels;
+
+    UserButton btnModel11("11", &window);
+    btnModel11.SetSize(sf::Vector2f(40, 40));
+    btnModel11.SetFillColor(GRAY_COLOR);
+    btnModel11.ClickButton = ShowModels;
+
+    UserButton btnModel12("12", &window);
+    btnModel12.SetSize(sf::Vector2f(40, 40));
+    btnModel12.SetFillColor(GRAY_COLOR);
+    btnModel12.ClickButton = ShowModels;
+
+    UserButton btnModel13("13", &window);
+    btnModel13.SetSize(sf::Vector2f(40, 40));
+    btnModel13.SetFillColor(GRAY_COLOR);
+    btnModel13.ClickButton = ShowModels;
+
+    UserButton btnModel14("14", &window);
+    btnModel14.SetSize(sf::Vector2f(40, 40));
+    btnModel14.SetFillColor(GRAY_COLOR);
+    btnModel14.ClickButton = ShowModels;
+
+    UserButton btnModel15("15", &window);
+    btnModel15.SetSize(sf::Vector2f(40, 40));
+    btnModel15.SetFillColor(GRAY_COLOR);
+    btnModel15.ClickButton = ShowModels;
+
+    UserButton btnModel16("16", &window);
+    btnModel16.SetSize(sf::Vector2f(40, 40));
+    btnModel16.SetFillColor(GRAY_COLOR);
+    btnModel16.ClickButton = ShowModels;
+
+    UserButton btnModel17("17", &window);
+    btnModel17.SetSize(sf::Vector2f(40, 40));
+    btnModel17.SetFillColor(GRAY_COLOR);
+    btnModel17.ClickButton = ShowModels;
+
+    UserButton btnModel18("18", &window);
+    btnModel18.SetSize(sf::Vector2f(40, 40));
+    btnModel18.SetFillColor(GRAY_COLOR);
+    btnModel18.ClickButton = ShowModels;
+
+    UserButton btnModel19("19", &window);
+    btnModel19.SetSize(sf::Vector2f(40, 40));
+    btnModel19.SetFillColor(GRAY_COLOR);
+    btnModel19.ClickButton = ShowModels;
+
+    UserButton btnModel20("20", &window);
+    btnModel20.SetSize(sf::Vector2f(40, 40));
+    btnModel20.SetFillColor(GRAY_COLOR);
+    btnModel20.ClickButton = ShowModels;
+
+    UserButton btnModel21("21", &window);
+    btnModel21.SetSize(sf::Vector2f(40, 40));
+    btnModel21.SetFillColor(GRAY_COLOR);
+    btnModel21.ClickButton = ShowModels;
+
+
     
+
 
     UserButton btnPause("PAUSE", &window);
     btnPause.SetSize(sf::Vector2f(80, 60));
@@ -215,6 +328,27 @@ void CreateUI()
     statusZone.AddButton(btnSpeed_4);
 
     modelsZone.AddButton(btnModel1);
+    modelsZone.AddButton(btnModel2);
+    modelsZone.AddButton(btnModel3);
+    modelsZone.AddButton(btnModel4);
+    modelsZone.AddButton(btnModel5);
+    modelsZone.AddButton(btnModel6);
+    modelsZone.AddButton(btnModel7);
+    modelsZone.AddButton(btnModel8);
+    modelsZone.AddButton(btnModel9);
+    modelsZone.AddButton(btnModel10);
+    modelsZone.AddButton(btnModel11);
+    modelsZone.AddButton(btnModel12);
+    modelsZone.AddButton(btnModel13);
+    modelsZone.AddButton(btnModel14);
+    modelsZone.AddButton(btnModel15);
+    modelsZone.AddButton(btnModel16);
+    modelsZone.AddButton(btnModel17);
+    modelsZone.AddButton(btnModel18);
+    modelsZone.AddButton(btnModel19);
+    modelsZone.AddButton(btnModel20);
+    modelsZone.AddButton(btnModel21);
+
 }
 
 void Screen()

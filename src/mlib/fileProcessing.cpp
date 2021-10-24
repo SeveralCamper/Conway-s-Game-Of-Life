@@ -26,7 +26,7 @@ void CloseFile()
 void ShowCollectionShapesName(std::vector<std::string> collectionModelsName)
 {
     for (int i = 0; i < (int)collectionModelsName.size(); i++) {
-        std::cout << collectionModelsName[i] << std::endl;
+        std::cout << i << ". " << collectionModelsName[i] << std::endl;
     }
 }
 

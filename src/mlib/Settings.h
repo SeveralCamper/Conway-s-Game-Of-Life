@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-enum class DirectionZoneButtons { HORIZONTAL = 0, VERTICAL = 1 };
+enum class DirectionZoneButtons { HORIZONTAL = 0, VERTICAL = 1, CUBE = 2};
 
 static const int SCREEN_WIDTH = 1374;
 static const int SCREEN_HEIGHT = 795;
