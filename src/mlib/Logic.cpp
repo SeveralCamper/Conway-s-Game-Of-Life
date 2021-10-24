@@ -20,25 +20,33 @@ void LifeAlgorithm::RandFillUniverse()
 }
 
 void LifeAlgorithm::LoadModels() {
-    int afterTWoCount = 0;
-    std::ifstream file;
-    for (int i = 1; i < ARR_WIDTH - 1; i += 2) {
-        for (int j = 1; j < ARR_HEIGHT - 1; j += 2) {
-            afterTWoCount++;
-            fieldArray[i][j] = CellStatus::LIVE;
-            if (afterTWoCount == 2) {
-                fieldArray[i][j] = CellStatus::BORN;
-                afterTWoCount = 0;
-            }
-        }
-        fieldArray[2][2] = CellStatus::LIVE;
-    }
+    char tmpArrayShape[13][13];
+
     OpenFile();
     GetDumpFile();
     CloseFile();
 
-    GetShape(2);
-    ShowCollectionShapesName(GetShapesNames());
+    GetShape(tmpArrayShape, 3);
+    for (int i = 0; i < 13; i++) {
+        for (int j = 0; j < 13; j++) {
+            if (tmpArrayShape[i][j] == '0') {
+                fieldArray[i+1][j+1] = CellStatus::DIE;
+            } else if (tmpArrayShape[i][j] == '1') {
+                fieldArray[i+1][j+1] = CellStatus::BORN;
+            } else if (tmpArrayShape[i][j] == '2') {
+                fieldArray[i+1][j+1] = CellStatus::LIVE;
+            }
+            //std::cout << arrayShape[i][j] << " ";
+        }
+    }
+
+    for (int i = 0; i < 13; i++) {
+        std::cout << std::endl;
+        for (int j = 0; j < 13; j++) {
+            std::cout << tmpArrayShape[i][j] << " ";
+        }
+    }
+    //ShowCollectionShapesName(GetShapesNames());
 }
 
 void LifeAlgorithm::SetStep(int step)

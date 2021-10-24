@@ -3,6 +3,7 @@
 UserZone menuZone;
 UserZone gameZone;
 UserZone statusZone;
+UserZone modelsZone;
 
 LifeAlgorithm LAExmpl;
 
@@ -115,6 +116,10 @@ void CreateUI()
     gameZone.SetPosition(gameZonePosition);
     gameZone.SetSize(gameZoneSize);
     gameZone.SetFillColor(BLACK_COLOR);
+
+    /* Зона Моделей */
+
+    
 
     /* Зона статусной строки  */
     sf::Vector2f statusZonePosition = sf::Vector2f(
