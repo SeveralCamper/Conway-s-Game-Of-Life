@@ -130,7 +130,6 @@ void CreateUI()
     gameZone.SetFillColor(BLACK_COLOR);
 
     /* Зона Моделей */
-
     sf::Vector2f modelsZonePosition = sf::Vector2f(5, 330);
     sf::Vector2f modelsZoneSize
             = sf::Vector2f(window.getSize().x * 0.25f, window.getSize().y - 334);
@@ -155,8 +154,9 @@ void CreateUI()
     statusZone.SetSize(statusZoneSize);
     statusZone.SetDirection(DirectionZoneButtons::HORIZONTAL);
     statusZone.SetFillColor(BLACK_COLOR);
-    /* --- */
-    /* Кнопки */
+
+
+    /* Кнопки Игрового поля*/
     UserButton btnRandomMode("RANDOM MODE", &window);
     btnRandomMode.SetFillColor(GRAY_COLOR);
     btnRandomMode.SetSize(sf::Vector2f(200, 60));
@@ -180,7 +180,7 @@ void CreateUI()
 
 
 
-    
+    /* Кнопки Моделей*/
     UserButton btnModel1("1", &window);
     btnModel1.SetSize(sf::Vector2f(40, 40));
     btnModel1.SetFillColor(GRAY_COLOR);
@@ -289,7 +289,7 @@ void CreateUI()
 
     
 
-
+    /* Кнопки Статус Зоны*/
     UserButton btnPause("PAUSE", &window);
     btnPause.SetSize(sf::Vector2f(80, 60));
     btnPause.SetFillColor(GRAY_COLOR);
