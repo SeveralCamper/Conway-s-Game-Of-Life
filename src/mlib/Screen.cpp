@@ -170,6 +170,13 @@ void CreateUI()
     btnClose.SetFillColor(GRAY_COLOR);
     btnClose.ClickButton = CloseWindow;
 
+    
+    UserButton btnModel1("1", &window);
+    btnModel1.SetSize(sf::Vector2f(40, 40));
+    btnModel1.SetFillColor(GRAY_COLOR);
+    btnModel1.ClickButton = LoadModel;
+    
+
     UserButton btnPause("PAUSE", &window);
     btnPause.SetSize(sf::Vector2f(80, 60));
     btnPause.SetFillColor(GRAY_COLOR);
@@ -206,6 +213,8 @@ void CreateUI()
     statusZone.AddButton(btnSpeed_2);
     statusZone.AddButton(btnSpeed_3);
     statusZone.AddButton(btnSpeed_4);
+
+    modelsZone.AddButton(btnModel1);
 }
 
 void Screen()
