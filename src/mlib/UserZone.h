@@ -61,6 +61,8 @@ public:
 
     // Отрисовка зоны
     void DrawZone();
+
+    void DrawZone(sf::Color color);
 };
 
 #endif //  USER_ZONE_H_

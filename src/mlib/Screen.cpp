@@ -9,6 +9,8 @@ LifeAlgorithm LAExmpl;
 
 float speed = DELAY_SECONDS;
 
+int modelsFLag = 0;
+
 sf::RenderWindow
         window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), NAME_WINDOW);
 
@@ -48,6 +50,7 @@ void CloseWindow()
 }
 
 void LoadModel() {
+    modelsFLag = 1;
     LAExmpl.LoadModels();
     LAExmpl.SetStep(0);
     LAExmpl.pause = false;
@@ -55,6 +58,7 @@ void LoadModel() {
 
 void RandomGrid()
 {
+    modelsFLag = 0;
     LAExmpl.RandFillUniverse();
     LAExmpl.SetStep(0);
     LAExmpl.pause = false;
@@ -62,6 +66,7 @@ void RandomGrid()
 
 void CustomModeGrid()
 {
+    modelsFLag = 0;
     LAExmpl.CreateUniverse();
     LAExmpl.SetStep(0);
     LAExmpl.pause = true;
@@ -119,7 +124,16 @@ void CreateUI()
 
     /* Зона Моделей */
 
-    
+    sf::Vector2f modelsZonePosition = sf::Vector2f(5, 330);
+    sf::Vector2f modelsZoneSize
+            = sf::Vector2f(window.getSize().x * 0.25f, window.getSize().y - 334);
+
+    modelsZone.SetWindow(&window);
+    modelsZone.SetPosition(modelsZonePosition);
+    modelsZone.SetSize(modelsZoneSize);
+    modelsZone.SetDirection(DirectionZoneButtons::VERTICAL);
+    modelsZone.SetFillColor(BLACK_COLOR);
+
 
     /* Зона статусной строки  */
     sf::Vector2f statusZonePosition = sf::Vector2f(
@@ -239,6 +253,9 @@ void Screen()
         menuZone.DrawZone();
         gameZone.DrawZone();
         statusZone.DrawZone();
+        if (modelsFLag == 1) {
+            modelsZone.DrawZone(TANGERINE_COLOR);
+        }
 
         ShowGrid(window);
         ShowPixel(window, LAExmpl.fieldArray);

@@ -97,3 +97,22 @@ void UserZone::DrawZone()
 
     ShowButtons();
 }
+
+void UserZone::DrawZone(sf::Color color)
+{
+    sf::RectangleShape zone;
+
+    zone.setSize(size);
+
+    zone.setPosition(position);
+
+    zone.setFillColor(this->color);
+
+    zone.setOutlineThickness(4.f);
+
+    zone.setOutlineColor(color);
+
+    window->draw(zone);
+
+    ShowButtons();
+}

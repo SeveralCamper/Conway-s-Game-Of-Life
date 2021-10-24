@@ -22,6 +22,8 @@ void LifeAlgorithm::RandFillUniverse()
 void LifeAlgorithm::LoadModels() {
     char tmpArrayShape[13][13];
 
+    CreateUniverse();
+
     OpenFile();
     GetDumpFile();
     CloseFile();
