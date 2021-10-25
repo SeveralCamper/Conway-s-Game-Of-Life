@@ -181,13 +181,19 @@ void CreateUI()
     btnClose.ClickButton = CloseWindow;
 
     /* Кнопки Моделей*/
-
-    for (int i = 0; i < (int)GetShapesNames().size(); i++) {
-        UserButton btnShape("BE", &window);
+    char name;
+    for (int i = 0; i < 21; i++) {
+        name = i;
+        UserButton btnShape(name, &window);
         btnShape.SetSize(sf::Vector2f(40, 40));
         btnShape.SetFillColor(GRAY_COLOR);
         btnShape.ClickButton = ShowModels;
         collectionButtonsShapes.push_back(btnShape);
+        name.pop_back();
+    }
+
+    for (int i = 0; i < (int) name.size(); i++) {
+        std::cout << "nameI: " << name[i] << std::endl;
     }
 
     ShowCollectionShapesName(GetShapesNames());

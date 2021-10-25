@@ -32,6 +32,8 @@ public:
     void RandFillUniverse();
 
     void LoadModels();
+
+    void convertTmtToTmt();
     
     void ShowModel(int modelNum);
 

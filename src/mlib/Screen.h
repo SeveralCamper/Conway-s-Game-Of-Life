@@ -12,6 +12,7 @@
 #include "ShowPixel.h"
 #include "UserButton.h"
 #include "UserZone.h"
+#include <sstream>
 #include <fileProcessing.h>
 
 #include <iostream>

@@ -65,11 +65,16 @@ char GetShape(char arrayShape[13][13], int index)
 
 std::vector<std::string> GetShapesNames()
 {
+    return collectionModelsName;
+}
+
+std::vector<std::string> SetShapesNames()
+{
     for (int i = 0; i < (int)dumpFile.size(); i++) {
         if (i % 15 == 0) {
             collectionModelsName.push_back(dumpFile[i]);
         }
     }
-
+    
     return collectionModelsName;
 }

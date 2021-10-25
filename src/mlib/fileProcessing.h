@@ -9,6 +9,7 @@
 
 std::vector<char> GetModel(int index);
 std::vector<std::string> GetDumpFile();
+std::vector<std::string> SetShapesNames();
 std::vector<std::string> GetShapesNames();
 
 char GetShape(char arrayShape[13][13], int index);

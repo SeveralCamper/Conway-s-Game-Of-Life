@@ -1,5 +1,7 @@
 #include "Logic.h"
 
+int *collectionsFlag = 0;
+
 void LifeAlgorithm::CreateUniverse()
 {
     for (int i = 0; i < ARR_WIDTH; i++) {
@@ -26,9 +28,14 @@ void LifeAlgorithm::LoadModels() {
     GetDumpFile();
     CloseFile();
 
+    SetShapesNames();
+
     getCollectionShapesNameSize(GetShapesNames());
     ShowCollectionShapesName(GetShapesNames());
-    getCollectionShapesNameSize(GetShapesNames());
+}
+
+void LifeAlgorithm::convertTmtToTmt() {
+    
 }
 
 void LifeAlgorithm::getCollectionShapesNameSize(std::vector<std::string> collectionModelsName) {
