@@ -33,7 +33,7 @@ public:
 
     void LoadModels();
     
-    void ShowModel(int modelNum);
+    void ShowModel();
 
     void CustomCreateUniverse(int x, int y);
 

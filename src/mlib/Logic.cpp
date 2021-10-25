@@ -29,10 +29,10 @@ void LifeAlgorithm::LoadModels() {
     ShowCollectionShapesName(GetShapesNames());
 }
 
-void LifeAlgorithm::ShowModel(int modelNum) {
+void LifeAlgorithm::ShowModel() {
     char tmpArrayShape[13][13];
 
-    GetShape(tmpArrayShape, modelNum);
+    GetShape(tmpArrayShape, 0);
     for (int i = 0; i < 13; i++) {
         for (int j = 0; j < 13; j++) {
             if (tmpArrayShape[i][j] == '0') {

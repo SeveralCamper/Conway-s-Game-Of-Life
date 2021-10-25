@@ -58,7 +58,7 @@ void LoadModel() {
 
 void ShowModels() {
     modelsFLag = 1;
-    LAExmpl.ShowModel(0);
+    LAExmpl.ShowModel();
     LAExmpl.SetStep(0);
     LAExmpl.pause = false;
 }
